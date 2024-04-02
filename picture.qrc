@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="background">
+    <file>实验室.png</file>
+    <file>温度.png</file>
+    <file>向上.png</file>
+    <file>原子.png</file>
+    <file>坐标系.png</file>
+    <file>弛豫类型.png</file>
+    <file>晶体结构编辑23.png</file>
+    <file>晶体缺陷.png</file>
+    <file>热流.png</file>
+    <file>系综选择.png</file>
+    <file>原子服务.png</file>
+  </qresource>
+</RCC>
