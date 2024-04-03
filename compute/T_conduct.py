@@ -257,7 +257,7 @@ if __name__ == "__main__":
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from initial.read_data import ReadLmpData
     from compute.integrate import integrate
-    # import numpy as np
+    import numpy as np
     from initial.initialize_system import System
     from compute.eam_force import eam_force
     from initial.lattice import Lattice
