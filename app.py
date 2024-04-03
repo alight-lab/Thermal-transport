@@ -105,6 +105,12 @@ class MainWindow(QWidget, Ui_Form):
         self.comboBox.setCurrentIndex(0)
         self.comboBox_2.setCurrentIndex(0)
         self.comboBox_2.setCurrentIndex(0)
+        self.lineEdit_3.setText('')
+        self.lineEdit_4.setText('')
+        self.lineEdit_9.setText('')
+        self.lineEdit_8.setText('')
+        self.lineEdit_7.setText('')
+        self.lineEdit_6.setText('')
         self.create_lattice()
 
     def choose_page_1(self):
@@ -116,6 +122,12 @@ class MainWindow(QWidget, Ui_Form):
         self.comboBox.setCurrentIndex(0)
         self.comboBox_2.setCurrentIndex(0)
         self.comboBox_2.setCurrentIndex(0)
+        self.lineEdit_3.setText('')
+        self.lineEdit_4.setText('')
+        self.lineEdit_9.setText('')
+        self.lineEdit_8.setText('')
+        self.lineEdit_7.setText('')
+        self.lineEdit_6.setText('')
         self.ax_T_time.cla()
         self.ax_T_X.cla()
         self.ax_pdos_omega.cla()
@@ -144,6 +156,10 @@ class MainWindow(QWidget, Ui_Form):
                 self.filename = sys.path[0] + '\\data\\lattice_0.lmp'
                 create_eam([self.element_0])
                 self.filename_potential = sys.path[0] + '\\data\\' + self.element_0 + '.eam.alloy'
+                self.lineEdit_4.setText(self.element_0)
+                self.lineEdit_9.setText(str(self.Tot_data_initial.atom_num))
+                self.lineEdit_8.setText(self.lineEdit.text())
+                self.lineEdit_7.setText(str(self.Tot_data_initial.Masses[0]))
                 self.plot_atom_initial()
             else:
                 self.ax_atom.cla()
@@ -161,6 +177,12 @@ class MainWindow(QWidget, Ui_Form):
                 self.filename = sys.path[0] + '\\data\\' + 'file.data'
                 create_eam([self.element_1, self.element_2])
                 self.filename_potential = sys.path[0] + '\\data\\' + self.element_1 + self.element_2 + '.eam.alloy'
+                self.lineEdit_4.setText(self.element_1)
+                self.lineEdit_3.setText(self.element_2)
+                self.lineEdit_9.setText(str(self.Tot_data_initial.atom_num))
+                self.lineEdit_8.setText(self.lineEdit.text())
+                self.lineEdit_7.setText(str(self.Tot_data_initial.Masses[0]))
+                self.lineEdit_6.setText(str(self.Tot_data_initial.Masses[1]))
                 self.plot_atom_initial()
             else:
                 self.ax_atom.cla()

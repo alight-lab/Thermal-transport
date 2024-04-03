@@ -1273,8 +1273,8 @@ OToolBox::tab:selected{font-weight: bold;}
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>122</width>
-          <height>343</height>
+          <width>253</width>
+          <height>834</height>
          </rect>
         </property>
         <attribute name="icon">
@@ -1756,8 +1756,8 @@ color: rgb(255, 255, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>137</width>
-          <height>402</height>
+          <width>253</width>
+          <height>834</height>
          </rect>
         </property>
         <attribute name="icon">
@@ -1873,8 +1873,8 @@ color: rgb(255, 255, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>136</width>
-          <height>345</height>
+          <width>253</width>
+          <height>834</height>
          </rect>
         </property>
         <attribute name="icon">
@@ -2855,7 +2855,7 @@ border-radius: 1px</string>
                     </property>
                     <property name="sizeHint" stdset="0">
                      <size>
-                      <width>259</width>
+                      <width>487</width>
                       <height>20</height>
                      </size>
                     </property>
@@ -2882,7 +2882,10 @@ border-radius: 1px</string>
                          </font>
                         </property>
                         <property name="styleSheet">
-                         <string notr="true"/>
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -2901,6 +2904,12 @@ border-radius: 1px</string>
                           <weight>75</weight>
                           <bold>true</bold>
                          </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -2922,6 +2931,12 @@ border-radius: 1px</string>
                         <bold>true</bold>
                        </font>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(255, 255, 255);</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignCenter</set>
+                      </property>
                      </widget>
                     </item>
                     <item>
@@ -2941,6 +2956,12 @@ border-radius: 1px</string>
                           <weight>75</weight>
                           <bold>true</bold>
                          </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -2985,6 +3006,12 @@ border-radius: 1px</string>
                           <bold>true</bold>
                          </font>
                         </property>
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                        </property>
                        </widget>
                       </item>
                       <item>
@@ -3002,6 +3029,12 @@ border-radius: 1px</string>
                           <weight>75</weight>
                           <bold>true</bold>
                          </font>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">color: rgb(255, 255, 255);</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
                         </property>
                        </widget>
                       </item>
