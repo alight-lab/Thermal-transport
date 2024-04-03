@@ -1908,7 +1908,7 @@ class Ui_Form(object):
         self.horizontalLayout_26.setObjectName("horizontalLayout_26")
         self.horizontalLayout_18 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_18.setContentsMargins(5, -1, -1, -1)
-        self.horizontalLayout_18.setSpacing(65)
+        self.horizontalLayout_18.setSpacing(100)
         self.horizontalLayout_18.setObjectName("horizontalLayout_18")
         self.label_37 = QtWidgets.QLabel(self.page_7)
         self.label_37.setStyleSheet("color: rgb(255, 255, 255);")
@@ -1924,6 +1924,8 @@ class Ui_Form(object):
         font.setBold(True)
         font.setWeight(75)
         self.lineEdit_11.setFont(font)
+        self.lineEdit_11.setStyleSheet("color: rgb(255, 255, 255);")
+        self.lineEdit_11.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
         self.lineEdit_11.setObjectName("lineEdit_11")
         self.horizontalLayout_24.addWidget(self.lineEdit_11)
         self.label_38 = QtWidgets.QLabel(self.page_7)
@@ -1942,7 +1944,7 @@ class Ui_Form(object):
         self.horizontalLayout_24.setStretch(1, 1)
         self.horizontalLayout_18.addLayout(self.horizontalLayout_24)
         self.horizontalLayout_18.setStretch(0, 1)
-        self.horizontalLayout_18.setStretch(1, 2)
+        self.horizontalLayout_18.setStretch(1, 1)
         self.horizontalLayout_26.addLayout(self.horizontalLayout_18)
         self.stackedWidget.addWidget(self.page_7)
         self.verticalLayout_19.addWidget(self.stackedWidget)
@@ -2155,9 +2157,9 @@ class Ui_Form(object):
         self.horizontalLayout_40.addLayout(self.horizontalLayout_39)
 
         self.retranslateUi(Form)
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(4)
         self.toolBox.layout().setSpacing(0)
-        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget_2.setCurrentIndex(1)
         self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(Form)
 
@@ -2221,4 +2223,4 @@ class Ui_Form(object):
         self.label_21.setText(_translate("Form", "声子态密度"))
         self.label_29.setText(_translate("Form", "体系温度"))
         self.label_48.setText(_translate("Form", "体系温度"))
-import picture
+import picture_rc
