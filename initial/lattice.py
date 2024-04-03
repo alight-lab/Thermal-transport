@@ -131,6 +131,7 @@ class Lattice:
         return np.array(lattice) * lattice_constant
 
     def write_lmp_file(self, filename, x, y, z):
+        filename = sys.path[0] + '\\data\\' + filename
         lattice = self.generate_lattice(x, y, z)
         x_length = self.determine_lattice_constant() * x
         y_length = self.determine_lattice_constant() * y
