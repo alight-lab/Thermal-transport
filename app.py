@@ -25,14 +25,16 @@ class MainWindow(QWidget, Ui_Form):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)
-        self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
+        self.atom_all = ['请选择', "Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
         self.radioButton.setChecked(True)
         self.checkBox.setEnabled(False)
         self.setting()
         self.comboBox.currentIndexChanged.connect(self.create_lattice)
         self.comboBox_2.currentIndexChanged.connect(self.create_lattice)
         self.comboBox_4.currentIndexChanged.connect(self.create_lattice)
-
+        self.comboBox.setCurrentIndex(0)
+        self.comboBox_2.setCurrentIndex(0)
+        self.comboBox_2.setCurrentIndex(0)
         self.spinBox.valueChanged.connect(self.create_lattice)
         self.spinBox_2.valueChanged.connect(self.create_lattice)
         self.spinBox_3.valueChanged.connect(self.create_lattice)
@@ -61,15 +63,26 @@ class MainWindow(QWidget, Ui_Form):
         self.comboBox_3.addItem('nve')
         self.comboBox_7.addItem('nvt')
         self.comboBox_7.addItem('nve')
-        self.spinBox_6.setValue(5)
-        self.spinBox_7.setValue(5)
-        self.spinBox_8.setValue(5)
-        self.spinBox.setValue(10)
-        self.spinBox_2.setValue(3)
-        self.spinBox_3.setValue(3)
-        self.spinBox_9.setValue(10)
-        self.spinBox_10.setValue(3)
-        self.spinBox_13.setValue(3)
+        self.spinBox_6.setValue(1)
+        self.spinBox_7.setValue(1)
+        self.spinBox_8.setValue(1)
+        self.spinBox.setValue(1)
+        self.spinBox_2.setValue(1)
+        self.spinBox_3.setValue(1)
+        self.spinBox_9.setValue(1)
+        self.spinBox_10.setValue(1)
+        self.spinBox_13.setValue(1)
+        self.spinBox_6.setMinimum(1)
+        self.spinBox_7.setMinimum(1)
+        self.spinBox_8.setMinimum(1)
+        self.spinBox.setMinimum(1)
+        self.spinBox_2.setMinimum(1)
+        self.spinBox_3.setMinimum(1)
+        self.spinBox_9.setMinimum(1)
+        self.spinBox_10.setMinimum(1)
+        self.spinBox_13.setMinimum(1)
+        self.spinBox_4.setMinimum(1)
+        self.spinBox_11.setMinimum(1)
 
         self.spinBox_4.setValue(10) # 弛豫迭代步数
         self.spinBox_4.setMaximum(1000)
@@ -89,7 +102,9 @@ class MainWindow(QWidget, Ui_Form):
         self.radioButton_2.setChecked(False)
         self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_2.setCurrentIndex(0)
-        self.comboBox_4.setCurrentIndex(0)
+        self.comboBox.setCurrentIndex(0)
+        self.comboBox_2.setCurrentIndex(0)
+        self.comboBox_2.setCurrentIndex(0)
         self.create_lattice()
 
     def choose_page_1(self):
@@ -99,7 +114,8 @@ class MainWindow(QWidget, Ui_Form):
         self.stackedWidget.setCurrentIndex(1)
         self.stackedWidget_2.setCurrentIndex(1)
         self.comboBox.setCurrentIndex(0)
-        self.comboBox_2.setCurrentIndex(1)
+        self.comboBox_2.setCurrentIndex(0)
+        self.comboBox_2.setCurrentIndex(0)
         self.ax_T_time.cla()
         self.ax_T_X.cla()
         self.ax_pdos_omega.cla()
@@ -118,29 +134,37 @@ class MainWindow(QWidget, Ui_Form):
         self.x2 = int(self.spinBox_9.text())
         self.y2 = int(self.spinBox_10.text())
         self.z2 = int(self.spinBox_13.text())
-        if self.radioButton_2.isChecked() == True:
-            LATTICE = Lattice(element=self.element_1)
-            LATTICE.write_lmp_file('lattice_0.lmp', x=self.x1, y=self.y1, z=self.z1)
-            LATTICE = Lattice(element=self.element_2)
-            LATTICE.write_lmp_file('lattice_1.lmp', x=self.x2, y=self.y2, z=self.z2)
-            self.x = mixture(sys.path[0] + '\\data\\lattice_0.lmp', sys.path[0] + '\\data\\lattice_1.lmp')
-            self.Tot_data = ReadLmpData(sys.path[0] + '\\data\\file.data')
-            self.Tot_data.run_read()
-            self.Tot_data_initial = copy.deepcopy(self.Tot_data)
-            self.filename = sys.path[0] + '\\data\\' + 'file.data'
-            create_eam([self.element_1, self.element_2])
-            self.filename_potential = sys.path[0] + '\\data\\' + self.element_1 + self.element_2 + '.eam.alloy'
-            self.plot_atom_initial()
         if self.radioButton.isChecked() == True:
-            LATTICE = Lattice(element=self.element_0)
-            LATTICE.write_lmp_file('lattice_0.lmp', x=self.x0, y=self.y0, z=self.z0)
-            self.Tot_data = ReadLmpData(sys.path[0] + '\\data\\lattice_0.lmp')
-            self.Tot_data.run_read()
-            self.Tot_data_initial = copy.deepcopy(self.Tot_data)
-            self.filename = sys.path[0] + '\\data\\lattice_0.lmp'
-            create_eam([self.element_0])
-            self.filename_potential = sys.path[0] + '\\data\\' + self.element_0 + '.eam.alloy'
-            self.plot_atom_initial()
+            if self.radioButton.isChecked() == True and self.element_0 != '请选择':
+                LATTICE = Lattice(element=self.element_0)
+                LATTICE.write_lmp_file('lattice_0.lmp', x=self.x0, y=self.y0, z=self.z0)
+                self.Tot_data = ReadLmpData(sys.path[0] + '\\data\\lattice_0.lmp')
+                self.Tot_data.run_read()
+                self.Tot_data_initial = copy.deepcopy(self.Tot_data)
+                self.filename = sys.path[0] + '\\data\\lattice_0.lmp'
+                create_eam([self.element_0])
+                self.filename_potential = sys.path[0] + '\\data\\' + self.element_0 + '.eam.alloy'
+                self.plot_atom_initial()
+            else:
+                self.ax_atom.cla()
+                self.ax_atom.patch.set_alpha(0)
+        if self.radioButton_2.isChecked() == True:
+            if self.radioButton_2.isChecked() == True and self.element_1 != '请选择' and self.element_2 != '请选择':
+                LATTICE = Lattice(element=self.element_1)
+                LATTICE.write_lmp_file('lattice_0.lmp', x=self.x1, y=self.y1, z=self.z1)
+                LATTICE = Lattice(element=self.element_2)
+                LATTICE.write_lmp_file('lattice_1.lmp', x=self.x2, y=self.y2, z=self.z2)
+                self.x = mixture(sys.path[0] + '\\data\\lattice_0.lmp', sys.path[0] + '\\data\\lattice_1.lmp')
+                self.Tot_data = ReadLmpData(sys.path[0] + '\\data\\file.data')
+                self.Tot_data.run_read()
+                self.Tot_data_initial = copy.deepcopy(self.Tot_data)
+                self.filename = sys.path[0] + '\\data\\' + 'file.data'
+                create_eam([self.element_1, self.element_2])
+                self.filename_potential = sys.path[0] + '\\data\\' + self.element_1 + self.element_2 + '.eam.alloy'
+                self.plot_atom_initial()
+            else:
+                self.ax_atom.cla()
+                self.ax_atom.patch.set_alpha(0)
         
     def atom_background(self):
         fig = plt.figure()
