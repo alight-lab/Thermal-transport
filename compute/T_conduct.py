@@ -242,12 +242,12 @@ def compute_result(TotData, dT_dx, heat):
         S = (TotData.BoxSize[1][1]-TotData.BoxSize[1][0])*(TotData.BoxSize[2][1]-TotData.BoxSize[2][0])*1e-20
         heat1 = (heat*1.60217653*1e-7)/S
         t_conductivity = abs(heat1/dT_dx)
-        return t_conductivity
+        return int(t_conductivity*1000)/1000
     if len(TotData.types) == 2:
         S = (TotData.BoxSize[1][1] - TotData.BoxSize[1][0]) * (TotData.BoxSize[2][1] - TotData.BoxSize[2][0]) * 1e-20
         heat1 = (heat * 1.60217653 * 1e-7) / S
-        t_conductivity = abs(heat1 / dT_dx)
-        return t_conductivity
+        t_conductivity = 1/abs(heat1 / dT_dx)
+        return int(t_conductivity*1000)/1000
 
 
 
