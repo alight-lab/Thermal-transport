@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1284</width>
-    <height>985</height>
+    <width>682</width>
+    <height>465</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -71,7 +71,7 @@ OToolBox::tab:selected{font-weight: bold;}
         <number>0</number>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>2</number>
        </property>
        <property name="tabSpacing">
         <number>0</number>
@@ -81,8 +81,8 @@ OToolBox::tab:selected{font-weight: bold;}
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>253</width>
-          <height>834</height>
+          <width>129</width>
+          <height>413</height>
          </rect>
         </property>
         <attribute name="icon">
@@ -1273,8 +1273,8 @@ OToolBox::tab:selected{font-weight: bold;}
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>253</width>
-          <height>834</height>
+          <width>133</width>
+          <height>334</height>
          </rect>
         </property>
         <attribute name="icon">
@@ -1756,8 +1756,8 @@ color: rgb(255, 255, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>253</width>
-          <height>834</height>
+          <width>118</width>
+          <height>390</height>
          </rect>
         </property>
         <attribute name="icon">
@@ -1873,8 +1873,8 @@ color: rgb(255, 255, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>253</width>
-          <height>834</height>
+          <width>133</width>
+          <height>334</height>
          </rect>
         </property>
         <attribute name="icon">
@@ -2344,8 +2344,8 @@ color: rgb(255, 255, 255);</string>
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>253</width>
-          <height>834</height>
+          <width>133</width>
+          <height>334</height>
          </rect>
         </property>
         <attribute name="icon">
