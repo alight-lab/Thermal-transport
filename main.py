@@ -1,6 +1,5 @@
 import os
 os.environ['OVITO_GUI_MODE'] = '1'
-
 from GUI.main_window import MainWindow
 from pipeline.pipeline import *
 

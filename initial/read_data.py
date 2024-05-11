@@ -20,13 +20,7 @@ class ReadLmpData:
         ������Ӵ�С
         :return:
         """
-<<<<<<< HEAD
         with open(self.filename, 'r') as f:
-=======
-        # TODO：逻辑封装
-        with open(self.filename, 'r') as f:
-            # TODO：算法优化
->>>>>>> 1d8358f9b5250541717ea192be3d4940aa8675e1
             line = f.readline()
             while line.find('xlo') == -1:  # ���ļ�ָ���Ƶ�xlo��һ��
                 line = f.readline()

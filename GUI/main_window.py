@@ -3,7 +3,6 @@ sys.path.append("../..")
 
 from PySide6.QtWidgets import QApplication, QWidget
 from GUI.gui_ui import Ui_Form
-# from app_function.plot_3d import plot_3d
 from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModifier
 from ovito.vis import Viewport
 import os
@@ -32,7 +31,7 @@ class MainWindow(QWidget, Ui_Form):
         self.sys_stackedWidget.setCurrentIndex(0)
         self.exp2_arg_pushButton.setEnabled(False)
         self.stackedWidget.setCurrentIndex(0)
-        self.stackedWidget_3.setCurrentIndex(0)
+        self.stackedWidget_4.setCurrentIndex(0)
 
     def recommend_experiment_1(self):
         self.exp1_ele1_comboBox.setCurrentIndex(0)
@@ -65,7 +64,7 @@ class MainWindow(QWidget, Ui_Form):
     def choose_page_0(self):
         self.sys_stackedWidget.setCurrentIndex(0)
         self.stackedWidget.setCurrentIndex(0)
-        self.stackedWidget_3.setCurrentIndex(0)
+        self.stackedWidget_4.setCurrentIndex(0)
         self.exp2_ele1x_spinBox.setValue(0)
         self.exp2_ele1y_spinBox.setValue(0)
         self.exp2_ele1z_spinBox.setValue(0)
@@ -85,7 +84,7 @@ class MainWindow(QWidget, Ui_Form):
 
         self.sys_stackedWidget.setCurrentIndex(1)
         self.stackedWidget.setCurrentIndex(1)
-        self.stackedWidget_3.setCurrentIndex(1)
+        self.stackedWidget_4.setCurrentIndex(1)
         self.exp1_ele1x_spinBox.setValue(0)
         self.exp1_ele1y_spinBox.setValue(0)
         self.exp1_ele1z_spinBox.setValue(0)
