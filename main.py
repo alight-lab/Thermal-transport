@@ -11,11 +11,12 @@ import sys
 app = QApplication(sys.argv)
 window = MainWindow()
 window.show()
-
-set_file('data/Cu1.lmp')
+# set_file('data\lattice.lmp')
 vp = Viewport(type=Viewport.Type.Ortho, camera_dir=(2, 1, -1))
 vp_widget = vp.create_qt_widget()
 window.verticalLayout_7.addWidget(vp_widget)
 vp.zoom_all((vp_widget.width(), vp_widget.height()))
+
+
 
 sys.exit(app.exec())

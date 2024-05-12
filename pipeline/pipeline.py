@@ -34,4 +34,3 @@ def _new_pipeline(file_path: str):
         )
     )
     pipeline.add_to_scene()
-    li = [1,2,3,43,5]
