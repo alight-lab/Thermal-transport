@@ -7,8 +7,11 @@ from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModi
 from ovito.vis import Viewport
 import os
 os.environ['OVITO_GUI_MODE'] = '1'
+<<<<<<< HEAD
 from pipeline.pipeline import *
 from pipeline.lattice_set import lattice_set
+=======
+>>>>>>> 9b819981d96d514acf25231bea4607092b9ef524
 
 class MainWindow(QWidget, Ui_Form):
     def __init__(self):

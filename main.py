@@ -1,7 +1,8 @@
 import os
 os.environ['OVITO_GUI_MODE'] = '1'
+
 from GUI.main_window import MainWindow
-from pipeline.pipeline import *
+from output.render_3d import render_3d
 
 from PySide6.QtWidgets import QApplication, QWidget
 from ovito.vis import Viewport
