@@ -7,7 +7,6 @@ from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModi
 from ovito.vis import Viewport
 import os
 os.environ['OVITO_GUI_MODE'] = '1'
-from pipeline.pipeline import *
 
 class MainWindow(QWidget, Ui_Form):
     def __init__(self):
