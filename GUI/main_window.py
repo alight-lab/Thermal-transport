@@ -7,11 +7,8 @@ from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModi
 from ovito.vis import Viewport
 import os
 os.environ['OVITO_GUI_MODE'] = '1'
-<<<<<<< HEAD
-from pipeline.pipeline import *
-from pipeline.lattice_set import lattice_set
-=======
->>>>>>> 9b819981d96d514acf25231bea4607092b9ef524
+from output.lattice_set import lattice_set
+from output.render_3d import render_3d
 
 class MainWindow(QWidget, Ui_Form):
     def __init__(self):
@@ -121,4 +118,4 @@ class MainWindow(QWidget, Ui_Form):
         size3 = [self.exp2_ele2x_spinBox.value(), self.exp2_ele2y_spinBox.value(), self.exp2_ele2z_spinBox.value()]
         # 建立晶体数据文件
         lattice_set(element1, element2, element3, size1, size2, size3)
-        set_file('data\lattice.lmp', )
+        render_3d.set_file('data\lattice.lmp', )
