@@ -178,9 +178,10 @@ class MainWindow(QWidget, Ui_Form):
         self.T_chunk = self.t.T_chunk
         self.x_chunk = self.t.x_chunk
         self.t_conductivity = self.t.t_conductivity
-        self.exp_res_lineEdit_2.setText(str(self.t_conductivity))
+        self.exp_res_lineEdit_2.setText(str(round(self.t_conductivity,3)))
         self.Tot_data_final = copy.deepcopy(self.t.Tot_data)
         self.T_axis = self.t.T_axis
         self.Pe_axis = self.t.Pe_axis
         self.Time_axis = self.t.Time_axis
 
+        

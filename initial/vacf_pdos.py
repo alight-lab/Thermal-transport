@@ -34,10 +34,10 @@ def find_pdos(v_all, Nc, dt = 0.001, omega = np.arange(1, 380.5, 0.5)):  # Calcu
 
 if __name__ == '__main__':
     import numpy as np
-    from initial.read_data import ReadLmpData
+    from app.initial.read_data import ReadLmpData
     import sys
     from eam_force import compute_eam
-    from initial.initialize_system import System
+    from app.initial.initialize_system import System
     from integrate import integrate
     import matplotlib.pyplot as plt
     TotData = ReadLmpData('Cu1.lmp')
@@ -62,3 +62,4 @@ if __name__ == '__main__':
     plt.subplot(1,2,2)
     plt.plot(t, vcaf)
     plt.show()
+

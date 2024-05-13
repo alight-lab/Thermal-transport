@@ -73,10 +73,10 @@ if __name__ == '__main__':
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from initial.read_data import ReadLmpData
-    from initial.integrate import integrate
+    from compute.integrate import integrate
     import numpy as np
     from initial.initialize_system import System
-    from initial.eam_force import eam_force
+    from compute.eam_force import eam_force
     TotData = ReadLmpData('data\Cu1.lmp')
     TotData.run_read()
     position = TotData.main_data[['x', 'y', 'z']]

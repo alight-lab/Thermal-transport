@@ -20,6 +20,7 @@ def NEMD( TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat =
     :return:
     """
     #��ʼ��
+    ensemble_name = ensemble_name
     types = len(TotData.types)
     mass = TotData.main_data['mass']
     mass = mass.to_numpy(dtype=float)                           # ����ԭ������
@@ -256,17 +257,17 @@ if __name__ == "__main__":
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from initial.read_data import ReadLmpData
-    from initial.integrate import integrate
+    from compute.integrate import integrate
     import numpy as np
     from initial.initialize_system import System
-    from initial.eam_force import eam_force
+    from compute.eam_force import eam_force
     from initial.lattice import Lattice
     from mix import mixture
 
     copper_lattice = Lattice(element="Cu")
-    copper_lattice.write_lmp_file("data\copper.lmp", x=10, y=3, z=3)
+    copper_lattice.write_lmp_file("copper.lmp", x=10, y=3, z=3)
     iron_lattice = Lattice(element="Fe")
-    iron_lattice.write_lmp_file("data\iron.lmp", x=10, y=3, z=3)
+    iron_lattice.write_lmp_file("iron.lmp", x=10, y=3, z=3)
     # x_parti = mixture("D:\\all_code\PyCode\\app_v1\compute\\copper.lmp", "D:\\all_code\PyCode\\app_v1\compute\\iron.lmp")
     TotData = ReadLmpData('file.data')
     TotData.run_read()
@@ -277,8 +278,8 @@ if __name__ == "__main__":
     EAM = eam_force('CuFe.eam.alloy', TotData)
     EAM.read_eam()
     EAM.compute_eam()
-    ensemble_name = 'nve'
-    [T_chunk_real, Temperature, dT_dx, heat, x_chunk] = NEMD(TotData, velocity, EAM, system.time_step, system.temperature0,ensemble_name,x_parti=35.1975)
+
+    [T_chunk_real, Temperature, dT_dx, heat, x_chunk] = NEMD(TotData, velocity, EAM, system.time_step, system.temperature0,x_parti=35.1975)
     s = compute_result(TotData, dT_dx, heat)
     print(s)
     print(T_chunk_real)
