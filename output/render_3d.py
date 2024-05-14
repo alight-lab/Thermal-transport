@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QLayout
+from ovito.pipeline import ModifierInterface
 
 # Usage:
 #     `from output.render_3d import render_3d`
@@ -32,6 +33,22 @@ class Render3D():
             for modifier in pipeline.modifiers:
                 if type(modifier) == ExpressionSelectionModifier:
                     modifier.expression = 'Occupancy.'+str(occupancy_mode)
+
+
+    def set_color_by_tempareture(self, tempareture: list[float]):
+        from ovito import scene
+        from output import ColorByArrayModifier
+
+        for pipeline in scene.pipelines:
+            pipeline.modifiers.clear()
+            if len(tempareture) == 0:
+                pipeline.modifiers.append(
+                    ColorByArrayModifier()
+                )
+            else:
+                pipeline.modifiers.append(
+                    ColorByArrayModifier(tempareture_array=tempareture)
+                )
 
 
     def __new_pipeline(self, file_path: str):

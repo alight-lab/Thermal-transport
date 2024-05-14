@@ -9,7 +9,7 @@ import os
 import copy
 os.environ['OVITO_GUI_MODE'] = '1'
 from output.lattice_set import lattice_set
-from output.render_3d import render_3d
+from output import render_3d
 from output.read_datafile import read_datafile
 from output.main_calculation import Work
 
@@ -143,6 +143,7 @@ class MainWindow(QWidget, Ui_Form):
         # 建立晶体数据文件
         x = lattice_set(element1, element2, element3, size1, size2, size3)
         render_3d.set_file('data\lattice.lmp')
+        render_3d.set_color_by_tempareture([])
         # 体系参数填入
         if element1 == '':
             self.exp2_ele1_lineEdit_2.setText(element2)
