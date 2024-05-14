@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1244</width>
-    <height>784</height>
+    <width>1329</width>
+    <height>791</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -268,7 +268,7 @@ color: rgb(0, 0, 0);</string>
             <property name="font">
              <font>
               <family>Times New Roman</family>
-              <pointsize>10</pointsize>
+              <pointsize>9</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -654,8 +654,9 @@ color: rgb(0, 0, 0);</string>
             <property name="font">
              <font>
               <family>Times New Roman</family>
-              <pointsize>10</pointsize>
+              <pointsize>9</pointsize>
               <weight>75</weight>
+              <italic>true</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -692,8 +693,9 @@ color: rgb(0, 0, 0);</string>
             <property name="font">
              <font>
               <family>Times New Roman</family>
-              <pointsize>10</pointsize>
+              <pointsize>9</pointsize>
               <weight>75</weight>
+              <italic>true</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -1178,6 +1180,13 @@ border-color: rgb(233, 236, 239);</string>
             <height>30</height>
            </rect>
           </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">border: 1px solid white;
 border-radius: 5px;
@@ -1302,8 +1311,9 @@ border-color: rgb(233, 236, 239);</string>
           <property name="font">
            <font>
             <family>Times New Roman</family>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
             <weight>75</weight>
+            <italic>true</italic>
             <bold>true</bold>
            </font>
           </property>
@@ -1411,6 +1421,13 @@ border-color: rgb(233, 236, 239);</string>
             <height>30</height>
            </rect>
           </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">border: 1px solid white;
 border-radius: 5px;
@@ -1496,9 +1513,9 @@ border-color: rgb(233, 236, 239);</string>
          <widget class="QLabel" name="label_30">
           <property name="geometry">
            <rect>
-            <x>60</x>
+            <x>50</x>
             <y>440</y>
-            <width>60</width>
+            <width>81</width>
             <height>30</height>
            </rect>
           </property>
@@ -1553,6 +1570,13 @@ border-color: rgb(233, 236, 239);</string>
             <height>30</height>
            </rect>
           </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">border: 1px solid white;
 border-radius: 5px;
@@ -1563,9 +1587,9 @@ color: rgb(0, 0, 0);</string>
          <widget class="QLabel" name="label_32">
           <property name="geometry">
            <rect>
-            <x>129</x>
+            <x>103</x>
             <y>474</y>
-            <width>20</width>
+            <width>49</width>
             <height>20</height>
            </rect>
           </property>
@@ -1583,7 +1607,7 @@ border-color: rgb(255, 255, 255);
 background-color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>J</string>
+           <string>W/m^2</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1624,8 +1648,9 @@ border-color: rgb(233, 236, 239);</string>
           <property name="font">
            <font>
             <family>Times New Roman</family>
-            <pointsize>10</pointsize>
+            <pointsize>9</pointsize>
             <weight>75</weight>
+            <italic>true</italic>
             <bold>true</bold>
            </font>
           </property>
@@ -1704,6 +1729,13 @@ border-color: rgb(233, 236, 239);</string>
             <width>135</width>
             <height>30</height>
            </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true">border: 1px solid white;
@@ -1964,24 +1996,52 @@ border: 1px solid rgb(248, 249, 250);</string>
                    <property name="styleSheet">
                     <string notr="true">background-color: rgb(0, 0, 0);</string>
                    </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_10">
+                   <layout class="QHBoxLayout" name="horizontalLayout_15">
                     <property name="spacing">
                      <number>0</number>
                     </property>
                     <property name="leftMargin">
-                     <number>3</number>
+                     <number>0</number>
                     </property>
                     <property name="topMargin">
-                     <number>3</number>
+                     <number>0</number>
                     </property>
                     <property name="rightMargin">
-                     <number>3</number>
+                     <number>0</number>
                     </property>
                     <property name="bottomMargin">
-                     <number>3</number>
+                     <number>0</number>
                     </property>
                     <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_7"/>
+                     <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,24">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_9" stretch="15">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                        <item>
+                         <widget class="QWidget" name="widget_8" native="true">
+                          <property name="maximumSize">
+                           <size>
+                            <width>30</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_7">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                       </layout>
+                      </item>
+                     </layout>
                     </item>
                    </layout>
                   </widget>
@@ -2141,7 +2201,7 @@ color: rgb(0, 0, 0);</string>
                    <x>10</x>
                    <y>120</y>
                    <width>241</width>
-                   <height>311</height>
+                   <height>341</height>
                   </rect>
                  </property>
                  <property name="styleSheet">
@@ -2156,8 +2216,8 @@ color: rgb(0, 0, 0);</string>
                     <rect>
                      <x>0</x>
                      <y>20</y>
-                     <width>241</width>
-                     <height>201</height>
+                     <width>240</width>
+                     <height>250</height>
                     </rect>
                    </property>
                    <property name="styleSheet">
@@ -2168,7 +2228,7 @@ border-left-color: rgb(130, 130, 130);</string>
                    <widget class="QLabel" name="label_63">
                     <property name="geometry">
                      <rect>
-                      <x>60</x>
+                      <x>77</x>
                       <y>10</y>
                       <width>80</width>
                       <height>20</height>
@@ -2194,15 +2254,15 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>1</x>
-                      <y>60</y>
-                      <width>55</width>
+                      <y>80</y>
+                      <width>71</width>
                       <height>20</height>
                      </rect>
                     </property>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2219,7 +2279,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>180</x>
-                      <y>30</y>
+                      <y>50</y>
                       <width>50</width>
                       <height>20</height>
                      </rect>
@@ -2227,7 +2287,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2247,15 +2307,15 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>1</x>
-                      <y>90</y>
-                      <width>70</width>
+                      <y>130</y>
+                      <width>101</width>
                       <height>20</height>
                      </rect>
                     </property>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2272,15 +2332,15 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>1</x>
-                      <y>120</y>
-                      <width>70</width>
+                      <y>180</y>
+                      <width>81</width>
                       <height>20</height>
                      </rect>
                     </property>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2296,11 +2356,19 @@ color: rgb(0, 0, 0);</string>
                    <widget class="QLineEdit" name="exp1_ele1_lineEdit_2">
                     <property name="geometry">
                      <rect>
-                      <x>194</x>
-                      <y>60</y>
+                      <x>188</x>
+                      <y>80</y>
                       <width>25</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Times New Roman</family>
+                      <weight>75</weight>
+                      <italic>true</italic>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2314,11 +2382,18 @@ border-bottom-color: rgb(0, 0, 0);</string>
                    <widget class="QLineEdit" name="exp1_ele1_mass_lineEdit_2">
                     <property name="geometry">
                      <rect>
-                      <x>189</x>
-                      <y>90</y>
+                      <x>183</x>
+                      <y>130</y>
                       <width>35</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2332,11 +2407,18 @@ border-bottom-color: rgb(0, 0, 0);</string>
                    <widget class="QLineEdit" name="exp1_ele1_num_lineEdit_2">
                     <property name="geometry">
                      <rect>
-                      <x>186</x>
-                      <y>120</y>
+                      <x>180</x>
+                      <y>180</y>
                       <width>40</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2352,7 +2434,7 @@ border-bottom-color: rgb(0, 0, 0);</string>
                    <property name="geometry">
                     <rect>
                      <x>0</x>
-                     <y>250</y>
+                     <y>300</y>
                      <width>70</width>
                      <height>20</height>
                     </rect>
@@ -2377,10 +2459,17 @@ color: rgb(0, 0, 0);</string>
                    <property name="geometry">
                     <rect>
                      <x>90</x>
-                     <y>250</y>
+                     <y>300</y>
                      <width>60</width>
                      <height>20</height>
                     </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial</family>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">border-color: rgb(255, 255, 255);
@@ -2398,8 +2487,8 @@ border-bottom-color: rgb(0, 0, 0);</string>
                    <property name="geometry">
                     <rect>
                      <x>150</x>
-                     <y>250</y>
-                     <width>71</width>
+                     <y>300</y>
+                     <width>81</width>
                      <height>20</height>
                     </rect>
                    </property>
@@ -2426,8 +2515,8 @@ border-bottom-color: rgb(0, 0, 0);</string>
                     <rect>
                      <x>0</x>
                      <y>20</y>
-                     <width>241</width>
-                     <height>201</height>
+                     <width>240</width>
+                     <height>250</height>
                     </rect>
                    </property>
                    <property name="styleSheet">
@@ -2438,7 +2527,7 @@ border-left-color: rgb(130, 130, 130);</string>
                    <widget class="QLabel" name="label_69">
                     <property name="geometry">
                      <rect>
-                      <x>60</x>
+                      <x>77</x>
                       <y>10</y>
                       <width>80</width>
                       <height>20</height>
@@ -2464,7 +2553,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>1</x>
-                      <y>60</y>
+                      <y>80</y>
                       <width>101</width>
                       <height>20</height>
                      </rect>
@@ -2472,7 +2561,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2489,7 +2578,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>180</x>
-                      <y>30</y>
+                      <y>50</y>
                       <width>50</width>
                       <height>20</height>
                      </rect>
@@ -2497,7 +2586,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2517,7 +2606,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>1</x>
-                      <y>90</y>
+                      <y>130</y>
                       <width>111</width>
                       <height>20</height>
                      </rect>
@@ -2525,7 +2614,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2542,7 +2631,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>1</x>
-                      <y>120</y>
+                      <y>180</y>
                       <width>91</width>
                       <height>20</height>
                      </rect>
@@ -2550,7 +2639,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2567,7 +2656,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>130</x>
-                      <y>30</y>
+                      <y>50</y>
                       <width>50</width>
                       <height>20</height>
                      </rect>
@@ -2575,7 +2664,7 @@ color: rgb(0, 0, 0);</string>
                     <property name="font">
                      <font>
                       <family>微软雅黑</family>
-                      <pointsize>8</pointsize>
+                      <pointsize>9</pointsize>
                       <weight>75</weight>
                       <bold>true</bold>
                      </font>
@@ -2595,10 +2684,18 @@ color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>143</x>
-                      <y>60</y>
+                      <y>80</y>
                       <width>25</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Times New Roman</family>
+                      <weight>75</weight>
+                      <italic>true</italic>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2613,10 +2710,18 @@ border-bottom-color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>188</x>
-                      <y>60</y>
+                      <y>80</y>
                       <width>25</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Times New Roman</family>
+                      <weight>75</weight>
+                      <italic>true</italic>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2631,10 +2736,17 @@ border-bottom-color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>139</x>
-                      <y>90</y>
+                      <y>130</y>
                       <width>35</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2649,10 +2761,17 @@ border-bottom-color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>183</x>
-                      <y>90</y>
+                      <y>130</y>
                       <width>35</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2667,10 +2786,17 @@ border-bottom-color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>137</x>
-                      <y>120</y>
+                      <y>180</y>
                       <width>40</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2685,10 +2811,17 @@ border-bottom-color: rgb(0, 0, 0);</string>
                     <property name="geometry">
                      <rect>
                       <x>180</x>
-                      <y>120</y>
+                      <y>180</y>
                       <width>40</width>
                       <height>20</height>
                      </rect>
+                    </property>
+                    <property name="font">
+                     <font>
+                      <family>Arial</family>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
                     </property>
                     <property name="styleSheet">
                      <string notr="true">border-color: rgb(255, 255, 255);
@@ -2704,8 +2837,8 @@ border-bottom-color: rgb(0, 0, 0);</string>
                    <property name="geometry">
                     <rect>
                      <x>0</x>
-                     <y>250</y>
-                     <width>81</width>
+                     <y>300</y>
+                     <width>80</width>
                      <height>20</height>
                     </rect>
                    </property>
@@ -2728,10 +2861,17 @@ border-bottom-color: rgb(0, 0, 0);</string>
                    <property name="geometry">
                     <rect>
                      <x>80</x>
-                     <y>250</y>
+                     <y>300</y>
                      <width>60</width>
                      <height>20</height>
                     </rect>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Arial</family>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
                    </property>
                    <property name="styleSheet">
                     <string notr="true">border-color: rgb(255, 255, 255);
@@ -2741,15 +2881,15 @@ border-bottom-color: rgb(0, 0, 0);</string>
                     <string/>
                    </property>
                    <property name="alignment">
-                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                    <set>Qt::AlignCenter</set>
                    </property>
                   </widget>
                   <widget class="QLabel" name="label_76">
                    <property name="geometry">
                     <rect>
                      <x>140</x>
-                     <y>250</y>
-                     <width>81</width>
+                     <y>300</y>
+                     <width>91</width>
                      <height>20</height>
                     </rect>
                    </property>
@@ -2801,7 +2941,7 @@ border-bottom-color: rgb(0, 0, 0);</string>
 border: 1px solid rgb(248, 249, 250);</string>
                 </property>
                 <property name="currentIndex">
-                 <number>1</number>
+                 <number>0</number>
                 </property>
                 <widget class="QWidget" name="page">
                  <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -2821,7 +2961,7 @@ border: 1px solid rgb(248, 249, 250);
 color: rgb(0, 0, 0);</string>
                     </property>
                     <property name="currentIndex">
-                     <number>2</number>
+                     <number>1</number>
                     </property>
                     <widget class="QWidget" name="tab">
                      <attribute name="icon">
@@ -2831,21 +2971,15 @@ color: rgb(0, 0, 0);</string>
                      <attribute name="title">
                       <string>体系温度曲线</string>
                      </attribute>
-                     <widget class="QWidget" name="verticalLayoutWidget">
-                      <property name="geometry">
-                       <rect>
-                        <x>9</x>
-                        <y>9</y>
-                        <width>711</width>
-                        <height>191</height>
-                       </rect>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_2">
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                      </layout>
-                     </widget>
+                     <layout class="QHBoxLayout" name="horizontalLayout_13">
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_2">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                       </layout>
+                      </item>
+                     </layout>
                     </widget>
                     <widget class="QWidget" name="tab_2">
                      <attribute name="icon">
@@ -2855,21 +2989,15 @@ color: rgb(0, 0, 0);</string>
                      <attribute name="title">
                       <string>体系区域温度</string>
                      </attribute>
-                     <widget class="QWidget" name="verticalLayoutWidget_2">
-                      <property name="geometry">
-                       <rect>
-                        <x>10</x>
-                        <y>10</y>
-                        <width>711</width>
-                        <height>191</height>
-                       </rect>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_3">
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                      </layout>
-                     </widget>
+                     <layout class="QHBoxLayout" name="horizontalLayout_14">
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_3">
+                        <property name="spacing">
+                         <number>0</number>
+                        </property>
+                       </layout>
+                      </item>
+                     </layout>
                     </widget>
                     <widget class="QWidget" name="tab_3">
                      <attribute name="icon">
@@ -2920,17 +3048,11 @@ border: 1px solid rgb(248, 249, 250);</string>
                      <attribute name="title">
                       <string>体系温度曲线</string>
                      </attribute>
-                     <widget class="QWidget" name="verticalLayoutWidget_5">
-                      <property name="geometry">
-                       <rect>
-                        <x>10</x>
-                        <y>10</y>
-                        <width>681</width>
-                        <height>171</height>
-                       </rect>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_6"/>
-                     </widget>
+                     <layout class="QHBoxLayout" name="horizontalLayout_12">
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_6"/>
+                      </item>
+                     </layout>
                     </widget>
                     <widget class="QWidget" name="tab_5">
                      <attribute name="icon">
@@ -2974,9 +3096,9 @@ background-color: rgb(248, 249, 250);</string>
                  <property name="geometry">
                   <rect>
                    <x>10</x>
-                   <y>10</y>
+                   <y>40</y>
                    <width>110</width>
-                   <height>40</height>
+                   <height>60</height>
                   </rect>
                  </property>
                  <property name="font">
@@ -3001,9 +3123,9 @@ background-color: rgb(165, 216, 255);
                  <property name="geometry">
                   <rect>
                    <x>130</x>
-                   <y>60</y>
+                   <y>40</y>
                    <width>110</width>
-                   <height>41</height>
+                   <height>61</height>
                   </rect>
                  </property>
                  <property name="font">
@@ -3026,10 +3148,10 @@ background-color: rgb(153, 233, 242);</string>
                 <widget class="QPushButton" name="restart_pushButton">
                  <property name="geometry">
                   <rect>
-                   <x>20</x>
-                   <y>130</y>
+                   <x>10</x>
+                   <y>140</y>
                    <width>110</width>
-                   <height>40</height>
+                   <height>60</height>
                   </rect>
                  </property>
                  <property name="font">
@@ -3053,9 +3175,9 @@ background-color: rgb(150, 242, 215);</string>
                  <property name="geometry">
                   <rect>
                    <x>130</x>
-                   <y>190</y>
+                   <y>140</y>
                    <width>110</width>
-                   <height>40</height>
+                   <height>60</height>
                   </rect>
                  </property>
                  <property name="font">

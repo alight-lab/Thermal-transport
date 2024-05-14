@@ -12,6 +12,7 @@ from output.lattice_set import lattice_set
 from output.render_3d import render_3d
 from output.read_datafile import read_datafile
 from output.main_calculation import Work
+from output.plot_2d import plot_2d
 
 class MainWindow(QWidget, Ui_Form):
     def __init__(self):
@@ -103,6 +104,13 @@ class MainWindow(QWidget, Ui_Form):
         self.exp2_ele1_num_lineEdit_2.clear()
         self.exp2_ele2_num_lineEdit_2.clear()
         self.exp1_ele1_num_lineEdit_2.clear()
+        if self.verticalLayout_2.itemAt(0) != None:
+            self.verticalLayout_2.itemAt(0).widget().deleteLater()
+            self.verticalLayout_3.itemAt(0).widget().deleteLater()
+            self.verticalLayout_4.itemAt(0).widget().deleteLater()
+        if self.verticalLayout_5.itemAt(0) != None:
+            self.verticalLayout_5.itemAt(0).widget().deleteLater()
+            self.verticalLayout_6.itemAt(0).widget().deleteLater()
 
     def choose_page_1(self):
         self.exp1_ele1_comboBox.setCurrentIndex(-1)
@@ -131,6 +139,13 @@ class MainWindow(QWidget, Ui_Form):
         self.exp2_ele1_num_lineEdit_2.clear()
         self.exp2_ele2_num_lineEdit_2.clear()
         self.exp1_ele1_num_lineEdit_2.clear()
+        if self.verticalLayout_2.itemAt(0) != None:
+            self.verticalLayout_2.itemAt(0).widget().deleteLater()
+            self.verticalLayout_3.itemAt(0).widget().deleteLater()
+            self.verticalLayout_4.itemAt(0).widget().deleteLater()
+        if self.verticalLayout_5.itemAt(0) != None:
+            self.verticalLayout_5.itemAt(0).widget().deleteLater()
+            self.verticalLayout_6.itemAt(0).widget().deleteLater()
 
     def start_main(self):
         # 读取GUI数据
@@ -173,15 +188,16 @@ class MainWindow(QWidget, Ui_Form):
         self.t.signal.connect(self.plot)
     
     def plot(self):
-        self.pdos = self.t.pdos
-        self.omega = self.t.omega
-        self.T_chunk = self.t.T_chunk
-        self.x_chunk = self.t.x_chunk
-        self.t_conductivity = self.t.t_conductivity
-        self.exp_res_lineEdit_2.setText(str(round(self.t_conductivity,3)))
-        self.Tot_data_final = copy.deepcopy(self.t.Tot_data)
-        self.T_axis = self.t.T_axis
-        self.Pe_axis = self.t.Pe_axis
-        self.Time_axis = self.t.Time_axis
+        cav = plot_2d(self.t.Time_axis, self.t.T_axis)
+        self.verticalLayout_2.addWidget(cav)
+        cav = plot_2d(self.t.Time_axis, self.t.T_axis)
+        self.verticalLayout_6.addWidget(cav)
+        cav = plot_2d(self.t.x_chunk, self.t.T_chunk)
+        self.verticalLayout_3.addWidget(cav)
+        cav = plot_2d(self.t.x_chunk, self.t.T_chunk)
+        self.verticalLayout_5.addWidget(cav)
+        cav = plot_2d(self.t.omega, self.t.pdos)
+        self.verticalLayout_4.addWidget(cav)
+        
 
         

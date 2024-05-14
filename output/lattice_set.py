@@ -13,4 +13,5 @@ def lattice_set(element1, element2, element3, size1, size2, size3):
         lattice_2 = Lattice(element=element3)
         lattice_2.write_lmp_file('data\lattice_2.lmp', x=size3[0], y=size3[1], z=size3[2])
         x = mixture('data\lattice_1.lmp', 'data\lattice_2.lmp')
+    
     return x
