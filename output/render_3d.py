@@ -1,3 +1,6 @@
+import sys
+sys.path.append("../..")
+
 from PySide6.QtWidgets import QLayout
 from ovito.pipeline import ModifierInterface
 
@@ -35,20 +38,41 @@ class Render3D():
                     modifier.expression = 'Occupancy.'+str(occupancy_mode)
 
 
-    def set_color_by_tempareture(self, tempareture: list[float]):
+    def set_color_by_tempareture(self, tempareture = [0,1,2,3,4,5,6,7,8,9,20]):
         from ovito import scene
-        from output import ColorByArrayModifier
+        from ovito.modifiers import ColorCodingModifier
+
+        # uniformization to color list
+        max_tempareture = 0
+        min_tempareture = 0
+        for current_tempareture in tempareture:
+            if max_tempareture < current_tempareture:
+                max_tempareture = current_tempareture
+            elif min_tempareture > current_tempareture:
+                min_tempareture = current_tempareture
+        
+        difference_tempareture = max_tempareture - min_tempareture
+
+        color_list = []
+        for current_tempareture in tempareture:
+            uniformed = (current_tempareture - min_tempareture) / difference_tempareture
+            color_list.append(
+                (uniformed, 0, 1-uniformed)
+            )
+        # END uniformization to color list
+
+        
 
         for pipeline in scene.pipelines:
             pipeline.modifiers.clear()
-            if len(tempareture) == 0:
-                pipeline.modifiers.append(
-                    ColorByArrayModifier()
+            pipeline.modifiers.append(
+                ColorCodingModifier(
+                    property = 'Position.X',
+                    gradient = ColorCodingModifier.Gradient(color_list)
                 )
-            else:
-                pipeline.modifiers.append(
-                    ColorByArrayModifier(tempareture_array=tempareture)
-                )
+            )
+        
+                
 
 
     def __new_pipeline(self, file_path: str):

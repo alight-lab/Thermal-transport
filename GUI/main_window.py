@@ -8,10 +8,8 @@ from ovito.vis import Viewport
 import os
 import copy
 os.environ['OVITO_GUI_MODE'] = '1'
-from output.lattice_set import lattice_set
-from output import render_3d
-from output.read_datafile import read_datafile
-from output.main_calculation import Work
+from output import lattice_set, render_3d, Work, read_datafile
+
 
 class MainWindow(QWidget, Ui_Form):
     def __init__(self):
@@ -23,6 +21,7 @@ class MainWindow(QWidget, Ui_Form):
         self.exp1_radioButton.clicked.connect(self.choose_page_0)
         self.exp2_radioButton.clicked.connect(self.choose_page_1)
         self.start_pushButton.clicked.connect(self.start_main)
+        self.zon_tem_checkBox_2.clicked.connect(self.set_tempareture_display)
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
@@ -143,7 +142,6 @@ class MainWindow(QWidget, Ui_Form):
         # 建立晶体数据文件
         x = lattice_set(element1, element2, element3, size1, size2, size3)
         render_3d.set_file('data\lattice.lmp')
-        render_3d.set_color_by_tempareture([])
         # 体系参数填入
         if element1 == '':
             self.exp2_ele1_lineEdit_2.setText(element2)
@@ -185,4 +183,9 @@ class MainWindow(QWidget, Ui_Form):
         self.Pe_axis = self.t.Pe_axis
         self.Time_axis = self.t.Time_axis
 
+    def set_tempareture_display(self):
+        render_3d.set_color_by_tempareture()
+        self.vacan_checkBox_2.setChecked(False)
+        self.gap_checkBox_2.setChecked(False)
+        self.zon_tem_checkBox_2.setChecked(True)
         
