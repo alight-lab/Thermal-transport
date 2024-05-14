@@ -1,5 +1,5 @@
 
-def NEMD( TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 6, steps = 500, x_parti = 0.0):
+def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 6, steps = 500, x_parti = 0.0):
     import sys
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

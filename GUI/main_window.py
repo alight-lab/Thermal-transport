@@ -13,6 +13,7 @@ from output.render_3d import render_3d
 from output.read_datafile import read_datafile
 from output.main_calculation import Work
 from output.plot_2d import plot_2d
+from output.renew import renew
 
 class MainWindow(QWidget, Ui_Form):
     def __init__(self):
@@ -24,6 +25,8 @@ class MainWindow(QWidget, Ui_Form):
         self.exp1_radioButton.clicked.connect(self.choose_page_0)
         self.exp2_radioButton.clicked.connect(self.choose_page_1)
         self.start_pushButton.clicked.connect(self.start_main)
+        self.pause_pushButton.clicked.connect(self.pause_main)
+        self.restart_pushButton.clicked.connect(self.resume_main)
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
@@ -104,6 +107,8 @@ class MainWindow(QWidget, Ui_Form):
         self.exp2_ele1_num_lineEdit_2.clear()
         self.exp2_ele2_num_lineEdit_2.clear()
         self.exp1_ele1_num_lineEdit_2.clear()
+        self.exp2_reslineEdit_2.clear()
+        self.exp2_reslineEdit_2.clear()    
         if self.verticalLayout_2.itemAt(0) != None:
             self.verticalLayout_2.itemAt(0).widget().deleteLater()
             self.verticalLayout_3.itemAt(0).widget().deleteLater()
@@ -139,6 +144,8 @@ class MainWindow(QWidget, Ui_Form):
         self.exp2_ele1_num_lineEdit_2.clear()
         self.exp2_ele2_num_lineEdit_2.clear()
         self.exp1_ele1_num_lineEdit_2.clear()
+        self.exp2_reslineEdit_2.clear()
+        self.exp2_reslineEdit_2.clear()  
         if self.verticalLayout_2.itemAt(0) != None:
             self.verticalLayout_2.itemAt(0).widget().deleteLater()
             self.verticalLayout_3.itemAt(0).widget().deleteLater()
@@ -185,9 +192,22 @@ class MainWindow(QWidget, Ui_Form):
                         iterate, ensemble_name, ensemble_name_1, heat, 
                         iterate_1, x)
         self.t.start()
-        self.t.signal.connect(self.plot)
+        self.t.signal.connect(self.plot)   
     
+    def pause_main(self):
+        self.t.pause()
+
+    def resume_main(self):
+        self.t.resume()
+
+    def stop_main(self):
+        self.t.terminate()
+        self.t.wait()
+
     def plot(self):
+        # renew(self.t.Tot_data)
+        self.exp2_reslineEdit_2.setText(str(self.t.t_conductivity))
+        self.exp2_reslineEdit_2.setText(str(self.t.t_conductivity))
         cav = plot_2d(self.t.Time_axis, self.t.T_axis)
         self.verticalLayout_2.addWidget(cav)
         cav = plot_2d(self.t.Time_axis, self.t.T_axis)

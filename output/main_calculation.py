@@ -1,4 +1,4 @@
-from PySide6.QtCore import QThread, Signal
+from PySide6.QtCore import QMutex, QWaitCondition, QThread, Signal
 import numpy as np
 from initial.eam_force import eam_force
 from output.read_datafile import read_datafile
@@ -27,6 +27,17 @@ class Work(QThread):
         self.iterate_1 = iterate_1
         self.Tot_data_initial = copy.deepcopy(self.Tot_data)
         self.x = x
+
+        self.is_paused = False
+        self.cond = QWaitCondition()
+        self.mutex = QMutex()
+    
+    def pause(self):
+        self.is_paused = True
+
+    def resume(self):
+        self.is_paused = False
+        self.cond.wakeAll()
     
     def run(self):
         self.T_axis = []
@@ -36,15 +47,21 @@ class Work(QThread):
         self.timestep = System_create.time_step
         self.velocity = System_create.initialize()
         for i in range(self.iterate):
-            if i == 0:
-                self.Temperature = self.temperature0
-            EAM = eam_force(self.filename_potential, self.Tot_data)
-            EAM.read_eam()
-            EAM.compute_eam()
-            [self.Temperature, self.Tot_data, self.velocity, EAM] = integrate(self.Tot_data, EAM, self.velocity, self.ensemble_name, self.Temperature, self.temperature0, 1, self.timestep)
-            self.T_axis.append(self.Temperature)
-            self.Pe_axis.append(EAM.pe)
-            self.Time_axis.append(i * self.timestep)
+            self.mutex.lock()
+            if self.is_paused == True:
+                self.cond.wait(self.mutex)
+            if self.is_paused == False:
+                print(i)
+                if i == 0:
+                    self.Temperature = self.temperature0
+                EAM = eam_force(self.filename_potential, self.Tot_data)
+                EAM.read_eam()
+                EAM.compute_eam()
+                [self.Temperature, self.Tot_data, self.velocity, EAM] = integrate(self.Tot_data, EAM, self.velocity, self.ensemble_name, self.Temperature, self.temperature0, 1, self.timestep)
+                self.T_axis.append(self.Temperature)
+                self.Pe_axis.append(EAM.pe)
+                self.Time_axis.append(i * self.timestep)
+            self.mutex.unlock()
         self.T_chunk, self.Temperature, self.dT_dx, self.heat, self.x_chunk = NEMD(self.Tot_data, self.velocity, EAM, self.timestep, self.temperature0, self.ensemble_name_1, self.heat, self.iterate_1, self.x)
         self.t_conductivity = compute_result(self.Tot_data_initial, self.dT_dx, self.heat)
         self.Thermal_conductivity = [self.T_chunk, self.x_chunk, self.t_conductivity]
