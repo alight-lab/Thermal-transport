@@ -8,10 +8,8 @@ from ovito.vis import Viewport
 import os
 import copy
 os.environ['OVITO_GUI_MODE'] = '1'
-from output.lattice_set import lattice_set
-from output.render_3d import render_3d
-from output.read_datafile import read_datafile
-from output.main_calculation import Work
+from output import lattice_set, render_3d, Work, read_datafile
+
 from output.plot_2d import plot_2d
 from output.renew import renew
 
@@ -29,6 +27,7 @@ class MainWindow(QWidget, Ui_Form):
         self.restart_pushButton.clicked.connect(self.resume_main)
         self.vacan_checkBox_2.clicked.connect(lambda:self.set_occupancy(0))
         self.gap_checkBox_2.clicked.connect(lambda:self.set_occupancy(2))
+        self.zon_tem_checkBox_2.clicked.connect(self.set_tempareture_display)
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
