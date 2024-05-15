@@ -27,6 +27,8 @@ class MainWindow(QWidget, Ui_Form):
         self.start_pushButton.clicked.connect(self.start_main)
         self.pause_pushButton.clicked.connect(self.pause_main)
         self.restart_pushButton.clicked.connect(self.resume_main)
+        self.vacan_checkBox_2.clicked.connect(lambda:self.set_occupancy(0))
+        self.gap_checkBox_2.clicked.connect(lambda:self.set_occupancy(2))
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
@@ -155,6 +157,14 @@ class MainWindow(QWidget, Ui_Form):
             self.verticalLayout_6.itemAt(0).widget().deleteLater()
 
     def start_main(self):
+        # 清除画布
+        if self.verticalLayout_2.itemAt(0) != None:
+            self.verticalLayout_2.itemAt(0).widget().deleteLater()
+            self.verticalLayout_3.itemAt(0).widget().deleteLater()
+            self.verticalLayout_4.itemAt(0).widget().deleteLater()
+        if self.verticalLayout_5.itemAt(0) != None:
+            self.verticalLayout_5.itemAt(0).widget().deleteLater()
+            self.verticalLayout_6.itemAt(0).widget().deleteLater()
         # 读取GUI数据
         element1 = self.exp1_ele1_comboBox.currentText()
         element2 = self.exp2_ele1_comboBox.currentText()
@@ -205,19 +215,35 @@ class MainWindow(QWidget, Ui_Form):
         self.t.wait()
 
     def plot(self):
-        # renew(self.t.Tot_data)
-        self.exp2_reslineEdit_2.setText(str(self.t.t_conductivity))
-        self.exp2_reslineEdit_2.setText(str(self.t.t_conductivity))
-        cav = plot_2d(self.t.Time_axis, self.t.T_axis)
+        renew(self.t.Tot_data)
+        render_3d.set_file('data\small 2.data')
+        if self.gap_checkBox_2.isChecked():
+            render_3d.set_occuppancy(2)
+        if self.vacan_checkBox_2.isChecked():
+            render_3d.set_occuppancy(0)
+        if self.zon_tem_checkBox_2.isChecked():
+            ...
+        # TODO
+        self.exp_res_lineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
+        self.exp2_reslineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
+        cav = plot_2d(self.t.Time_axis, self.t.T_axis, 'Time', 'Temperature')
         self.verticalLayout_2.addWidget(cav)
-        cav = plot_2d(self.t.Time_axis, self.t.T_axis)
+        cav = plot_2d(self.t.Time_axis, self.t.T_axis, 'Time', 'Temperature')
         self.verticalLayout_6.addWidget(cav)
-        cav = plot_2d(self.t.x_chunk, self.t.T_chunk)
+        cav = plot_2d(self.t.x_chunk, self.t.T_chunk, 'X', 'Temperature')
         self.verticalLayout_3.addWidget(cav)
-        cav = plot_2d(self.t.x_chunk, self.t.T_chunk)
+        cav = plot_2d(self.t.x_chunk, self.t.T_chunk, 'X', 'Temperature')
         self.verticalLayout_5.addWidget(cav)
-        cav = plot_2d(self.t.omega, self.t.pdos)
+        cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos')
         self.verticalLayout_4.addWidget(cav)
         
+    def set_occupancy(self, num):
+        print(num)
+        render_3d.set_occuppancy(0)
+        if num == 0:
+            self.gap_checkBox_2.setChecked(False)
+        else:
+            self.vacan_checkBox_2.setChecked(False)
+        self.zon_tem_checkBox_2.setChecked(False)
 
         

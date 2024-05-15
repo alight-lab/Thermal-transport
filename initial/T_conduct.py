@@ -1,4 +1,3 @@
-
 def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 6, steps = 500, x_parti = 0.0):
     import sys
     import os
@@ -115,7 +114,7 @@ def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 
             dT_dx = np.gradient(T_chunk_real, x_chunk)
             dT_dx = np.mean(dT_dx)
 
-        return [T_chunk_real, Temperature, dT_dx, heat, x_chunk]
+        return [TotData, velocity, EAM, T_chunk_real, Temperature, dT_dx, heat, x_chunk]
     if types == 2:
         num_chunk = 10
         dx1 = x_parti/5
@@ -233,7 +232,7 @@ def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 
             dT_dx = np.gradient(T_chunk_real[3:5], x_chunk[3:5])
             dT_dx = np.mean(dT_dx)
 
-        return [T_chunk_real, Temperature, dT_dx, heat, x_chunk]
+        return [TotData, velocity, EAM, T_chunk_real, Temperature, dT_dx, heat, x_chunk]
 
 def compute_result(TotData, dT_dx, heat):
     """

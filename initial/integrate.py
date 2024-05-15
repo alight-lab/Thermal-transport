@@ -73,21 +73,21 @@ if __name__ == '__main__':
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from initial.read_data import ReadLmpData
-    from compute.integrate import integrate
+    from initial.integrate import integrate
     import numpy as np
     from initial.initialize_system import System
-    from compute.eam_force import eam_force
+    from initial.eam_force import eam_force
     TotData = ReadLmpData('data\Cu1.lmp')
     TotData.run_read()
     position = TotData.main_data[['x', 'y', 'z']]
     position = position.to_numpy(dtype=float)
-    system = System(TotData, 1e-15, 300)
+    system = System(TotData, time_step=1e-15, temperature0=300)
     velocity =  system.initialize()
-    EAM = eam_force('G:\\data\\app_v1\\data\\Cu.eam.alloy', TotData)
+    EAM = eam_force('data\\Cu.eam.alloy', TotData)
     EAM.read_eam()
     EAM.compute_eam()
 
-    for i in range(100):
+    for i in range(10):
         if i == 0:
             Temperature = 300
         [Temperature, TotData, velocity, EAM] = integrate(TotData, EAM, velocity, 'nve', Temperature, 400, 1,

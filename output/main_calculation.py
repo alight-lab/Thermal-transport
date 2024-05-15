@@ -51,7 +51,6 @@ class Work(QThread):
             if self.is_paused == True:
                 self.cond.wait(self.mutex)
             if self.is_paused == False:
-                print(i)
                 if i == 0:
                     self.Temperature = self.temperature0
                 EAM = eam_force(self.filename_potential, self.Tot_data)
@@ -62,7 +61,14 @@ class Work(QThread):
                 self.Pe_axis.append(EAM.pe)
                 self.Time_axis.append(i * self.timestep)
             self.mutex.unlock()
-        self.T_chunk, self.Temperature, self.dT_dx, self.heat, self.x_chunk = NEMD(self.Tot_data, self.velocity, EAM, self.timestep, self.temperature0, self.ensemble_name_1, self.heat, self.iterate_1, self.x)
+        for i in range(self.iterate_1):
+            self.mutex.lock()
+            if self.is_paused == True:
+                self.cond.wait(self.mutex)
+            if self.is_paused == False:
+                self.Tot_data, self.velocity, EAM, self.T_chunk, self.Temperature, self.dT_dx, self.heat, self.x_chunk = NEMD(self.Tot_data, self.velocity, EAM, self.timestep, self.temperature0, self.ensemble_name_1, self.heat, 1, self.x)
+                self.temperature0 = self.Temperature
+            self.mutex.unlock()
         self.t_conductivity = compute_result(self.Tot_data_initial, self.dT_dx, self.heat)
         self.Thermal_conductivity = [self.T_chunk, self.x_chunk, self.t_conductivity]
         self.omega = np.arange(1, 380.5, 0.5)
