@@ -34,6 +34,41 @@ class Render3D():
                     modifier.expression = 'Occupancy.'+str(occupancy_mode)
 
 
+    def set_color_by_tempareture(self, tempareture = [0,1,2,3,4,5,6,7,8,9,20]):
+        from ovito import scene
+        from ovito.modifiers import ColorCodingModifier
+
+        # uniformization to color list
+        max_tempareture = 0
+        min_tempareture = 0
+        for current_tempareture in tempareture:
+            if max_tempareture < current_tempareture:
+                max_tempareture = current_tempareture
+            elif min_tempareture > current_tempareture:
+                min_tempareture = current_tempareture
+        
+        difference_tempareture = max_tempareture - min_tempareture
+
+        color_list = []
+        for current_tempareture in tempareture:
+            uniformed = (current_tempareture - min_tempareture) / difference_tempareture
+            color_list.append(
+                (uniformed, 0, 1-uniformed)
+            )
+        # END uniformization to color list
+
+        
+
+        for pipeline in scene.pipelines:
+            pipeline.modifiers.clear()
+            pipeline.modifiers.append(
+                ColorCodingModifier(
+                    property = 'Position.X',
+                    gradient = ColorCodingModifier.Gradient(color_list)
+                )
+            )
+
+
     def __new_pipeline(self, file_path: str):
         from ovito.io import import_file
         from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModifier
