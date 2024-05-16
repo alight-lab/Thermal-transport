@@ -47,6 +47,7 @@ class Work(QThread):
         self.timestep = System_create.time_step
         self.velocity = System_create.initialize()
         for i in range(self.iterate):
+            print(i)
             self.mutex.lock()
             if self.is_paused == True:
                 self.cond.wait(self.mutex)
