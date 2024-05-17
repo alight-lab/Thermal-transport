@@ -53,7 +53,7 @@ class Ui_Form(object):
         font.setPointSize(10)
         font.setBold(True)
         self.exp1_radioButton.setFont(font)
-        self.exp1_radioButton.setLayoutDirection(Qt.LeftToRight)
+        self.exp1_radioButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.exp1_radioButton.setStyleSheet(u"border-radius: 3px;\n"
 "border: 1px bolid #495057;\n"
 "color: rgb(0, 0, 0);")
@@ -64,7 +64,7 @@ class Ui_Form(object):
         self.exp2_radioButton.setObjectName(u"exp2_radioButton")
         self.exp2_radioButton.setGeometry(QRect(130, 6, 101, 31))
         self.exp2_radioButton.setFont(font)
-        self.exp2_radioButton.setLayoutDirection(Qt.LeftToRight)
+        self.exp2_radioButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.exp2_radioButton.setStyleSheet(u"border-radius: 3px;\n"
 "border: 1px bolid #495057;\n"
 "color: rgb(0, 0, 0);")
@@ -121,7 +121,7 @@ class Ui_Form(object):
         self.label.setFont(font)
         self.label.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label.setAlignment(Qt.AlignCenter)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp1_ele1_comboBox = QComboBox(self.page_3)
         self.exp1_ele1_comboBox.setObjectName(u"exp1_ele1_comboBox")
         self.exp1_ele1_comboBox.setGeometry(QRect(20, 60, 135, 30))
@@ -152,7 +152,7 @@ class Ui_Form(object):
         self.label_2.setFont(font)
         self.label_2.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label_2.setAlignment(Qt.AlignCenter)
+        self.label_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_8 = QLabel(self.page_3)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setGeometry(QRect(220, 57, 40, 35))
@@ -194,7 +194,7 @@ class Ui_Form(object):
         self.label_4.setFont(font4)
         self.label_4.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label_4.setAlignment(Qt.AlignCenter)
+        self.label_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp1_ele1y_spinBox = QSpinBox(self.page_3)
         self.exp1_ele1y_spinBox.setObjectName(u"exp1_ele1y_spinBox")
         self.exp1_ele1y_spinBox.setGeometry(QRect(20, 160, 135, 30))
@@ -218,7 +218,7 @@ class Ui_Form(object):
         self.label_5.setFont(font4)
         self.label_5.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label_5.setAlignment(Qt.AlignCenter)
+        self.label_5.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp1_ele1z_spinBox = QSpinBox(self.page_3)
         self.exp1_ele1z_spinBox.setObjectName(u"exp1_ele1z_spinBox")
         self.exp1_ele1z_spinBox.setGeometry(QRect(20, 210, 135, 30))
@@ -242,7 +242,7 @@ class Ui_Form(object):
         self.label_6.setFont(font4)
         self.label_6.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label_6.setAlignment(Qt.AlignCenter)
+        self.label_6.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_9 = QLabel(self.page_3)
         self.label_9.setObjectName(u"label_9")
         self.label_9.setGeometry(QRect(220, 107, 40, 35))
@@ -270,7 +270,7 @@ class Ui_Form(object):
         self.label_7.setFont(font)
         self.label_7.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label_7.setAlignment(Qt.AlignCenter)
+        self.label_7.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp2_ele1_comboBox = QComboBox(self.page_4)
         self.exp2_ele1_comboBox.setObjectName(u"exp2_ele1_comboBox")
         self.exp2_ele1_comboBox.setGeometry(QRect(20, 60, 65, 30))
@@ -322,14 +322,14 @@ class Ui_Form(object):
         self.label_12.setFont(font)
         self.label_12.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label_12.setAlignment(Qt.AlignCenter)
+        self.label_12.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_13 = QLabel(self.page_4)
         self.label_13.setObjectName(u"label_13")
         self.label_13.setGeometry(QRect(96, 30, 50, 30))
         self.label_13.setFont(font)
         self.label_13.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "color: rgb(0, 0, 0);")
-        self.label_13.setAlignment(Qt.AlignCenter)
+        self.label_13.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_14 = QLabel(self.page_4)
         self.label_14.setObjectName(u"label_14")
         self.label_14.setGeometry(QRect(220, 57, 40, 35))
@@ -464,21 +464,21 @@ class Ui_Form(object):
         self.label_18.setFont(font4)
         self.label_18.setStyleSheet(u"color: rgb(0\uff0c0\uff0c0);\n"
 "border-color: rgb(233, 236, 239);")
-        self.label_18.setAlignment(Qt.AlignCenter)
+        self.label_18.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_19 = QLabel(self.page_4)
         self.label_19.setObjectName(u"label_19")
         self.label_19.setGeometry(QRect(155, 160, 30, 30))
         self.label_19.setFont(font4)
         self.label_19.setStyleSheet(u"color: rgb(0\uff0c0\uff0c0);\n"
 "border-color: rgb(233, 236, 239);")
-        self.label_19.setAlignment(Qt.AlignCenter)
+        self.label_19.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_20 = QLabel(self.page_4)
         self.label_20.setObjectName(u"label_20")
         self.label_20.setGeometry(QRect(155, 210, 30, 30))
         self.label_20.setFont(font4)
         self.label_20.setStyleSheet(u"color: rgb(0\uff0c0\uff0c0);\n"
 "border-color: rgb(233, 236, 239);")
-        self.label_20.setAlignment(Qt.AlignCenter)
+        self.label_20.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.sys_stackedWidget.addWidget(self.page_4)
         self.rel_tem_lineEdit = QLineEdit(self.widget)
         self.rel_tem_lineEdit.setObjectName(u"rel_tem_lineEdit")
@@ -494,7 +494,7 @@ class Ui_Form(object):
         self.label_3.setFont(font)
         self.label_3.setStyleSheet(u"border-color: rgb(233, 236, 239);\n"
 "")
-        self.label_3.setAlignment(Qt.AlignCenter)
+        self.label_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_21 = QLabel(self.widget)
         self.label_21.setObjectName(u"label_21")
         self.label_21.setGeometry(QRect(160, 307, 61, 16))
@@ -516,7 +516,7 @@ class Ui_Form(object):
         self.label_22.setStyleSheet(u"color: rgb(0\uff0c0\uff0c0);\n"
 "border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(255, 255, 255);")
-        self.label_22.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_22.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.label_23 = QLabel(self.widget)
         self.label_23.setObjectName(u"label_23")
         self.label_23.setGeometry(QRect(220, 297, 40, 35))
@@ -562,7 +562,7 @@ class Ui_Form(object):
         self.label_26.setGeometry(QRect(65, 270, 50, 30))
         self.label_26.setFont(font)
         self.label_26.setStyleSheet(u"border-color: rgb(233, 236, 239);")
-        self.label_26.setAlignment(Qt.AlignCenter)
+        self.label_26.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.rel_tim_lineEdiT = QLineEdit(self.widget)
         self.rel_tim_lineEdiT.setObjectName(u"rel_tim_lineEdiT")
         self.rel_tim_lineEdiT.setGeometry(QRect(20, 400, 135, 30))
@@ -578,7 +578,7 @@ class Ui_Form(object):
         self.label_27.setStyleSheet(u"color: rgb(0\uff0c0\uff0c0);\n"
 "background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(255, 255, 255);")
-        self.label_27.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_27.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.label_28 = QLabel(self.widget)
         self.label_28.setObjectName(u"label_28")
         self.label_28.setGeometry(QRect(160, 407, 61, 16))
@@ -597,7 +597,7 @@ class Ui_Form(object):
         self.label_30.setFont(font)
         self.label_30.setStyleSheet(u"\n"
 "border-color: rgb(233, 236, 239);")
-        self.label_30.setAlignment(Qt.AlignCenter)
+        self.label_30.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_31 = QLabel(self.widget)
         self.label_31.setObjectName(u"label_31")
         self.label_31.setGeometry(QRect(160, 476, 50, 15))
@@ -618,7 +618,7 @@ class Ui_Form(object):
         self.label_32.setStyleSheet(u"color: rgb(0\uff0c0\uff0c0);\n"
 "border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(255, 255, 255);")
-        self.label_32.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_32.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.label_33 = QLabel(self.widget)
         self.label_33.setObjectName(u"label_33")
         self.label_33.setGeometry(QRect(225, 467, 30, 30))
@@ -673,7 +673,7 @@ class Ui_Form(object):
         self.label_36.setStyleSheet(u"background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(255, 255, 255);\n"
 "color: rgb(0\uff0c0\uff0c0);")
-        self.label_36.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.label_36.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.label_37 = QLabel(self.widget)
         self.label_37.setObjectName(u"label_37")
         self.label_37.setGeometry(QRect(160, 577, 61, 16))
@@ -691,7 +691,7 @@ class Ui_Form(object):
         self.label_39.setGeometry(QRect(18, 615, 141, 20))
         self.label_39.setFont(font)
         self.label_39.setStyleSheet(u"border-color: rgb(233, 236, 239);")
-        self.label_39.setAlignment(Qt.AlignCenter)
+        self.label_39.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.defect_spinBox = QSpinBox(self.widget)
         self.defect_spinBox.setObjectName(u"defect_spinBox")
         self.defect_spinBox.setGeometry(QRect(20, 670, 135, 30))
@@ -714,7 +714,7 @@ class Ui_Form(object):
         self.label_40.setGeometry(QRect(11, 635, 151, 30))
         self.label_40.setFont(font)
         self.label_40.setStyleSheet(u"border-color: rgb(233, 236, 239);")
-        self.label_40.setAlignment(Qt.AlignCenter)
+        self.label_40.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_41 = QLabel(self.widget)
         self.label_41.setObjectName(u"label_41")
         self.label_41.setGeometry(QRect(220, 664, 40, 35))
@@ -728,7 +728,7 @@ class Ui_Form(object):
         self.line.setStyleSheet(u"color: rgb(0, 0, 0);\n"
 "border-right: rgb(233, 236, 239);\n"
 "")
-        self.line.setFrameShadow(QFrame.Plain)
+        self.line.setFrameShadow(QFrame.Shadow.Plain)
         self.line.setFrameShape(QFrame.Shape.HLine)
 
         self.horizontalLayout_8.addWidget(self.widget)
@@ -762,27 +762,18 @@ class Ui_Form(object):
         self.horizontalLayout_10 = QHBoxLayout()
         self.horizontalLayout_10.setSpacing(0)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
-        self.verticalLayout_9 = QVBoxLayout()
-        self.verticalLayout_9.setSpacing(0)
-        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.widget_8 = QWidget(self.widget_5)
-        self.widget_8.setObjectName(u"widget_8")
-        self.widget_8.setMaximumSize(QSize(30, 16777215))
-
-        self.verticalLayout_9.addWidget(self.widget_8)
-
-        self.verticalLayout_9.setStretch(0, 15)
-
-        self.horizontalLayout_10.addLayout(self.verticalLayout_9)
-
         self.verticalLayout_7 = QVBoxLayout()
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+        self.verticalLayout_9 = QVBoxLayout()
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+
+        self.verticalLayout_7.addLayout(self.verticalLayout_9)
+
 
         self.horizontalLayout_10.addLayout(self.verticalLayout_7)
 
-        self.horizontalLayout_10.setStretch(0, 1)
-        self.horizontalLayout_10.setStretch(1, 24)
+        self.horizontalLayout_10.setStretch(0, 24)
 
         self.horizontalLayout_15.addLayout(self.horizontalLayout_10)
 
@@ -875,7 +866,7 @@ class Ui_Form(object):
         self.label_65.setFont(font8)
         self.label_65.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
-        self.label_65.setAlignment(Qt.AlignCenter)
+        self.label_65.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_66 = QLabel(self.widget_10)
         self.label_66.setObjectName(u"label_66")
         self.label_66.setGeometry(QRect(1, 130, 101, 20))
@@ -895,7 +886,7 @@ class Ui_Form(object):
         self.exp1_ele1_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp1_ele1_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp1_ele1_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp1_ele1_mass_lineEdit_2 = QLineEdit(self.widget_10)
         self.exp1_ele1_mass_lineEdit_2.setObjectName(u"exp1_ele1_mass_lineEdit_2")
         self.exp1_ele1_mass_lineEdit_2.setGeometry(QRect(183, 130, 35, 20))
@@ -903,7 +894,7 @@ class Ui_Form(object):
         self.exp1_ele1_mass_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp1_ele1_mass_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp1_ele1_mass_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp1_ele1_num_lineEdit_2 = QLineEdit(self.widget_10)
         self.exp1_ele1_num_lineEdit_2.setObjectName(u"exp1_ele1_num_lineEdit_2")
         self.exp1_ele1_num_lineEdit_2.setGeometry(QRect(180, 180, 40, 20))
@@ -911,7 +902,7 @@ class Ui_Form(object):
         self.exp1_ele1_num_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp1_ele1_num_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp1_ele1_num_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_68 = QLabel(self.page_7)
         self.label_68.setObjectName(u"label_68")
         self.label_68.setGeometry(QRect(0, 300, 70, 20))
@@ -929,7 +920,7 @@ class Ui_Form(object):
         self.exp_res_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp_res_lineEdit_2.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+        self.exp_res_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
         self.label_49 = QLabel(self.page_7)
         self.label_49.setObjectName(u"label_49")
         self.label_49.setGeometry(QRect(150, 300, 81, 20))
@@ -962,7 +953,7 @@ class Ui_Form(object):
         self.label_71.setFont(font8)
         self.label_71.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
-        self.label_71.setAlignment(Qt.AlignCenter)
+        self.label_71.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_72 = QLabel(self.widget_11)
         self.label_72.setObjectName(u"label_72")
         self.label_72.setGeometry(QRect(1, 130, 111, 20))
@@ -981,7 +972,7 @@ class Ui_Form(object):
         self.label_74.setFont(font8)
         self.label_74.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
-        self.label_74.setAlignment(Qt.AlignCenter)
+        self.label_74.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp2_ele1_lineEdit_2 = QLineEdit(self.widget_11)
         self.exp2_ele1_lineEdit_2.setObjectName(u"exp2_ele1_lineEdit_2")
         self.exp2_ele1_lineEdit_2.setGeometry(QRect(143, 80, 25, 20))
@@ -989,7 +980,7 @@ class Ui_Form(object):
         self.exp2_ele1_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp2_ele1_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp2_ele1_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp2_ele2_lineEdit_2 = QLineEdit(self.widget_11)
         self.exp2_ele2_lineEdit_2.setObjectName(u"exp2_ele2_lineEdit_2")
         self.exp2_ele2_lineEdit_2.setGeometry(QRect(188, 80, 25, 20))
@@ -997,7 +988,7 @@ class Ui_Form(object):
         self.exp2_ele2_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp2_ele2_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp2_ele2_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp2_ele1_mass_lineEdit_2 = QLineEdit(self.widget_11)
         self.exp2_ele1_mass_lineEdit_2.setObjectName(u"exp2_ele1_mass_lineEdit_2")
         self.exp2_ele1_mass_lineEdit_2.setGeometry(QRect(139, 130, 35, 20))
@@ -1005,7 +996,7 @@ class Ui_Form(object):
         self.exp2_ele1_mass_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp2_ele1_mass_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp2_ele1_mass_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp2_ele2_mass_lineEdit_2 = QLineEdit(self.widget_11)
         self.exp2_ele2_mass_lineEdit_2.setObjectName(u"exp2_ele2_mass_lineEdit_2")
         self.exp2_ele2_mass_lineEdit_2.setGeometry(QRect(183, 130, 35, 20))
@@ -1013,7 +1004,7 @@ class Ui_Form(object):
         self.exp2_ele2_mass_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp2_ele2_mass_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp2_ele2_mass_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp2_ele1_num_lineEdit_2 = QLineEdit(self.widget_11)
         self.exp2_ele1_num_lineEdit_2.setObjectName(u"exp2_ele1_num_lineEdit_2")
         self.exp2_ele1_num_lineEdit_2.setGeometry(QRect(137, 180, 40, 20))
@@ -1021,7 +1012,7 @@ class Ui_Form(object):
         self.exp2_ele1_num_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp2_ele1_num_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp2_ele1_num_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.exp2_ele2_num_lineEdit_2 = QLineEdit(self.widget_11)
         self.exp2_ele2_num_lineEdit_2.setObjectName(u"exp2_ele2_num_lineEdit_2")
         self.exp2_ele2_num_lineEdit_2.setGeometry(QRect(180, 180, 40, 20))
@@ -1029,7 +1020,7 @@ class Ui_Form(object):
         self.exp2_ele2_num_lineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp2_ele2_num_lineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp2_ele2_num_lineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_75 = QLabel(self.page_8)
         self.label_75.setObjectName(u"label_75")
         self.label_75.setGeometry(QRect(0, 300, 80, 20))
@@ -1041,7 +1032,7 @@ class Ui_Form(object):
         self.exp2_reslineEdit_2.setFont(font3)
         self.exp2_reslineEdit_2.setStyleSheet(u"border-color: rgb(255, 255, 255);\n"
 "border-bottom-color: rgb(0, 0, 0);")
-        self.exp2_reslineEdit_2.setAlignment(Qt.AlignCenter)
+        self.exp2_reslineEdit_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_76 = QLabel(self.page_8)
         self.label_76.setObjectName(u"label_76")
         self.label_76.setGeometry(QRect(140, 300, 91, 20))
@@ -1050,7 +1041,6 @@ class Ui_Form(object):
 
         self.horizontalLayout_6.addWidget(self.widget_7)
 
-        self.horizontalLayout_6.setStretch(0, 3)
         self.horizontalLayout_6.setStretch(1, 1)
 
         self.verticalLayout.addLayout(self.horizontalLayout_6)
@@ -1220,7 +1210,7 @@ class Ui_Form(object):
         self.sys_stackedWidget.setCurrentIndex(1)
         self.stackedWidget_4.setCurrentIndex(1)
         self.stackedWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         self.tabWidget_2.setCurrentIndex(1)
 
 

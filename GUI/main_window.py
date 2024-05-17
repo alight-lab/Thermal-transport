@@ -29,6 +29,7 @@ class MainWindow(QWidget, Ui_Form):
         self.restart_pushButton.clicked.connect(self.resume_main)
         self.vacan_checkBox_2.clicked.connect(lambda:self.set_occupancy(0))
         self.gap_checkBox_2.clicked.connect(lambda:self.set_occupancy(2))
+        self.zon_tem_checkBox_2.clicked.connect(self.set_tempareture_display)
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
@@ -216,11 +217,11 @@ class MainWindow(QWidget, Ui_Form):
 
     def plot(self):
         renew(self.t.Tot_data)
-        render_3d.set_file('data\small 2.data')
+        render_3d.set_file('data\lattice_final.lmp')
         if self.gap_checkBox_2.isChecked():
-            render_3d.set_occuppancy(2)
+            render_3d.set_occupancy(2)
         if self.vacan_checkBox_2.isChecked():
-            render_3d.set_occuppancy(0)
+            render_3d.set_occupancy(0)
         if self.zon_tem_checkBox_2.isChecked():
             ...
         # TODO
@@ -238,12 +239,25 @@ class MainWindow(QWidget, Ui_Form):
         self.verticalLayout_4.addWidget(cav)
         
     def set_occupancy(self, num):
-        print(num)
-        render_3d.set_occuppancy(0)
-        if num == 0:
-            self.gap_checkBox_2.setChecked(False)
+        self.verticalLayout_7.itemAt(2).widget().deleteLater()
+        if (not self.gap_checkBox_2.isChecked()) and (not self.vacan_checkBox_2.isChecked()):
+            render_3d.clear_modifiers()
         else:
-            self.vacan_checkBox_2.setChecked(False)
-        self.zon_tem_checkBox_2.setChecked(False)
+            render_3d.set_occupancy(num)
+            if num == 0:
+                self.gap_checkBox_2.setChecked(False)
+            else:
+                self.vacan_checkBox_2.setChecked(False)
+            self.zon_tem_checkBox_2.setChecked(False)
 
-        
+    def set_tempareture_display(self):
+        from output.tempareture_color_bar import create_tem_color_bar
+        if self.zon_tem_checkBox_2.isChecked() == False:
+            render_3d.clear_modifiers()
+            self.verticalLayout_7.itemAt(2).widget().deleteLater()
+        else:
+            render_3d.set_color_by_tempareture(self.t.T_chunk)
+            self.gap_checkBox_2.setChecked(False)
+            self.vacan_checkBox_2.setChecked(False)
+            self.verticalLayout_7.addWidget(create_tem_color_bar(self.t.T_chunk), 2)
+            
