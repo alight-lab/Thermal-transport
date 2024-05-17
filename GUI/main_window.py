@@ -6,12 +6,11 @@ from GUI.gui_ui import Ui_Form
 from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModifier
 from ovito.vis import Viewport
 import os
+import numpy as np
 import copy
 os.environ['OVITO_GUI_MODE'] = '1'
-from output.lattice_set import lattice_set
-from output.render_3d import render_3d
-from output.read_datafile import read_datafile
-from output.main_calculation import Work
+from output import lattice_set, render_3d, Work, read_datafile
+
 from output.plot_2d import plot_2d
 from output.renew import renew
 
@@ -30,6 +29,7 @@ class MainWindow(QWidget, Ui_Form):
         self.vacan_checkBox_2.clicked.connect(lambda:self.set_occupancy(0))
         self.gap_checkBox_2.clicked.connect(lambda:self.set_occupancy(2))
         self.zon_tem_checkBox_2.clicked.connect(self.set_tempareture_display)
+
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
@@ -227,15 +227,15 @@ class MainWindow(QWidget, Ui_Form):
         # TODO
         self.exp_res_lineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
         self.exp2_reslineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
-        cav = plot_2d(self.t.Time_axis, self.t.T_axis, 'Time', 'Temperature')
+        cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature')
         self.verticalLayout_2.addWidget(cav)
-        cav = plot_2d(self.t.Time_axis, self.t.T_axis, 'Time', 'Temperature')
+        cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature')
         self.verticalLayout_6.addWidget(cav)
-        cav = plot_2d(self.t.x_chunk, self.t.T_chunk, 'X', 'Temperature')
+        cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature')
         self.verticalLayout_3.addWidget(cav)
-        cav = plot_2d(self.t.x_chunk, self.t.T_chunk, 'X', 'Temperature')
+        cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature')
         self.verticalLayout_5.addWidget(cav)
-        cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos')
+        cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos', 'Pdos')
         self.verticalLayout_4.addWidget(cav)
         
     def set_occupancy(self, num):

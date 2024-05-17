@@ -1,4 +1,5 @@
-def plot_2d(x, y, xlabel, ylabel):
+def plot_2d(x, y, xlabel, ylabel, legend):
+    import numpy as np
     from matplotlib import pyplot as plt
     from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
     fig = plt.figure()
@@ -10,7 +11,11 @@ def plot_2d(x, y, xlabel, ylabel):
     plt.subplots_adjust(bottom=0.3)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    ax.grid(alpha=0.1)
-    ax.plot(x, y)
+    ax.grid(ls = "--", lw = 0.5, color = "#4E616C") # 背景线
+    ax.plot(x, y, color='steelblue')
     ax.patch.set_alpha(0)
+    x_ticks = np.arange(min(x), max(x), (max(x) - min(x))/10)
+    plt.legend([legend], loc='upper right') # 图例
+    plt.xticks(x_ticks) # x坐标刻度
+    plt.close('all')
     return cav
