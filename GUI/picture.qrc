@@ -1,0 +1,17 @@
+<RCC>
+  <qresource prefix="background">
+    <file>方块.png</file>
+    <file>软件图标.png</file>
+    <file>可视化.png</file>
+    <file>声子.png</file>
+    <file>坐标轴.png</file>
+    <file>参数.png</file>
+    <file>实验室.png</file>
+    <file>温度.png</file>
+    <file>原子.png</file>
+    <file>系综选择.png</file>
+    <file>晶体缺陷.png</file>
+    <file>热流.png</file>
+    <file>时间.png</file>
+  </qresource>
+</RCC>
