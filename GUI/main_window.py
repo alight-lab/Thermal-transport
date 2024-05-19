@@ -67,10 +67,10 @@ class MainWindow(QWidget, Ui_Form):
         self.defect_lineEdit.setText('0')
         self.rel_tem_lineEdit.setText('300')
         self.rel_sys_comboBox.setCurrentIndex(0)
-        self.rel_tim_lineEdiT.setText('1')
+        self.rel_tim_lineEdiT.setText('0.002')
         self.Them_lineEdit.setText('5')
         self.Them_sys_comboBox.setCurrentIndex(0)
-        self.Them_tim_lineEdit.setText('1')
+        self.Them_tim_lineEdit.setText('0.005')
 
     def recommend_experiment_2(self):
         self.exp2_ele1_comboBox.setCurrentIndex(0)
@@ -84,10 +84,10 @@ class MainWindow(QWidget, Ui_Form):
         self.defect_lineEdit.setText('0')
         self.rel_tem_lineEdit.setText('300')
         self.rel_sys_comboBox.setCurrentIndex(0)
-        self.rel_tim_lineEdiT.setText('1')
+        self.rel_tim_lineEdiT.setText('0.002')
         self.Them_lineEdit.setText('5')
         self.Them_sys_comboBox.setCurrentIndex(0)
-        self.Them_tim_lineEdit.setText('1')
+        self.Them_tim_lineEdit.setText('0.005')
 
     def choose_page_0(self):
         self.exp1_ele1_comboBox.setCurrentIndex(-1)
@@ -270,16 +270,15 @@ class MainWindow(QWidget, Ui_Form):
         self.zon_tem_checkBox_2.setChecked(False)
         if self.painting_zoom.itemAt(1) != None:
             self.painting_zoom.itemAt(1).widget().deleteLater() # 删除温度条
-        if (not self.gap_checkBox_2.isChecked()) and (not self.vacan_checkBox_2.isChecked()):
+        if not self.gap_checkBox_2.isChecked():
             render_3d.clear_modifiers()
         else:
-            render_3d.set_occupancy()
+            render_3d.set_occupancy('data/lattice.lmp')
             
 
     def set_tempareture_display(self):
         from output.tempareture_color_bar import create_tem_color_bar
         self.gap_checkBox_2.setChecked(False)
-        self.vacan_checkBox_2.setChecked(False)
         if self.zon_tem_checkBox_2.isChecked() == False:
             render_3d.clear_modifiers()
             if self.painting_zoom.itemAt(1) != None:
