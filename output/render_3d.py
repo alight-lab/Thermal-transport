@@ -32,34 +32,57 @@ class Render3D():
         for pipeline in scene.pipelines:
             pipeline.modifiers.clear()
 
-        
 
-
-    def set_occupancy(self):
+    def set_occupancy(
+            self,
+            reference_file:str,
+            display_vacancy:bool=False,
+            determin_occupancy=None | int,
+            ):
+        """ 
+        `rederence_file`: 必须指定参照文件，指向未弛豫前文件；
+        `display_vacancy`: 显示缺陷(`determin_occupancy=1`)，会强制切换至显示参照文件，否则无法正常显示；
+        `determin_occupancy`: 指定occupancy，而不是大于等于2；
+        """
         from ovito import scene
         from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModifier
+        from ovito.pipeline import ReferenceConfigurationModifier
+        from ovito.pipeline import FileSource
 
-        for pipeline in scene.pipelines:
-            pipeline.modifiers.clear()
-            pipeline.modifiers.append(
-                WignerSeitzAnalysisModifier(
-                per_type_occupancies = True,
-                output_displaced = True
-                )
+        pipeline =  scene.selected_pipeline
+
+        pipeline.modifiers.clear()
+
+        output_displaced = True
+        if display_vacancy == True or determin_occupancy == 0:
+            output_displaced = False
+
+        occupancy_modifier = WignerSeitzAnalysisModifier(
+            output_displaced = output_displaced
             )
-            pipeline.modifiers.append(
-                ExpressionSelectionModifier(
-                    expression = 'Occupancy.2'
-                )
+
+        occupancy_modifier.reference = FileSource()
+        occupancy_modifier.reference.load(reference_file)
+
+        pipeline.modifiers.append(occupancy_modifier)
+
+        expression = 'Occupancy>=2'
+        if type(determin_occupancy) == int:
+            expression = 'Occupancy==' + str(determin_occupancy)
+        if display_vacancy == True:
+            expression = 'Occupancy==0'
+
+        pipeline.modifiers.append(
+            ExpressionSelectionModifier(
+                expression = expression
             )
-        
+        )
+
 
     def set_color_by_tempareture(self, tempareture = [0,1,2,3,4,5,6,7,8,9,20]):
         from ovito import scene
         from ovito.modifiers import ColorCodingModifier
-        from ovito.vis import ColorLegendOverlay
-        from ovito.qt_compat import QtCore
-        from matplotlib.colors import Normalize, Colormap
+        from matplotlib.colors import Normalize
         import matplotlib
         import numpy
 
@@ -87,11 +110,11 @@ class Render3D():
 
     def __new_pipeline(self, file_path: str):
         from ovito.io import import_file
-        from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModifier
 
         pipeline = import_file(file_path)
         pipeline.add_to_scene()
         self.vp.zoom_all((self.vp_widget.width(), self.vp_widget.height()))
+    
 
 global render_3d
 render_3d = Render3D()
