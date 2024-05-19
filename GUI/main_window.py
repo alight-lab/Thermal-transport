@@ -244,8 +244,7 @@ class MainWindow(QWidget, Ui_Form):
             self.verticalLayout_5.itemAt(0).widget().deleteLater()
 
         renew(self.t.Tot_data)
-        # render_3d.set_file('data\lattice_final.lmp')
-        render_3d.set_file('data\small 2.data')
+        render_3d.set_file('data\lattice_final.lmp')
         if self.gap_checkBox_2.isChecked():
             self.set_occupancy()
         if self.zon_tem_checkBox_2.isChecked():
