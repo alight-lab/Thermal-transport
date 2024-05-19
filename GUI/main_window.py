@@ -67,10 +67,10 @@ class MainWindow(QWidget, Ui_Form):
         self.defect_lineEdit.setText('0')
         self.rel_tem_lineEdit.setText('300')
         self.rel_sys_comboBox.setCurrentIndex(0)
-        self.rel_tim_lineEdiT.setText('0.002')
+        self.rel_tim_lineEdiT.setText('1')
         self.Them_lineEdit.setText('5')
         self.Them_sys_comboBox.setCurrentIndex(0)
-        self.Them_tim_lineEdit.setText('0.005')
+        self.Them_tim_lineEdit.setText('1')
 
     def recommend_experiment_2(self):
         self.exp2_ele1_comboBox.setCurrentIndex(0)
@@ -84,10 +84,10 @@ class MainWindow(QWidget, Ui_Form):
         self.defect_lineEdit.setText('0')
         self.rel_tem_lineEdit.setText('300')
         self.rel_sys_comboBox.setCurrentIndex(0)
-        self.rel_tim_lineEdiT.setText('0.002')
+        self.rel_tim_lineEdiT.setText('1')
         self.Them_lineEdit.setText('5')
         self.Them_sys_comboBox.setCurrentIndex(0)
-        self.Them_tim_lineEdit.setText('0.005')
+        self.Them_tim_lineEdit.setText('1')
 
     def choose_page_0(self):
         self.exp1_ele1_comboBox.setCurrentIndex(-1)
