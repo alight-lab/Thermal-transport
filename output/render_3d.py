@@ -82,6 +82,7 @@ class Render3D():
     def set_color_by_tempareture(self, tempareture = [0,1,2,3,4,5,6,7,8,9,20]):
         from ovito import scene
         from ovito.modifiers import ColorCodingModifier
+        from ovito.vis import TextLabelOverlay
         from matplotlib.colors import Normalize
         import matplotlib
         import numpy
@@ -105,6 +106,34 @@ class Render3D():
                     property = 'Position.X',
                     gradient = ColorCodingModifier.Gradient(color_list)
                 )
+            )
+
+
+    def render_png(self, filename:str, reference_file:str, tempareture=None):
+        from ovito import scene
+        if not scene.selected_pipeline == None:
+            (prepend, suffix) = filename.split('.')
+            self.vp.render_image(filename=filename)
+
+            temp_render_3d = self
+            if not tempareture == None:
+                temp_render_3d.set_color_by_tempareture(tempareture)
+                temp_render_3d.vp.render_image(
+                    filename=prepend + '_依温度着色' + '.' + suffix
+                    )
+            
+            temp_render_3d.set_occupancy(
+                reference_file=reference_file
+                )
+            temp_render_3d.vp.render_image(
+                filename=prepend + '_突出显示间隙' + '.' + suffix
+                )
+            temp_render_3d.set_occupancy(
+                reference_file=reference_file,
+                display_vacancy=True
+                )
+            temp_render_3d.vp.render_image(
+                filename=prepend + '_突出显示空位' + '.' + suffix
             )
 
 
