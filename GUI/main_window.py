@@ -9,7 +9,6 @@ import numpy as np
 import copy
 os.environ['OVITO_GUI_MODE'] = '1'
 from output import lattice_set, render_3d, Work, read_datafile
-
 from output.plot_2d import plot_2d
 from output.renew import renew
 
@@ -25,8 +24,11 @@ class MainWindow(QWidget, Ui_Form):
         self.start_pushButton.clicked.connect(self.start_main)
         self.pause_pushButton.clicked.connect(self.pause_main)
         self.restart_pushButton.clicked.connect(self.resume_main)
-        self.gap_checkBox_2.clicked.connect(lambda:self.set_occupancy())
-        self.zon_tem_checkBox_2.clicked.connect(lambda: self.set_tempareture_display())
+        self.gap_checkBox_2.clicked.connect(self.set_occupancy)
+        self.zon_tem_checkBox_2.clicked.connect(self.set_tempareture_display)
+        self.vacant_checkBox.clicked.connect(self.set_vacancy)
+        self.exp2_arg_pushButton_2.clicked.connect(self.save_file)
+
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
@@ -253,32 +255,34 @@ class MainWindow(QWidget, Ui_Form):
             self.exp_res_lineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
             self.exp2_reslineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
         if len(self.t.Time_axis) != 1:
-            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature', '体系温度曲线_单元素')
+            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature')
             self.verticalLayout_2.addWidget(cav)
-            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature', '体系温度曲线_多元素')
+            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature')
             self.verticalLayout_6.addWidget(cav)
         if len(self.t.x_chunk) != 0:     # 保证暂停时不绘图
-            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature', '体系区域温度_单元素')
+            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature')
             self.verticalLayout_3.addWidget(cav)
-            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature', '体系区域温度_多元素')
+            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature')
             self.verticalLayout_5.addWidget(cav)
         if len(self.t.omega) != 0:      # 保证暂停时不绘图
-            cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos', 'Pdos', '声子态密度曲线_多元素')
+            cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos', 'Pdos')
             self.verticalLayout_4.addWidget(cav)
         
     def set_occupancy(self):
         self.zon_tem_checkBox_2.setChecked(False)
+        self.vacant_checkBox.setChecked(False)
         if self.painting_zoom.itemAt(1) != None:
             self.painting_zoom.itemAt(1).widget().deleteLater() # 删除温度条
-        if (not self.gap_checkBox_2.isChecked()):
+        if not self.gap_checkBox_2.isChecked():
             render_3d.clear_modifiers()
         else:
-            render_3d.set_occupancy()
+            render_3d.set_occupancy('data/lattice.lmp')
             
 
     def set_tempareture_display(self):
         from output.tempareture_color_bar import create_tem_color_bar
         self.gap_checkBox_2.setChecked(False)
+        self.vacant_checkBox.setChecked(False)
         if self.zon_tem_checkBox_2.isChecked() == False:
             render_3d.clear_modifiers()
             if self.painting_zoom.itemAt(1) != None:
@@ -286,6 +290,53 @@ class MainWindow(QWidget, Ui_Form):
         else:
             render_3d.set_color_by_tempareture(self.t.T_chunk)
             self.painting_zoom.addWidget(create_tem_color_bar(self.t.T_chunk), 1)
-            
 
-        
+
+    def set_vacancy(self):
+        self.zon_tem_checkBox_2.setChecked(False)
+        self.gap_checkBox_2.setChecked(False)
+        if self.painting_zoom.itemAt(1) != None:
+            self.painting_zoom.itemAt(1).widget().deleteLater() # 删除温度条
+        if not self.gap_checkBox_2.isChecked():
+            render_3d.clear_modifiers()
+        if self.vacant_checkBox.isChecked() == False:
+            render_3d.clear_modifiers()
+        else:
+            render_3d.set_occupancy('data/lattice.lmp',True)
+            
+    def save_file(self):
+        import tkinter as tk
+        from tkinter import filedialog
+        root = tk.Tk()
+        root.withdraw()
+        Folderpath = filedialog.askdirectory() 
+        if len(self.t.Time_axis) != 1 and self.exp1_radioButton.isChecked():
+            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature', '体系温度曲线_单元素', Folderpath)
+        else:
+            if os.path.isfile(Folderpath + '/体系温度曲线_单元素.png'):
+                os.remove(Folderpath + '/体系温度曲线_单元素.png')
+                os.remove(Folderpath + '/体系温度曲线_单元素.txt')
+        if len(self.t.Time_axis) != 1 and self.exp2_radioButton.isChecked():
+            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature', '体系温度曲线_多元素', Folderpath)
+        else:
+            if os.path.isfile(Folderpath + '/体系温度曲线_多元素.png'):
+                os.remove(Folderpath + '/体系温度曲线_多元素.png')
+                os.remove(Folderpath + '/体系温度曲线_多元素.txt')
+        if len(self.t.x_chunk) != 0 and self.exp1_radioButton.isChecked():
+            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature', '体系区域温度_单元素', Folderpath)
+        else:
+            if os.path.isfile(Folderpath + '/体系区域温度_单元素.png'):
+                os.remove(Folderpath + '/体系区域温度_单元素.png')
+                os.remove(Folderpath + '/体系区域温度_单元素.txt')
+        if len(self.t.x_chunk) != 0 and self.exp2_radioButton.isChecked():
+            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature', '体系区域温度_多元素', Folderpath)
+        else:
+            if os.path.isfile(Folderpath + '/体系区域温度_多元素.png'):
+                os.remove(Folderpath + '/体系区域温度_多元素.png')
+                os.remove(Folderpath + '/体系区域温度_多元素.txt')
+        if len(self.t.omega) != 0 and self.exp2_radioButton.isChecked():    # 保证暂停时不绘图
+            cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos', 'Pdos', '声子态密度曲线_多元素', Folderpath)
+        else:
+            if os.path.isfile(Folderpath + '/声子态密度曲线_多元素.png'):
+                os.remove(Folderpath + '/声子态密度曲线_多元素.png')
+                os.remove(Folderpath + '/声子态密度曲线_多元素.txt')

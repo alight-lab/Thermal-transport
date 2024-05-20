@@ -1,6 +1,10 @@
 """
 生成点缺陷，模拟材料辐照后的状态
 """
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 def defect(filename, defect_num):
     """
@@ -28,5 +32,5 @@ def defect(filename, defect_num):
 
 
 if __name__ == "__main__":
-    Total_data = defect("Cu.lmp", 2)
+    Total_data = defect("data/Cu1.lmp", 100)
     print(Total_data.main_data)

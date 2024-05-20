@@ -1,7 +1,6 @@
 from PySide6.QtCore import QMutex, QWaitCondition, QThread, Signal
 import numpy as np
 from initial.eam_force import eam_force
-from output.read_datafile import read_datafile
 from initial.integrate import integrate
 from initial.T_conduct import NEMD, compute_result
 from initial.vacf_pdos import find_pdos
@@ -25,8 +24,7 @@ class Work(QThread):
         self.iterate = iterate
         self.ensemble_name = ensemble_name
         self.ensemble_name_1 = ensemble_name_1
-        defect(filepath, defect_num)
-        self.Tot_data = read_datafile(filepath)
+        self.Tot_data = defect(filepath, defect_num)
         self.heat = heat
         self.iterate_1 = iterate_1
         self.Tot_data_initial = copy.deepcopy(self.Tot_data)
