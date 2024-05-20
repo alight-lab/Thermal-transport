@@ -181,6 +181,37 @@ background-color: rgb(255, 255, 255);</string>
           <normaloff>:/background/参数.png</normaloff>:/background/参数.png</iconset>
         </property>
        </widget>
+       <widget class="QPushButton" name="exp2_arg_pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>1170</x>
+          <y>5</y>
+          <width>81</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 3px;
+color: rgb(0, 0, 0);
+border: 1px bolid #495057;
+background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>数据导出</string>
+        </property>
+        <property name="icon">
+         <iconset resource="picture.qrc">
+          <normaloff>:/background/文件.png</normaloff>:/background/文件.png</iconset>
+        </property>
+       </widget>
       </widget>
      </item>
      <item>
@@ -564,6 +595,25 @@ color: rgb(0, 0, 0);</string>
 border-radius: 5px;
 background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
+            </property>
+           </widget>
+           <widget class="Line" name="line_2">
+            <property name="geometry">
+             <rect>
+              <x>5</x>
+              <y>15</y>
+              <width>5</width>
+              <height>230</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(116, 192, 252);</string>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
            </widget>
           </widget>
@@ -1045,6 +1095,28 @@ color: rgb(0, 0, 0);</string>
 border-radius: 5px;
 background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
+            </property>
+           </widget>
+           <widget class="Line" name="line">
+            <property name="geometry">
+             <rect>
+              <x>5</x>
+              <y>10</y>
+              <width>4</width>
+              <height>236</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(116, 192, 252);</string>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="lineWidth">
+             <number>2</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
            </widget>
           </widget>
@@ -1774,27 +1846,6 @@ border-color: rgb(233, 236, 239);</string>
            <string/>
           </property>
          </widget>
-         <widget class="Line" name="line">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>720</y>
-            <width>261</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: rgb(0, 0, 0);
-border-right: rgb(233, 236, 239);
-</string>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
          <widget class="QLineEdit" name="defect_lineEdit">
           <property name="geometry">
            <rect>
@@ -1816,6 +1867,78 @@ border-right: rgb(233, 236, 239);
 border-radius: 5px;
 background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
+          </property>
+         </widget>
+         <widget class="Line" name="line_3">
+          <property name="geometry">
+           <rect>
+            <x>5</x>
+            <y>255</y>
+            <width>5</width>
+            <height>174</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(34, 139, 230);
+border-right-color: rgb(233, 236, 239);
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+         <widget class="Line" name="line_4">
+          <property name="geometry">
+           <rect>
+            <x>5</x>
+            <y>450</y>
+            <width>5</width>
+            <height>150</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(56, 217, 169);
+border-right-color: rgb(233, 236, 239);
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+         <widget class="Line" name="line_5">
+          <property name="geometry">
+           <rect>
+            <x>5</x>
+            <y>620</y>
+            <width>5</width>
+            <height>80</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: rgb(18, 184, 134);
+border-right-color: rgb(233, 236, 239);
+</string>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="lineWidth">
+           <number>2</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
           </property>
          </widget>
         </widget>
@@ -1876,7 +1999,7 @@ border: 1px solid rgb(248, 249, 250);</string>
                      <number>0</number>
                     </property>
                     <item>
-                     <layout class="QHBoxLayout" name="painting_zoom" stretch="">
+                     <layout class="QHBoxLayout" name="painting_zoom">
                       <property name="spacing">
                        <number>0</number>
                       </property>
@@ -1903,9 +2026,9 @@ border: 1px solid rgb(248, 249, 250);</string>
                 <widget class="QCheckBox" name="gap_checkBox_2">
                  <property name="geometry">
                   <rect>
-                   <x>60</x>
+                   <x>140</x>
                    <y>20</y>
-                   <width>161</width>
+                   <width>91</width>
                    <height>40</height>
                   </rect>
                  </property>
@@ -1929,7 +2052,7 @@ border-radius: 5px;
 color: rgb(0, 0, 0);</string>
                  </property>
                  <property name="text">
-                  <string>       显示间隙</string>
+                  <string>显示间隙</string>
                  </property>
                  <property name="icon">
                   <iconset resource="picture.qrc">
@@ -1939,9 +2062,9 @@ color: rgb(0, 0, 0);</string>
                 <widget class="QCheckBox" name="zon_tem_checkBox_2">
                  <property name="geometry">
                   <rect>
-                   <x>60</x>
+                   <x>40</x>
                    <y>70</y>
-                   <width>161</width>
+                   <width>191</width>
                    <height>40</height>
                   </rect>
                  </property>
@@ -1965,7 +2088,7 @@ border-radius: 5px;
 color: rgb(0, 0, 0);</string>
                  </property>
                  <property name="text">
-                  <string>区域温度可视化</string>
+                  <string>       区域温度可视化</string>
                  </property>
                  <property name="icon">
                   <iconset resource="picture.qrc">
@@ -2685,6 +2808,42 @@ border-bottom-color: rgb(0, 0, 0);</string>
                   </widget>
                  </widget>
                 </widget>
+                <widget class="QCheckBox" name="vacant_checkBox">
+                 <property name="geometry">
+                  <rect>
+                   <x>40</x>
+                   <y>20</y>
+                   <width>91</width>
+                   <height>40</height>
+                  </rect>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>微软雅黑</family>
+                   <pointsize>9</pointsize>
+                   <weight>75</weight>
+                   <bold>true</bold>
+                  </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true">background-color: #e9ecef;
+border-radius: 5px;
+color: rgb(0, 0, 0);</string>
+                 </property>
+                 <property name="text">
+                  <string>显示空位</string>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="picture.qrc">
+                   <normaloff>:/background/方块.png</normaloff>:/background/方块.png</iconset>
+                 </property>
+                </widget>
                </widget>
               </item>
              </layout>
@@ -2738,7 +2897,7 @@ border: 1px solid rgb(248, 249, 250);
 color: rgb(0, 0, 0);</string>
                     </property>
                     <property name="currentIndex">
-                     <number>1</number>
+                     <number>0</number>
                     </property>
                     <widget class="QWidget" name="tab">
                      <attribute name="icon">

@@ -57,7 +57,6 @@ class Work(QThread):
         self.velocity = System_create.initialize()
         for i in range(self.iterate):
             self.mutex.lock()
-            print(i)
             if self.is_paused == True:
                 self.temp = 2
                 self.signal_2.emit([self.Tot_data, self.temp])
@@ -76,10 +75,8 @@ class Work(QThread):
                 self.Time_axis.append(i * self.timestep)
             self.mutex.unlock()
         self.temp = 1
-        print('################')
         for i in range(self.iterate_1):
             self.mutex.lock()
-            print(i)
             if self.is_paused == True:
                 self.temp = 2
                 self.signal_3.emit([self.Tot_data, self.temp])

@@ -89,6 +89,17 @@ class Ui_Form(object):
 "border: 1px bolid #495057;\n"
 "background-color: rgb(255, 255, 255);")
         self.exp2_arg_pushButton.setIcon(icon2)
+        self.exp2_arg_pushButton_2 = QPushButton(self.widget_2)
+        self.exp2_arg_pushButton_2.setObjectName(u"exp2_arg_pushButton_2")
+        self.exp2_arg_pushButton_2.setGeometry(QRect(1170, 5, 81, 30))
+        self.exp2_arg_pushButton_2.setFont(font)
+        self.exp2_arg_pushButton_2.setStyleSheet(u"border-radius: 3px;\n"
+"color: rgb(0, 0, 0);\n"
+"border: 1px bolid #495057;\n"
+"background-color: rgb(255, 255, 255);")
+        icon3 = QIcon()
+        icon3.addFile(u":/background/\u6587\u4ef6.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.exp2_arg_pushButton_2.setIcon(icon3)
 
         self.verticalLayout_8.addWidget(self.widget_2)
 
@@ -230,6 +241,12 @@ class Ui_Form(object):
 "border-radius: 5px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
+        self.line_2 = QFrame(self.page_3)
+        self.line_2.setObjectName(u"line_2")
+        self.line_2.setGeometry(QRect(5, 15, 5, 230))
+        self.line_2.setStyleSheet(u"color: rgb(116, 192, 252);")
+        self.line_2.setFrameShadow(QFrame.Plain)
+        self.line_2.setFrameShape(QFrame.Shape.VLine)
         self.sys_stackedWidget.addWidget(self.page_3)
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
@@ -396,6 +413,13 @@ class Ui_Form(object):
 "border-radius: 5px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
+        self.line = QFrame(self.page_4)
+        self.line.setObjectName(u"line")
+        self.line.setGeometry(QRect(5, 10, 4, 236))
+        self.line.setStyleSheet(u"color: rgb(116, 192, 252);")
+        self.line.setFrameShadow(QFrame.Plain)
+        self.line.setLineWidth(2)
+        self.line.setFrameShape(QFrame.Shape.VLine)
         self.sys_stackedWidget.addWidget(self.page_4)
         self.rel_tem_lineEdit = QLineEdit(self.widget)
         self.rel_tem_lineEdit.setObjectName(u"rel_tem_lineEdit")
@@ -622,14 +646,6 @@ class Ui_Form(object):
         self.label_41.setSizePolicy(sizePolicy)
         self.label_41.setStyleSheet(u"border-image: url(:/background/\u6676\u4f53\u7f3a\u9677.png);\n"
 "border-color: rgb(233, 236, 239);")
-        self.line = QFrame(self.widget)
-        self.line.setObjectName(u"line")
-        self.line.setGeometry(QRect(0, 720, 261, 20))
-        self.line.setStyleSheet(u"color: rgb(0, 0, 0);\n"
-"border-right: rgb(233, 236, 239);\n"
-"")
-        self.line.setFrameShadow(QFrame.Plain)
-        self.line.setFrameShape(QFrame.Shape.HLine)
         self.defect_lineEdit = QLineEdit(self.widget)
         self.defect_lineEdit.setObjectName(u"defect_lineEdit")
         self.defect_lineEdit.setGeometry(QRect(20, 670, 135, 30))
@@ -638,6 +654,33 @@ class Ui_Form(object):
 "border-radius: 5px;\n"
 "background-color: rgb(255, 255, 255);\n"
 "color: rgb(0, 0, 0);")
+        self.line_3 = QFrame(self.widget)
+        self.line_3.setObjectName(u"line_3")
+        self.line_3.setGeometry(QRect(5, 255, 5, 174))
+        self.line_3.setStyleSheet(u"color: rgb(34, 139, 230);\n"
+"border-right-color: rgb(233, 236, 239);\n"
+"")
+        self.line_3.setFrameShadow(QFrame.Plain)
+        self.line_3.setLineWidth(2)
+        self.line_3.setFrameShape(QFrame.Shape.VLine)
+        self.line_4 = QFrame(self.widget)
+        self.line_4.setObjectName(u"line_4")
+        self.line_4.setGeometry(QRect(5, 450, 5, 150))
+        self.line_4.setStyleSheet(u"color: rgb(56, 217, 169);\n"
+"border-right-color: rgb(233, 236, 239);\n"
+"")
+        self.line_4.setFrameShadow(QFrame.Plain)
+        self.line_4.setLineWidth(2)
+        self.line_4.setFrameShape(QFrame.Shape.VLine)
+        self.line_5 = QFrame(self.widget)
+        self.line_5.setObjectName(u"line_5")
+        self.line_5.setGeometry(QRect(5, 620, 5, 80))
+        self.line_5.setStyleSheet(u"color: rgb(18, 184, 134);\n"
+"border-right-color: rgb(233, 236, 239);\n"
+"")
+        self.line_5.setFrameShadow(QFrame.Plain)
+        self.line_5.setLineWidth(2)
+        self.line_5.setFrameShape(QFrame.Shape.VLine)
 
         self.horizontalLayout_8.addWidget(self.widget)
 
@@ -686,7 +729,7 @@ class Ui_Form(object):
 "border: 1px solid rgb(248, 249, 250);")
         self.gap_checkBox_2 = QCheckBox(self.widget_7)
         self.gap_checkBox_2.setObjectName(u"gap_checkBox_2")
-        self.gap_checkBox_2.setGeometry(QRect(60, 20, 161, 40))
+        self.gap_checkBox_2.setGeometry(QRect(140, 20, 91, 40))
         sizePolicy.setHeightForWidth(self.gap_checkBox_2.sizePolicy().hasHeightForWidth())
         self.gap_checkBox_2.setSizePolicy(sizePolicy)
         font8 = QFont()
@@ -697,21 +740,21 @@ class Ui_Form(object):
         self.gap_checkBox_2.setStyleSheet(u"background-color: #e9ecef;\n"
 "border-radius: 5px;\n"
 "color: rgb(0, 0, 0);")
-        icon3 = QIcon()
-        icon3.addFile(u":/background/\u65b9\u5757.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.gap_checkBox_2.setIcon(icon3)
+        icon4 = QIcon()
+        icon4.addFile(u":/background/\u65b9\u5757.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.gap_checkBox_2.setIcon(icon4)
         self.zon_tem_checkBox_2 = QCheckBox(self.widget_7)
         self.zon_tem_checkBox_2.setObjectName(u"zon_tem_checkBox_2")
-        self.zon_tem_checkBox_2.setGeometry(QRect(60, 70, 161, 40))
+        self.zon_tem_checkBox_2.setGeometry(QRect(40, 70, 191, 40))
         sizePolicy.setHeightForWidth(self.zon_tem_checkBox_2.sizePolicy().hasHeightForWidth())
         self.zon_tem_checkBox_2.setSizePolicy(sizePolicy)
         self.zon_tem_checkBox_2.setFont(font8)
         self.zon_tem_checkBox_2.setStyleSheet(u"background-color: #e9ecef;\n"
 "border-radius: 5px;\n"
 "color: rgb(0, 0, 0);")
-        icon4 = QIcon()
-        icon4.addFile(u":/background/\u53ef\u89c6\u5316.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.zon_tem_checkBox_2.setIcon(icon4)
+        icon5 = QIcon()
+        icon5.addFile(u":/background/\u53ef\u89c6\u5316.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.zon_tem_checkBox_2.setIcon(icon5)
         self.stackedWidget_4 = QStackedWidget(self.widget_7)
         self.stackedWidget_4.setObjectName(u"stackedWidget_4")
         self.stackedWidget_4.setGeometry(QRect(10, 120, 241, 341))
@@ -918,6 +961,16 @@ class Ui_Form(object):
         self.label_76.setGeometry(QRect(140, 300, 91, 20))
         self.label_76.setFont(font5)
         self.stackedWidget_4.addWidget(self.page_8)
+        self.vacant_checkBox = QCheckBox(self.widget_7)
+        self.vacant_checkBox.setObjectName(u"vacant_checkBox")
+        self.vacant_checkBox.setGeometry(QRect(40, 20, 91, 40))
+        sizePolicy.setHeightForWidth(self.vacant_checkBox.sizePolicy().hasHeightForWidth())
+        self.vacant_checkBox.setSizePolicy(sizePolicy)
+        self.vacant_checkBox.setFont(font8)
+        self.vacant_checkBox.setStyleSheet(u"background-color: #e9ecef;\n"
+"border-radius: 5px;\n"
+"color: rgb(0, 0, 0);")
+        self.vacant_checkBox.setIcon(icon4)
 
         self.horizontalLayout_6.addWidget(self.widget_7)
 
@@ -956,9 +1009,9 @@ class Ui_Form(object):
 
         self.horizontalLayout_13.addLayout(self.verticalLayout_2)
 
-        icon5 = QIcon()
-        icon5.addFile(u":/background/\u6e29\u5ea6.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.tabWidget.addTab(self.tab, icon5, "")
+        icon6 = QIcon()
+        icon6.addFile(u":/background/\u6e29\u5ea6.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.tabWidget.addTab(self.tab, icon6, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
         self.horizontalLayout_14 = QHBoxLayout(self.tab_2)
@@ -969,7 +1022,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_14.addLayout(self.verticalLayout_3)
 
-        self.tabWidget.addTab(self.tab_2, icon5, "")
+        self.tabWidget.addTab(self.tab_2, icon6, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
         self.horizontalLayout_4 = QHBoxLayout(self.tab_3)
@@ -980,9 +1033,9 @@ class Ui_Form(object):
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_4)
 
-        icon6 = QIcon()
-        icon6.addFile(u":/background/\u58f0\u5b50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.tabWidget.addTab(self.tab_3, icon6, "")
+        icon7 = QIcon()
+        icon7.addFile(u":/background/\u58f0\u5b50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.tabWidget.addTab(self.tab_3, icon7, "")
 
         self.horizontalLayout_3.addWidget(self.tabWidget)
 
@@ -1005,7 +1058,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_12.addLayout(self.verticalLayout_6)
 
-        self.tabWidget_2.addTab(self.tab_4, icon5, "")
+        self.tabWidget_2.addTab(self.tab_4, icon6, "")
         self.tab_5 = QWidget()
         self.tab_5.setObjectName(u"tab_5")
         self.horizontalLayout_9 = QHBoxLayout(self.tab_5)
@@ -1015,7 +1068,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_9.addLayout(self.verticalLayout_5)
 
-        self.tabWidget_2.addTab(self.tab_5, icon5, "")
+        self.tabWidget_2.addTab(self.tab_5, icon6, "")
 
         self.horizontalLayout_2.addWidget(self.tabWidget_2)
 
@@ -1091,7 +1144,7 @@ class Ui_Form(object):
         self.sys_stackedWidget.setCurrentIndex(1)
         self.stackedWidget_4.setCurrentIndex(1)
         self.stackedWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_2.setCurrentIndex(1)
 
 
@@ -1104,6 +1157,7 @@ class Ui_Form(object):
         self.exp2_radioButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e8c", None))
         self.exp1_arg_pushButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e00\u63a8\u8350\u53c2\u6570", None))
         self.exp2_arg_pushButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e8c\u63a8\u8350\u53c2\u6570", None))
+        self.exp2_arg_pushButton_2.setText(QCoreApplication.translate("Form", u"\u6570\u636e\u5bfc\u51fa", None))
         self.label.setText(QCoreApplication.translate("Form", u"\u521d\u59cb\u4f53\u7cfb\u5efa\u7acb", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u5143\u7d20\u4e00", None))
         self.label_8.setText("")
@@ -1145,8 +1199,8 @@ class Ui_Form(object):
         self.label_39.setText(QCoreApplication.translate("Form", u"\u8f90\u7167\u6a21\u62df\u8bbe\u7f6e", None))
         self.label_40.setText(QCoreApplication.translate("Form", u"\u5f17\u5170\u79d1\u5c14\u7f3a\u9677\u5bf9\u6570", None))
         self.label_41.setText("")
-        self.gap_checkBox_2.setText(QCoreApplication.translate("Form", u"       \u663e\u793a\u95f4\u9699", None))
-        self.zon_tem_checkBox_2.setText(QCoreApplication.translate("Form", u"\u533a\u57df\u6e29\u5ea6\u53ef\u89c6\u5316", None))
+        self.gap_checkBox_2.setText(QCoreApplication.translate("Form", u"\u663e\u793a\u95f4\u9699", None))
+        self.zon_tem_checkBox_2.setText(QCoreApplication.translate("Form", u"       \u533a\u57df\u6e29\u5ea6\u53ef\u89c6\u5316", None))
         self.label_63.setText(QCoreApplication.translate("Form", u"\u4f53\u7cfb\u53c2\u6570", None))
         self.label_64.setText(QCoreApplication.translate("Form", u"\u5143\u7d20\u79cd\u7c7b", None))
         self.label_65.setText(QCoreApplication.translate("Form", u"\u5143\u7d20\u4e00", None))
@@ -1164,6 +1218,7 @@ class Ui_Form(object):
         self.label_75.setText(QCoreApplication.translate("Form", u"\u754c\u9762\u70ed\u5bfc\u7387", None))
         self.exp2_reslineEdit_2.setText("")
         self.label_76.setText(QCoreApplication.translate("Form", u"W*K-1*m-1", None))
+        self.vacant_checkBox.setText(QCoreApplication.translate("Form", u"\u663e\u793a\u7a7a\u4f4d", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QCoreApplication.translate("Form", u"\u4f53\u7cfb\u6e29\u5ea6\u66f2\u7ebf", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("Form", u"\u4f53\u7cfb\u533a\u57df\u6e29\u5ea6", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("Form", u"\u58f0\u5b50\u6001\u5bc6\u5ea6\u66f2\u7ebf", None))

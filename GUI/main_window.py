@@ -253,24 +253,24 @@ class MainWindow(QWidget, Ui_Form):
             self.exp_res_lineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
             self.exp2_reslineEdit_2.setText(str(round(self.t.t_conductivity, 3)))
         if len(self.t.Time_axis) != 1:
-            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature')
+            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature', '体系温度曲线_单元素')
             self.verticalLayout_2.addWidget(cav)
-            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature')
+            cav = plot_2d(np.array(self.t.Time_axis) * 1e15, self.t.T_axis, 'Time/fs', 'Temperature/K', 'Temperature', '体系温度曲线_多元素')
             self.verticalLayout_6.addWidget(cav)
         if len(self.t.x_chunk) != 0:     # 保证暂停时不绘图
-            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature')
+            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature', '体系区域温度_单元素')
             self.verticalLayout_3.addWidget(cav)
-            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature')
+            cav = plot_2d(np.array(self.t.x_chunk) * 1e9, self.t.T_chunk, 'X/nm', 'Temperature/K', 'Temperature', '体系区域温度_多元素')
             self.verticalLayout_5.addWidget(cav)
         if len(self.t.omega) != 0:      # 保证暂停时不绘图
-            cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos', 'Pdos')
+            cav = plot_2d(self.t.omega, self.t.pdos, 'Omega', 'Pdos', 'Pdos', '声子态密度曲线_多元素')
             self.verticalLayout_4.addWidget(cav)
         
     def set_occupancy(self):
         self.zon_tem_checkBox_2.setChecked(False)
         if self.painting_zoom.itemAt(1) != None:
             self.painting_zoom.itemAt(1).widget().deleteLater() # 删除温度条
-        if (not self.gap_checkBox_2.isChecked()) and (not self.vacan_checkBox_2.isChecked()):
+        if (not self.gap_checkBox_2.isChecked()):
             render_3d.clear_modifiers()
         else:
             render_3d.set_occupancy()
@@ -279,7 +279,6 @@ class MainWindow(QWidget, Ui_Form):
     def set_tempareture_display(self):
         from output.tempareture_color_bar import create_tem_color_bar
         self.gap_checkBox_2.setChecked(False)
-        self.vacan_checkBox_2.setChecked(False)
         if self.zon_tem_checkBox_2.isChecked() == False:
             render_3d.clear_modifiers()
             if self.painting_zoom.itemAt(1) != None:

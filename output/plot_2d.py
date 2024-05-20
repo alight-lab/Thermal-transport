@@ -1,4 +1,4 @@
-def plot_2d(x, y, xlabel, ylabel, legend):
+def plot_2d(x, y, xlabel, ylabel, legend, savename):
     import numpy as np
     from matplotlib import pyplot as plt
     from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -17,5 +17,17 @@ def plot_2d(x, y, xlabel, ylabel, legend):
     x_ticks = np.arange(min(x), max(x), (max(x) - min(x))/10)
     plt.legend([legend], loc='upper right') # 图例
     plt.xticks(x_ticks) # x坐标刻度
+    
+    # 保存图片和数据文件
+    plt.savefig('data/' + savename + '.png')
+    with open ('data/' + savename + '.txt', 'w') as f:
+        f.write('{:10}{:10}'.format(xlabel, ylabel))
+        f.write('\n')
+        for i in range(len(x)):
+            data_x = round(x[i], 6)
+            data_y = round(y[i], 6)
+            f.write('{:10}{:10}'.format(str(data_x), str(data_y)))
+            f.write('\n')
+
     plt.close('all')
     return cav

@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="background">
+    <file>文件.png</file>
     <file>方块.png</file>
     <file>软件图标.png</file>
     <file>可视化.png</file>
