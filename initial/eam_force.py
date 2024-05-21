@@ -8,9 +8,8 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from initial.read_data import ReadLmpData
 class eam_force:
 
-    def __init__(self, filename, TotData):
+    def __init__(self, filename):
         self.filename = filename
-        self.TotData = TotData
         self.drho = 0
         self.dr = 0
         self.cutoff = 0
@@ -77,9 +76,11 @@ class eam_force:
                 self.phi_li = self.phi_li.flatten().astype(float)
                 self.rhor_li = self.rhor_li.flatten().astype(float)
         fp.close()
-    def compute_eam(self):
+    def compute_eam(self, TotData):
     #����������
         import numpy as np
+
+        self.TotData = TotData
         position = self.TotData.main_data[['x', 'y', 'z']]
         position = position.to_numpy(dtype=float)
         n, m = position.shape
@@ -126,6 +127,7 @@ class eam_force:
                     if dist[i][j] < self.cutoff:
                         distij = (position[i] - position[j]) / dist[i][j]
                         n = int(dist[i][j] // self.dr)
+                        
                         rhor = self.rhor_li[n]
                         rhor_i += rhor
                         sum_type = int(self.TotData.main_data.loc[i + 1, 'type']) + int(self.TotData.main_data.loc[j + 1, 'type']) - 2
@@ -160,11 +162,11 @@ if __name__ == "__main__":
     import time
     import numpy as np
     start = time.perf_counter()
-    TotData = ReadLmpData("Cu1.lmp")
+    TotData = ReadLmpData("data/Cu1.lmp")
     TotData.run_read()
-    EAM = eam_force('Cu.eam.alloy', TotData)
+    EAM = eam_force('data/Cu.eam.alloy')
     EAM.read_eam()
-    EAM.compute_eam()
+    EAM.compute_eam(TotData)
     print(EAM.force)
     print(EAM.pe)
     np.savetxt("dets.txt", EAM.force, fmt='%f', delimiter=',')
