@@ -345,3 +345,14 @@ class MainWindow(QWidget, Ui_Form):
             if os.path.isfile(Folderpath + '/声子态密度曲线_多元素.png'):
                 os.remove(Folderpath + '/声子态密度曲线_多元素.png')
                 os.remove(Folderpath + '/声子态密度曲线_多元素.txt')
+        if self.t.T_chunk == []:
+            render_3d.render_png(
+                filename=Folderpath + '/晶体原子3D渲染图.png', 
+                reference_file='data/lattice.lmp'
+                )
+        else:
+            render_3d.render_png(
+                filename=Folderpath + '/晶体原子3D渲染图.png', 
+                reference_file='data/lattice.lmp',
+                tempareture=self.t.T_chunk
+                )
