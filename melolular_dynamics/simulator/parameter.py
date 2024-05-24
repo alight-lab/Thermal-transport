@@ -83,14 +83,14 @@ class SystemVarContainer:
             vacancy:            int
         ):
         
-        self.init_tempareture = init_tempareture
-        setted_tempareture    = setted_tempareture
-        self.lattice_ensemble = lattice_fixs
-        self.lattice_time     = lattice_time
-        self.heat_flux        = heat_flux
-        self.heat_fixs        = heat_fixs
-        self.sim_time         = sim_time
-        self.vacancy          = vacancy
+        self.init_tempareture       = init_tempareture
+        self.setted_tempareture     = setted_tempareture
+        self.lattice_ensemble       = lattice_fixs
+        self.lattice_time           = lattice_time
+        self.heat_flux              = heat_flux
+        self.heat_fixs              = heat_fixs
+        self.sim_time               = sim_time
+        self.vacancy                = vacancy
 
 
 class Variable:
@@ -139,7 +139,7 @@ if __name__ == '__main__':
         )
         ],
         SystemVarContainer(
-            200,Ensemble.nve,1,10,Ensemble.nvt,1,100
+            200,300,Ensemble.nve,1,10,Ensemble.nvt,1,100
         )
     )
 
