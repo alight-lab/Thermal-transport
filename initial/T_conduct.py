@@ -68,7 +68,7 @@ def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 
                 all_chunk_mass.append(chunk_mass)
 
             # ��ʼ���� (���¼��㿪ʼ���ù��ʵ�λ��)
-            heat_energy = heat * time_step * (1.6022 * 1e-7)  # ÿ����λʱ�䴫�ݵ�����
+            heat_energy = heat * (1.6022 * 1e-31)  # ÿ����λʱ�䴫�ݵ�����
             ke_source = 0.5 * (all_chunk_mass[Heat_source] / (1000 * 6.023e23)) * np.sum(
                 np.power(all_chunk_velocity[Heat_source], 2), axis=1)
             ke_sink = 0.5 * (all_chunk_mass[Heat_sink] / (1000 * 6.023e23)) * np.sum(
@@ -101,13 +101,13 @@ def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 
             for p in range(num_sink):
                 velocity[mark_sink[p]] = v_sink[p]
 
-            # nve ��ԥ
-            if i == 0:
-                [Temperature, TotData, velocity, EAM] = integrate(TotData, EAM, velocity, ensemble_name, Temperature0, Temperature0, 1,
+            # # nve ��ԥ
+            # if i == 0:
+            [Temperature, TotData, velocity, EAM, time] = integrate(TotData, EAM, velocity, ensemble_name, Temperature0, Temperature0, 1,
                                                                   time_step)
-            else:
-                temp = Temperature
-                [Temperature, TotData, velocity, EAM] = integrate(TotData, EAM, velocity, ensemble_name, temp,Temperature0, 1,time_step)
+            # else:
+            #     temp = Temperature
+            #     [Temperature, TotData, velocity, EAM, time] = integrate(TotData, EAM, velocity, ensemble_name, temp,Temperature0, 1,time_step)
             x_chunk = [q * dx for q in range(1, 9)]
             x_chunk = np.array(x_chunk) * 1e-10
             T_chunk_real = T_chunk[Heat_source:Heat_sink + 1]
@@ -185,7 +185,7 @@ def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 
 
 
             # ��ʼ���� (���¼��㿪ʼ���ù��ʵ�λ��)
-            heat_energy = heat*time_step*(1.6022*1e-7)                                                   # ÿ����λʱ�䴫�ݵ�����
+            heat_energy = heat*(1.6022*1e-31)                                                   # ÿ����λʱ�䴫�ݵ�����
             ke_source = 0.5 * (all_chunk_mass[Heat_source]/(1000 * 6.023e23)) * np.sum(np.power(all_chunk_velocity[Heat_source], 2), axis=1)
             ke_sink = 0.5 * (all_chunk_mass[Heat_sink]/(1000 * 6.023e23)) * np.sum(np.power(all_chunk_velocity[Heat_sink], 2), axis=1)
             ke_source = np.sum(ke_source)
@@ -217,13 +217,13 @@ def NEMD(TotData, velocity, EAM, time_step, Temperature0, ensemble_name, heat = 
                 velocity[mark_sink[p]] = v_sink[p]
 
             # nve ��ԥ
-            if i == 0:
-                [Temperature, TotData, velocity, EAM] = integrate(TotData, EAM, velocity, ensemble_name, Temperature0, Temperature0, 1,
-                                                                  time_step)
-            else:
-                temp = Temperature
-                [Temperature, TotData, velocity, EAM] = integrate(TotData, EAM, velocity, ensemble_name, temp, Temperature0, 1,
-                                                                  time_step)
+            # if i == 0:
+            [Temperature, TotData, velocity, EAM, time] = integrate(TotData, EAM, velocity, ensemble_name, Temperature0, Temperature0, 1,
+                                                                time_step)
+            # else:
+            #     temp = Temperature
+            #     [Temperature, TotData, velocity, EAM] = integrate(TotData, EAM, velocity, ensemble_name, temp, Temperature0, 1,
+            #                                                       time_step)
             x_chunk1 = [q*dx1 for q in range(1, 5)]
             x_chunk2 = [(x_parti)+q*dx2 for q in range(4)]
             x_chunk = x_chunk1+x_chunk2
@@ -256,29 +256,25 @@ if __name__ == "__main__":
     import os
     sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     from initial.read_data import ReadLmpData
-    from compute.integrate import integrate
+    from initial.integrate import integrate
     import numpy as np
     from initial.initialize_system import System
-    from compute.eam_force import eam_force
+    from initial.eam_force import eam_force
     from initial.lattice import Lattice
     from mix import mixture
 
-    copper_lattice = Lattice(element="Cu")
-    copper_lattice.write_lmp_file("copper.lmp", x=10, y=3, z=3)
-    iron_lattice = Lattice(element="Fe")
-    iron_lattice.write_lmp_file("iron.lmp", x=10, y=3, z=3)
     # x_parti = mixture("D:\\all_code\PyCode\\app_v1\compute\\copper.lmp", "D:\\all_code\PyCode\\app_v1\compute\\iron.lmp")
-    TotData = ReadLmpData('file.data')
+    TotData = ReadLmpData('data/Cu1.lmp')
     TotData.run_read()
     position = TotData.main_data[['x', 'y', 'z']]
     position = position.to_numpy(dtype=float)
     system = System(TotData, 1e-15)
     velocity =  system.initialize()
-    EAM = eam_force('CuFe.eam.alloy', TotData)
+    EAM = eam_force('data/Cu.eam.alloy')
     EAM.read_eam()
-    EAM.compute_eam()
+    EAM.compute_eam(TotData)
 
-    [T_chunk_real, Temperature, dT_dx, heat, x_chunk] = NEMD(TotData, velocity, EAM, system.time_step, system.temperature0,x_parti=35.1975)
+    [TotData, velocity, EAM, T_chunk_real, Temperature, dT_dx, heat, x_chunk] = NEMD(TotData, velocity, EAM, system.time_step, system.temperature0, 'nve', x_parti=35.1975, steps=50)
     s = compute_result(TotData, dT_dx, heat)
     print(s)
     print(T_chunk_real)

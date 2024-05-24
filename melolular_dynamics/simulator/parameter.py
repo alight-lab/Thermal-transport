@@ -79,7 +79,6 @@ class SystemVarContainer:
             sim_time:           float,
             vacancy:            int
         ):
-        
         self.init_tempareture       = init_tempareture
         self.setted_tempareture     = setted_tempareture
         self.lattice_ensemble       = lattice_fixs
@@ -89,7 +88,7 @@ class SystemVarContainer:
         self.sim_time               = sim_time
         self.vacancy                = vacancy
 
-
+        
 class Variable:
     atoms: list[AtomTypeContainer]
     system: SystemVarContainer
@@ -98,7 +97,7 @@ class Variable:
     lmp_path = 'melolular_dynamics/simulator/in/data/'
     lmp_name_perfix = 'lattice_'
     lmp_name_suffix = '.lmp'
-
+    
 
     def __init__(self, atoms:list[AtomTypeContainer], system: SystemVarContainer) -> None:
         self.atoms = atoms
@@ -142,8 +141,8 @@ def from_lmp_get_x_lenght(file: str):
             line = f.readline()
         data = line.split()
         return data[1]
-    
 
+      
 if __name__ == '__main__':
     var = Variable(
         [AtomTypeContainer(

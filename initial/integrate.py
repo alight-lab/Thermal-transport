@@ -3,7 +3,7 @@ import sys
 import math
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import numpy as np
-def integrate(Tot_data, EAM, velocity, choose, Temperature0, Temperature_set, num, time_step):
+def integrate(Tot_data, EAM, velocity, choose, Temperature0, Temperature_set, num, time_step, time=0):
     NA = 6.02 * 10 ** 23
     KB = 1.380649 * 10 ** (-23)
     force = EAM.force * 1.6022 * 10 ** (-9)       #转化成J/m
@@ -16,6 +16,7 @@ def integrate(Tot_data, EAM, velocity, choose, Temperature0, Temperature_set, nu
     length = Tot_data.BoxSize[:]
     length = np.array(length)
     length = length * 10 ** (-10)  # 单位为m
+    time = time
     for i_num in range(num):
         for i in range(Tot_data.atom_num):
             for j in range(3):
@@ -48,25 +49,36 @@ def integrate(Tot_data, EAM, velocity, choose, Temperature0, Temperature_set, nu
         Tot_data.main_data.loc[:, 'y'] = some1
         Tot_data.main_data.loc[:, 'z'] = some2
         if choose == 'nvt':
-            if i_num == 0:
-                time = 0
-            time_coupling = time_step*2
+            time_coupling = time_step*100
             Temperature = Temperature_set + (Temperature0 - Temperature_set) * math.e ** (-1 * time / time_coupling)
             time = time + time_step
+            
+            for i in range(Tot_data.atom_num):
+                for j in range(3):
+                    velocity[i][j] = (velocity[i][j] + force[i][j]
+                                           * time_step / (mass[i]))
+            
             velocity = velocity * (1 + time_step * (Temperature_set / Temperature - 1) / time_coupling) ** 0.5
+        
+            EAM.compute_eam(Tot_data)
+            force = EAM.force * 1.6022 * 10 ** (-9)
+        
         if choose == 'nve':
             for i in range(Tot_data.atom_num):
                 for j in range(3):
                     velocity[i][j] = (velocity[i][j] + force[i][j]
                                            * time_step / (mass[i]))
+            
             ke = 0
             for i in range(len(velocity)):
                 for j in range(3):
                     ke = ke + 0.5 * mass[i] * velocity[i][j] ** 2
-            Temperature = 2 * ke / (3 * Tot_data.atom_num * KB)
-            EAM.compute_eam()
+            
+            Temperature = 2 * ke / (3 * Tot_data.atom_num * KB) 
+
+            EAM.compute_eam(Tot_data)
             force = EAM.force * 1.6022 * 10 ** (-9)
-    return [Temperature, Tot_data, velocity, EAM]
+    return [Temperature, Tot_data, velocity, EAM, time]
 
 if __name__ == '__main__':
     import sys
@@ -83,13 +95,14 @@ if __name__ == '__main__':
     position = position.to_numpy(dtype=float)
     system = System(TotData, time_step=1e-15, temperature0=300)
     velocity =  system.initialize()
-    EAM = eam_force('data\\Cu.eam.alloy', TotData)
+    EAM = eam_force('data\\Cu.eam.alloy')
     EAM.read_eam()
-    EAM.compute_eam()
+    EAM.compute_eam(TotData)
 
-    for i in range(10):
+    time = 0
+    for i in range(100):
         if i == 0:
             Temperature = 300
-        [Temperature, TotData, velocity, EAM] = integrate(TotData, EAM, velocity, 'nve', Temperature, 400, 1,
-                                                              system.time_step)
+        [Temperature, TotData, velocity, EAM, time] = integrate(TotData, EAM, velocity, 'nvt', Temperature, 400, 1,
+                                                              system.time_step, time)
         print(Temperature)
