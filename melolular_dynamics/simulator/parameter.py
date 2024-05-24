@@ -55,13 +55,10 @@ class AtomTypeContainer:
         self.atom_type = atom_type
         self.num_x = num_x
         self.num_y = num_y
-        self.num_z = num_z
-
-        
-    
-
+        self.num_z = num_z        
 
 class SystemVarContainer:
+    step_time = 0.001
     init_tempareture:   float
     setted_tempareture: float
     lattice_ensemble:   Ensemble
@@ -82,8 +79,6 @@ class SystemVarContainer:
             sim_time:           float,
             vacancy:            int
         ):
-        
-
         self.init_tempareture       = init_tempareture
         self.setted_tempareture     = setted_tempareture
         self.lattice_ensemble       = lattice_fixs
@@ -93,11 +88,16 @@ class SystemVarContainer:
         self.sim_time               = sim_time
         self.vacancy                = vacancy
 
-
-
+        
 class Variable:
     atoms: list[AtomTypeContainer]
     system: SystemVarContainer
+    alloy_path = 'data/'
+    alloy_name_suffix = '.eam.alloy'
+    lmp_path = 'melolular_dynamics/simulator/in/data/'
+    lmp_name_perfix = 'lattice_'
+    lmp_name_suffix = '.lmp'
+    
 
     def __init__(self, atoms:list[AtomTypeContainer], system: SystemVarContainer) -> None:
         self.atoms = atoms
@@ -108,7 +108,12 @@ class Variable:
         result = []
         num_type = 1
         for atom in self.atoms:
-            result.append('variable '+'type_'+str(num_type)+' equal '+str(num_type)) # eg. type_1
+            alloy_file = self.alloy_path + atom.atom_type.name + self.alloy_name_suffix
+            lmp_file = self.lmp_path + self.lmp_name_perfix + str(num_type) + self.lmp_name_suffix
+            lattice_x_max = from_lmp_get_x_lenght(lmp_file)
+            result.append('variable '+'type_'+str(num_type)+' equal '+atom.atom_type.name) # eg. type_1
+            result.append('variable '+'potential_name_'+str(num_type)+' equal '+ alloy_file) # eg. potential_name_1
+            result.append('variable '+'lattice_x_max_'+str(num_type)+' equal '+lattice_x_max) # eg. lattice_x_max_1
             result.append('variable '+'type_'+str(num_type)+'_mass'+' equal '+str(atom.atom_type.value.mass)) # eg. type_1_mass
             result.append('variable '+'type_'+str(num_type)+'_lattice_constant'+' equal '+str(atom.atom_type.value.lattice_constant)) # eg. type_1_lattice_constant
             result.append('variable '+'type_'+str(num_type)+'_structure'+' string '+str(atom.atom_type.value.structure.name)) # eg. type_1_structure
@@ -119,16 +124,25 @@ class Variable:
 
         result.append('variable '+'init_tempareture'+' equal '+ str(self.system.init_tempareture)) # init_tempareture
         result.append('variable '+'setted_tempareture'+' equal '+ str(self.system.setted_tempareture)) # setted_tempareture
-        result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble)) # lattice_fixs
-        result.append('variable '+'lattice_time'+' equal '+ str(self.system.lattice_time)) # lattice_time
+        result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble)) # lattice_ensemble
+        result.append('variable '+'lattice_steps'+' equal '+ str(self.system.lattice_time/self.system.step_time)) # lattice_steps
         result.append('variable '+'heat_flux'+' equal '+ str(self.system.heat_flux)) # heat_flux
-        result.append('variable '+'heat_ensemble'+' string '+ str(self.system.heat_fixs)) # heat_fixs
-        result.append('variable '+'sim_time'+' equal '+ str(self.system.sim_time)) # sim_time
+        result.append('variable '+'heat_ensemble'+' string '+ str(self.system.heat_fixs)) # heat_ensemble
+        result.append('variable '+'sim_steps'+' equal '+ str(self.system.sim_time/self.system.step_time)) # sim_steps
         result.append('variable '+'vacancy'+' equal '+ str(self.system.vacancy)) # vacancy
 
         return result
     
 
+def from_lmp_get_x_lenght(file: str):
+    with open(file, 'r') as f:
+        line = f.readline()
+        while line.find('xlo') == -1:
+            line = f.readline()
+        data = line.split()
+        return data[1]
+
+      
 if __name__ == '__main__':
     var = Variable(
         [AtomTypeContainer(
@@ -141,9 +155,7 @@ if __name__ == '__main__':
         )
         ],
         SystemVarContainer(
-
             200,300,Ensemble.nve,1,10,Ensemble.nvt,1,100
-
         )
     )
 
