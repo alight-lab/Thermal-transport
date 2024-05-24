@@ -61,6 +61,7 @@ class MainWindow(QWidget, Ui_Form):
         self.stackedWidget_4.setCurrentIndex(0)
 
     def recommend_experiment_1(self):
+        self.Them_sys_comboBox.setCurrentIndex(1)
         self.exp1_ele1_comboBox.setCurrentIndex(0)
         self.exp2_ele2_comboBox.setCurrentIndex(-1)
         self.exp1_ele1x_lineEdit.setText('20')
@@ -68,13 +69,14 @@ class MainWindow(QWidget, Ui_Form):
         self.exp1_ele1z_lineEdit.setText('5')
         self.defect_lineEdit.setText('0')
         self.rel_tem_lineEdit.setText('300')
+        self.rel_tem_lineEdit_2.setText('400')
         self.rel_sys_comboBox.setCurrentIndex(0)
         self.rel_tim_lineEdiT.setText('1')
         self.Them_lineEdit.setText('5')
-        self.Them_sys_comboBox.setCurrentIndex(0)
         self.Them_tim_lineEdit.setText('1')
 
     def recommend_experiment_2(self):
+        self.Them_sys_comboBox.setCurrentIndex(1)
         self.exp2_ele1_comboBox.setCurrentIndex(0)
         self.exp2_ele2_comboBox.setCurrentIndex(1)
         self.exp2_ele1x_lineEdit.setText('10')
@@ -85,10 +87,10 @@ class MainWindow(QWidget, Ui_Form):
         self.exp2_ele2z_lineEdit.setText('5')
         self.defect_lineEdit.setText('0')
         self.rel_tem_lineEdit.setText('300')
+        self.rel_tem_lineEdit_2.setText('400')
         self.rel_sys_comboBox.setCurrentIndex(0)
         self.rel_tim_lineEdiT.setText('1')
         self.Them_lineEdit.setText('5')
-        self.Them_sys_comboBox.setCurrentIndex(0)
         self.Them_tim_lineEdit.setText('1')
 
     def choose_page_0(self):
@@ -108,6 +110,7 @@ class MainWindow(QWidget, Ui_Form):
         self.rel_tem_lineEdit.clear()
         self.rel_sys_comboBox.setCurrentIndex(0)
         self.rel_tim_lineEdiT.clear()
+        self.rel_tem_lineEdit_2.clear()
         self.Them_lineEdit.clear()
         self.Them_sys_comboBox.setCurrentIndex(0)
         self.Them_tim_lineEdit.clear()
@@ -148,6 +151,7 @@ class MainWindow(QWidget, Ui_Form):
         self.rel_tem_lineEdit.clear()
         self.rel_sys_comboBox.setCurrentIndex(0)
         self.rel_tim_lineEdiT.clear()
+        self.rel_tem_lineEdit_2.clear()
         self.Them_lineEdit.clear()
         self.Them_sys_comboBox.setCurrentIndex(0)
         self.Them_tim_lineEdit.clear()
@@ -212,12 +216,13 @@ class MainWindow(QWidget, Ui_Form):
         # 读取计算所需内容
         filepath = 'data\lattice.lmp'
         temperature0 = float(self.rel_tem_lineEdit.text())
+        temperature_set = float(self.rel_tem_lineEdit_2.text())
         iterate = int(float(self.rel_tim_lineEdiT.text()) / 0.001)
         ensemble_name = self.rel_sys_comboBox.currentText()
         heat = int(self.Them_lineEdit.text())
         iterate_1 = int(float(self.Them_tim_lineEdit.text()) / 0.001)
         ensemble_name_1 = self.Them_sys_comboBox.currentText()
-        self.t = Work(element1, element2, element3, filepath, temperature0, 
+        self.t = Work(element1, element2, element3, filepath, temperature0, temperature_set,
                         iterate, ensemble_name, ensemble_name_1, heat, 
                         iterate_1, x, defect_num)
         self.t.start()
