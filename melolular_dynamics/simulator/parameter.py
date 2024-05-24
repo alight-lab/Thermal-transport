@@ -119,10 +119,10 @@ class Variable:
 
         result.append('variable '+'init_tempareture'+' equal '+ str(self.system.init_tempareture)) # init_tempareture
         result.append('variable '+'setted_tempareture'+' equal '+ str(self.system.setted_tempareture)) # setted_tempareture
-        result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble)) # lattice_fixs
+        result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble)) # lattice_ensemble
         result.append('variable '+'lattice_time'+' equal '+ str(self.system.lattice_time)) # lattice_time
         result.append('variable '+'heat_flux'+' equal '+ str(self.system.heat_flux)) # heat_flux
-        result.append('variable '+'heat_ensemble'+' string '+ str(self.system.heat_fixs)) # heat_fixs
+        result.append('variable '+'heat_ensemble'+' string '+ str(self.system.heat_fixs)) # heat_ensemble
         result.append('variable '+'sim_time'+' equal '+ str(self.system.sim_time)) # sim_time
         result.append('variable '+'vacancy'+' equal '+ str(self.system.vacancy)) # vacancy
 
