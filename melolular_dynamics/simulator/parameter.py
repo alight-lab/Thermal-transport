@@ -19,7 +19,7 @@ class AtomParameter:
         
 
 
-class Fixs(Enum):
+class Ensemble(Enum):
     nvt = None
     nve = None
 
@@ -63,26 +63,29 @@ class AtomTypeContainer:
 
 class SystemVarContainer:
     init_tempareture:   float
-    lattice_fixs:       Fixs
+    setted_tempareture: float
+    lattice_ensemble:   Ensemble
     lattice_time:       float
     heat_flux:          float
-    heat_fixs:          Fixs
+    heat_fixs:          Ensemble
     sim_time:           float
     vacancy:            int
 
     def __init__(
             self,
             init_tempareture:   float,
-            lattice_fixs:       Fixs,
+            setted_tempareture: float,
+            lattice_fixs:       Ensemble,
             lattice_time:       float,
             heat_flux:          float,
-            heat_fixs:          Fixs,
+            heat_fixs:          Ensemble,
             sim_time:           float,
             vacancy:            int
         ):
         
         self.init_tempareture = init_tempareture
-        self.lattice_fixs     = lattice_fixs
+        setted_tempareture    = setted_tempareture
+        self.lattice_ensemble = lattice_fixs
         self.lattice_time     = lattice_time
         self.heat_flux        = heat_flux
         self.heat_fixs        = heat_fixs
@@ -103,22 +106,23 @@ class Variable:
         result = []
         num_type = 1
         for atom in self.atoms:
-            result.append('variable '+'type_'+str(num_type)+' equal '+str(num_type))
-            result.append('variable '+'type_'+str(num_type)+'_mass'+' equal '+str(atom.atom_type.value.mass))
-            result.append('variable '+'type_'+str(num_type)+'_lattice_constant'+' equal '+str(atom.atom_type.value.lattice_constant))
-            result.append('variable '+'type_'+str(num_type)+'_structure'+' equal '+str(atom.atom_type.value.structure.name))
-            result.append('variable '+'type_'+str(num_type)+'_x'+' equal '+str(atom.num_x))
-            result.append('variable '+'type_'+str(num_type)+'_y'+' equal '+str(atom.num_y))
-            result.append('variable '+'type_'+str(num_type)+'_z'+' equal '+str(atom.num_z))
+            result.append('variable '+'type_'+str(num_type)+' equal '+str(num_type)) # eg. type_1
+            result.append('variable '+'type_'+str(num_type)+'_mass'+' equal '+str(atom.atom_type.value.mass)) # eg. type_1_mass
+            result.append('variable '+'type_'+str(num_type)+'_lattice_constant'+' equal '+str(atom.atom_type.value.lattice_constant)) # eg. type_1_lattice_constant
+            result.append('variable '+'type_'+str(num_type)+'_structure'+' string '+str(atom.atom_type.value.structure.name)) # eg. type_1_structure
+            result.append('variable '+'type_'+str(num_type)+'_x'+' equal '+str(atom.num_x)) # eg. type_1_x
+            result.append('variable '+'type_'+str(num_type)+'_y'+' equal '+str(atom.num_y)) # eg. type_1_y
+            result.append('variable '+'type_'+str(num_type)+'_z'+' equal '+str(atom.num_z)) # eg. type_1_z
             num_type = num_type + 1
 
-        result.append('variable '+'init_tempareture'+' equal '+ str(self.system.init_tempareture))
-        result.append('variable '+'lattice_fixs'+' equal '+ str(self.system.lattice_fixs))
-        result.append('variable '+'lattice_time'+' equal '+ str(self.system.lattice_time))
-        result.append('variable '+'heat_flux'+' equal '+ str(self.system.heat_flux))
-        result.append('variable '+'heat_fixs'+' equal '+ str(self.system.heat_fixs))
-        result.append('variable '+'sim_time'+' equal '+ str(self.system.sim_time))
-        result.append('variable '+'vacancy'+' equal '+ str(self.system.vacancy))
+        result.append('variable '+'init_tempareture'+' equal '+ str(self.system.init_tempareture)) # init_tempareture
+        result.append('variable '+'setted_tempareture'+' equal '+ str(self.system.setted_tempareture)) # setted_tempareture
+        result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble)) # lattice_fixs
+        result.append('variable '+'lattice_time'+' equal '+ str(self.system.lattice_time)) # lattice_time
+        result.append('variable '+'heat_flux'+' equal '+ str(self.system.heat_flux)) # heat_flux
+        result.append('variable '+'heat_ensemble'+' string '+ str(self.system.heat_fixs)) # heat_fixs
+        result.append('variable '+'sim_time'+' equal '+ str(self.system.sim_time)) # sim_time
+        result.append('variable '+'vacancy'+' equal '+ str(self.system.vacancy)) # vacancy
 
         return result
     
@@ -135,7 +139,7 @@ if __name__ == '__main__':
         )
         ],
         SystemVarContainer(
-            200,Fixs.nve,1,10,Fixs.nvt,1,100
+            200,Ensemble.nve,1,10,Ensemble.nvt,1,100
         )
     )
 
