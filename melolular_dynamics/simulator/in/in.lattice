@@ -1,6 +1,6 @@
 # 模型参数
 
-# variable potential_name     string data/Cu.eam.alloy  # 势函数文件名
+# variable potential_name_1     string data/Cu.eam.alloy  # 势函数文件名
 # variable type_1             string Cu                 # 所选元素
 # variable init_tempareture   equal   300               # 体系初始初始温度
 # variable setted_tempareture equal    300              # nvt弛豫下的设定温度
@@ -22,7 +22,7 @@ read_data melolular_dynamics/simulator/in/data/lattice_1.lmp
 
 # 力场设置
 pair_style eam/alloy
-pair_coeff * * ${potential_name} ${type_1}
+pair_coeff * * ${potential_name_1} ${type_1}
 
 # 能量最小化
 variable lattice_min_steps equal ${lattice_steps}/10
@@ -57,7 +57,6 @@ compute         Tcold all temp/region cold
 fix             1 all nvt temp ${setted_tempareture} ${setted_tempareture} 0.5
 thermo	        100
 run             1000
-# 调整温度达到设定温度
 unfix		1
 # 设定nve系综
 fix		1 all nve
