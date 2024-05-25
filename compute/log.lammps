@@ -1,0 +1,296 @@
+LAMMPS (17 Apr 2024)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+Loaded 1 plugins from G:\lammps\LAMMPS 64-bit 17Apr2024-MSMPI\plugins
+# 模型参数
+
+    # $potential_name   # 势函数文件名
+    # $atom_name        # 所选元素
+# $init_tempareture    # 体系初始初始温度
+# $heat_flux           # 体系引入热流大小
+    # $integrate_step   # 弛豫时间（0.001ps一次）
+# $lattice_ensemble    # 弛豫所选系综名称
+
+units metal
+boundary p p p
+atom_style atomic
+timestep 0.001
+neighbor 2 bin
+neigh_modify check no
+
+# 体系模型读取
+read_data ../data/lattice_1.lmp
+Reading data file ...
+  orthogonal box = (0 0 0) to (72.2 18.05 18.05)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  2000 atoms
+  read_data CPU = 0.010 seconds
+
+# 力场设置
+pair_style eam/alloy
+pair_coeff * * ../data/Cu.eam.alloy Cu
+Reading eam/alloy potential file ../data/Cu.eam.alloy with DATE: 2024-05-21
+
+# 能量最小化
+min_style cg
+minimize 0 0 100 100
+Neighbor list info ...
+  update: every = 1 steps, delay = 0 steps, check = no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 7.715752
+  ghost atom cutoff = 7.715752
+  binsize = 3.857876, bins = 19 5 5
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair eam/alloy, perpetual
+      attributes: half, newton on
+      pair build: half/bin/atomonly/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 4.71 | 4.71 | 4.71 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press     
+         0   0             -7079.8166      0             -7079.8166      5734.0397    
+        50   0             -7079.8166      0             -7079.8166      5734.0397    
+Loop time of 0.603441 on 1 procs for 50 steps with 2000 atoms
+
+95.8% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+Minimization stats:
+  Stopping criterion = max force evaluations
+  Energy initial, next-to-last, final = 
+     -7079.81655557989  -7079.81655557989  -7079.81655557989
+  Force two-norm initial, final = 9.8743311e-13 9.7965859e-13
+  Force max component initial, final = 6.5655754e-14 6.5475403e-14
+  Final line search alpha, max atom move = 1 6.5475403e-14
+  Iterations, force evaluations = 50 100
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.29467    | 0.29467    | 0.29467    |   0.0 | 48.83
+Neigh   | 0.29794    | 0.29794    | 0.29794    |   0.0 | 49.37
+Comm    | 0.005601   | 0.005601   | 0.005601   |   0.0 |  0.93
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 0.005229   |            |       |  0.87
+
+Nlocal:           2000 ave        2000 max        2000 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           6845 ave        6845 max        6845 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:         176000 ave      176000 max      176000 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 176000
+Ave neighs/atom = 88
+Neighbor list builds = 101
+Dangerous builds not checked
+
+# 温度初始化
+velocity all create 300 32133
+
+# 弛豫
+thermo 100
+thermo_style custom step temp
+fix 1 all nvt temp 300 300 0.1
+run 1000
+Per MPI rank memory allocation (min/avg/max) = 3.585 | 3.585 | 3.585 Mbytes
+   Step          Temp     
+        50   300          
+       100   86.822311    
+       200   164.39735    
+       300   207.19175    
+       400   208.18083    
+       500   252.28806    
+       600   281.91203    
+       700   308.3597     
+       800   317.81094    
+       900   306.72194    
+      1000   309.23392    
+      1050   297.14075    
+Loop time of 6.61556 on 1 procs for 1000 steps with 2000 atoms
+
+Performance: 13.060 ns/day, 1.838 hours/ns, 151.159 timesteps/s, 302.318 katom-step/s
+86.7% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 2.9074     | 2.9074     | 2.9074     |   0.0 | 43.95
+Neigh   | 3.5962     | 3.5962     | 3.5962     |   0.0 | 54.36
+Comm    | 0.064125   | 0.064125   | 0.064125   |   0.0 |  0.97
+Output  | 0.002929   | 0.002929   | 0.002929   |   0.0 |  0.04
+Modify  | 0.023039   | 0.023039   | 0.023039   |   0.0 |  0.35
+Other   |            | 0.02195    |            |       |  0.33
+
+Nlocal:           2000 ave        2000 max        2000 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           6845 ave        6845 max        6845 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:         165302 ave      165302 max      165302 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 165302
+Ave neighs/atom = 82.651
+Neighbor list builds = 1000
+Dangerous builds not checked
+unfix 1
+reset_timestep 0
+
+
+
+# 热导率计算
+# 设置热源、冷源区域
+region          hot block 0 1 INF INF INF INF
+region          cold block 70 72 INF INF INF INF
+# 计算冷热源区域温度
+compute         Thot all temp/region hot
+compute         Tcold all temp/region cold
+# nvt下进行平衡模拟
+fix             1 all nvt temp 300 300 0.5
+thermo	        100
+run             1000
+Per MPI rank memory allocation (min/avg/max) = 3.586 | 3.586 | 3.586 Mbytes
+   Step          Temp     
+         0   297.14075    
+       100   308.26691    
+       200   296.95982    
+       300   296.75768    
+       400   293.69097    
+       500   292.3857     
+       600   305.73245    
+       700   304.56517    
+       800   298.64701    
+       900   308.74549    
+      1000   300.9062     
+Loop time of 6.70041 on 1 procs for 1000 steps with 2000 atoms
+
+Performance: 12.895 ns/day, 1.861 hours/ns, 149.245 timesteps/s, 298.489 katom-step/s
+90.5% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 2.9328     | 2.9328     | 2.9328     |   0.0 | 43.77
+Neigh   | 3.6551     | 3.6551     | 3.6551     |   0.0 | 54.55
+Comm    | 0.068158   | 0.068158   | 0.068158   |   0.0 |  1.02
+Output  | 0.00355    | 0.00355    | 0.00355    |   0.0 |  0.05
+Modify  | 0.022001   | 0.022001   | 0.022001   |   0.0 |  0.33
+Other   |            | 0.01881    |            |       |  0.28
+
+Nlocal:           2000 ave        2000 max        2000 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           6845 ave        6845 max        6845 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:         164998 ave      164998 max      164998 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 164998
+Ave neighs/atom = 82.499
+Neighbor list builds = 1000
+Dangerous builds not checked
+# 调整温度达到设定温度
+velocity	all scale 300
+unfix		1
+# 设定nve系综
+fix		1 all nve
+# 热源处持续输入热量
+# 10为热流
+fix             hot all heat 1 10 region hot
+# 冷源处持续抽走热量
+fix             cold all heat 1 -10 region cold
+# 设定热力学参数输出
+#c_是提取compute的结果
+thermo_style    custom step temp c_Thot c_Tcold
+thermo	        100
+# 运行1000步
+run             1000
+Per MPI rank memory allocation (min/avg/max) = 3.586 | 3.586 | 3.586 Mbytes
+   Step          Temp          c_Thot        c_Tcold    
+      1000   300            281.70258      292.27601    
+      1100   302.81507      455.85833      201.8892     
+      1200   294.95156      412.79261      190.02064    
+      1300   296.77845      753.27357      199.10454    
+      1400   301.56444      347.07324      227.10024    
+      1500   308.3229       459.72129      233.51512    
+      1600   306.05987      395.00612      284.81646    
+      1700   300.89618      385.35218      200.16244    
+      1800   299.59106      492.78115      201.99157    
+      1900   309.84903      430.89118      291.29957    
+      2000   305.18754      397.50591      271.76213    
+Loop time of 6.72994 on 1 procs for 1000 steps with 2000 atoms
+
+Performance: 12.838 ns/day, 1.869 hours/ns, 148.590 timesteps/s, 297.179 katom-step/s
+88.9% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 2.9328     | 2.9328     | 2.9328     |   0.0 | 43.58
+Neigh   | 3.6412     | 3.6412     | 3.6412     |   0.0 | 54.10
+Comm    | 0.06837    | 0.06837    | 0.06837    |   0.0 |  1.02
+Output  | 0.003298   | 0.003298   | 0.003298   |   0.0 |  0.05
+Modify  | 0.064965   | 0.064965   | 0.064965   |   0.0 |  0.97
+Other   |            | 0.01935    |            |       |  0.29
+
+Nlocal:           2000 ave        2000 max        2000 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           6845 ave        6845 max        6845 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:         165227 ave      165227 max      165227 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 165227
+Ave neighs/atom = 82.6135
+Neighbor list builds = 1000
+Dangerous builds not checked
+# 计算原子动能
+compute		ke all ke/atom
+# 根据原子动能计算原子温度
+variable	temp atom c_ke/(1.5*8.625e-5)
+# 沿z方向进行切块，把原子划入到不同的块中
+# 划分为20块 1/0.05
+compute         layers all chunk/atom bin/1d x lower 0.05 units reduced
+# 计算块内原子温度
+fix		2 all ave/chunk 10 10 100 layers v_temp file profile.heat
+# 计算温差
+variable        tdiff equal f_2[20][1]-f_2[1][1]
+# 计算平均温差
+fix             ave all ave/time 1 1 100 v_tdiff ave running start 1300
+# 输出平均温差
+thermo_style    custom step temp c_Thot c_Tcold v_tdiff
+thermo 1000
+# 运行2000步
+run             2000
+Per MPI rank memory allocation (min/avg/max) = 3.837 | 3.837 | 3.837 Mbytes
+   Step          Temp          c_Thot        c_Tcold        v_tdiff    
+      2000   305.18754      397.50591      271.76213     -0.025        
+      3000   300.40038      525.19824      228.28226      0.95         
+      4000   301.63784      437.3453       203.82226      0.95         
+Loop time of 13.4871 on 1 procs for 2000 steps with 2000 atoms
+
+Performance: 12.812 ns/day, 1.873 hours/ns, 148.290 timesteps/s, 296.580 katom-step/s
+94.1% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 5.8763     | 5.8763     | 5.8763     |   0.0 | 43.57
+Neigh   | 7.2947     | 7.2947     | 7.2947     |   0.0 | 54.09
+Comm    | 0.1354     | 0.1354     | 0.1354     |   0.0 |  1.00
+Output  | 0.000652   | 0.000652   | 0.000652   |   0.0 |  0.00
+Modify  | 0.14299    | 0.14299    | 0.14299    |   0.0 |  1.06
+Other   |            | 0.03708    |            |       |  0.27
+
+Nlocal:           2000 ave        2000 max        2000 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:           6845 ave        6845 max        6845 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:         165217 ave      165217 max      165217 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 165217
+Ave neighs/atom = 82.6085
+Neighbor list builds = 2000
+Dangerous builds not checked
+Total wall time: 0:00:34

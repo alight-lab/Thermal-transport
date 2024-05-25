@@ -78,7 +78,7 @@ class SystemVarContainer:
     lattice_ensemble:   Ensemble
     lattice_time:       float
     heat_flux:          float
-    heat_ensemble:      Ensemble
+    heat_fixs:          Ensemble
     sim_time:           float
     vacancy:            int
 
@@ -98,7 +98,7 @@ class SystemVarContainer:
         self.lattice_ensemble       = lattice_fixs
         self.lattice_time           = lattice_time
         self.heat_flux              = heat_flux
-        self.heat_ensemble              = heat_fixs
+        self.heat_fixs              = heat_fixs
         self.sim_time               = sim_time
         self.vacancy                = vacancy
 
@@ -108,7 +108,7 @@ class Variable:
     system: SystemVarContainer
     alloy_path = 'data/'
     alloy_name_suffix = '.eam.alloy'
-    lmp_path = 'data/'
+    lmp_path = 'melolular_dynamics/simulator/in/data/'
     lmp_name_perfix = 'lattice_'
     lmp_name_suffix = '.lmp'
     
@@ -119,14 +119,14 @@ class Variable:
         self.commands = self.__into_cmds()
 
     def __into_cmds(self) -> list[str] :
-        cat_atom_type = ''
         result = []
         num_type = 1
         for atom in self.atoms:
+            alloy_file = self.alloy_path + atom.atom_type.name + self.alloy_name_suffix
             lmp_file = self.lmp_path + self.lmp_name_perfix + str(num_type) + self.lmp_name_suffix
             lattice_x_max = from_lmp_get_x_lenght(lmp_file)
-            cat_atom_type = cat_atom_type + atom.atom_type.name
-            result.append('variable '+'type_'+str(num_type)+' string '+atom.atom_type.name) # eg. type_1
+            result.append('variable '+'type_'+str(num_type)+' equal '+atom.atom_type.name) # eg. type_1
+            result.append('variable '+'potential_name_'+str(num_type)+' equal '+ alloy_file) # eg. potential_name_1
             result.append('variable '+'lattice_x_max_'+str(num_type)+' equal '+lattice_x_max) # eg. lattice_x_max_1
             result.append('variable '+'type_'+str(num_type)+'_mass'+' equal '+str(atom.atom_type.value.mass)) # eg. type_1_mass
             result.append('variable '+'type_'+str(num_type)+'_lattice_constant'+' equal '+str(atom.atom_type.value.lattice_constant)) # eg. type_1_lattice_constant
@@ -136,14 +136,12 @@ class Variable:
             result.append('variable '+'type_'+str(num_type)+'_z'+' equal '+str(atom.num_z)) # eg. type_1_z
             num_type = num_type + 1
 
-        alloy_file = self.alloy_path + cat_atom_type + self.alloy_name_suffix
-        result.append('variable '+'potential_name'+' string '+ alloy_file) # eg. potential_name_1
         result.append('variable '+'init_tempareture'+' equal '+ str(self.system.init_tempareture)) # init_tempareture
         result.append('variable '+'setted_tempareture'+' equal '+ str(self.system.setted_tempareture)) # setted_tempareture
-        result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble.name)) # lattice_ensemble
+        result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble)) # lattice_ensemble
         result.append('variable '+'lattice_steps'+' equal '+ str(self.system.lattice_time/self.system.step_time)) # lattice_steps
         result.append('variable '+'heat_flux'+' equal '+ str(self.system.heat_flux)) # heat_flux
-        result.append('variable '+'heat_ensemble'+' string '+ str(self.system.heat_ensemble.name)) # heat_ensemble
+        result.append('variable '+'heat_ensemble'+' string '+ str(self.system.heat_fixs)) # heat_ensemble
         result.append('variable '+'sim_steps'+' equal '+ str(self.system.sim_time/self.system.step_time)) # sim_steps
         result.append('variable '+'vacancy'+' equal '+ str(self.system.vacancy)) # vacancy
 
