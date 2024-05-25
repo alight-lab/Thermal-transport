@@ -3,3 +3,4 @@
 """
 
 from parameter import Variable, SystemVarContainer, AtomTypeContainer, AtomType, Ensemble, AtomParameter, Structure
+from my_pylammps import MyPyLammps

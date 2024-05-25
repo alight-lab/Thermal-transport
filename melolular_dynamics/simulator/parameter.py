@@ -24,6 +24,13 @@ class Ensemble(Enum):
     nve = None
 
 
+    def get(str):
+        try:
+            return Ensemble[str]
+        except KeyError:
+            raise ValueError(f"Invalid color: {str}")
+
+
 class AtomType(Enum):
     Cu = AtomParameter(3.61, Structure.fcc,  63.55)
     Ag = AtomParameter(4.09, Structure.fcc, 107.87)
@@ -42,6 +49,13 @@ class AtomType(Enum):
     Ti = AtomParameter(3.32, Structure.fcc,  47.87)
     Cr = AtomParameter(2.88, Structure.bcc,  51.99)
     Zr = AtomParameter(3.23, Structure.bcc,  91.22)
+
+
+    def get(str):
+        try:
+            return AtomType[str]
+        except KeyError:
+            raise ValueError(f"Invalid color: {str}")
 
 
 class AtomTypeContainer:
@@ -146,16 +160,16 @@ def from_lmp_get_x_lenght(file: str):
 if __name__ == '__main__':
     var = Variable(
         [AtomTypeContainer(
-            AtomType.Ag,
+            AtomType.get('Cu'),
             5,5,5
         ),
         AtomTypeContainer(
-            AtomType.Cu,
+            AtomType.get('Ag'),
             5,5,5
         )
         ],
         SystemVarContainer(
-            200,300,Ensemble.nve,1,10,Ensemble.nvt,1,100
+            200,300,Ensemble.get('nve'),1,10,Ensemble.get('nve'),1,100
         )
     )
 
