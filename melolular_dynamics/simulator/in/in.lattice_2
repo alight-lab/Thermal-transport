@@ -1,15 +1,15 @@
 # 模型参数
 
-variable potential_name     string data/CuAg.eam.alloy# 势函数文件名
-variable type_1             string Cu                 # 所选元素1
-variable type_2             string Ag                 # 所选元素2
-variable init_tempareture   equal   300               # 体系初始初始温度
-variable setted_tempareture equal    300              # nvt弛豫下的设定温度
-variable heat_flux          equal    10               # 体系引入热流大小
-variable lattice_steps      equal    1000             # 弛豫步数
-variable lattice_ensemble   string     nvt            # 弛豫所选系综名称
-variable lattice_x_max_1 equal 77                     # 体系x最大值
-variable sim_steps          equal     1000            # 热导率nve模拟下的弛豫时间
+# variable potential_name     string data/CuAg.eam.alloy# 势函数文件名
+# variable type_1             string Cu                 # 所选元素1
+# variable type_2             string Ag                 # 所选元素2
+# variable init_tempareture   equal   300               # 体系初始初始温度
+# variable setted_tempareture equal    300              # nvt弛豫下的设定温度
+# variable heat_flux          equal    10               # 体系引入热流大小
+# variable lattice_steps      equal    1000             # 弛豫步数
+# variable lattice_ensemble   string     nvt            # 弛豫所选系综名称
+# variable lattice_x_max_1 equal 77                     # 体系x最大值
+# variable sim_steps          equal     1000            # 热导率nve模拟下的弛豫时间
 
 units metal
 boundary p p p
@@ -27,17 +27,25 @@ pair_coeff * * ${potential_name} ${type_1} ${type_2}
 
 # 能量最小化
 variable lattice_min_steps equal ${lattice_steps}/10
+variable lattice_min_steps equal ${lattice_steps}/10
 min_style cg
+minimize 0 0 ${lattice_min_steps} ${lattice_min_steps}
 minimize 0 0 ${lattice_min_steps} ${lattice_min_steps}
 reset_timestep 0
 
 # 温度初始化
 velocity all create ${init_tempareture} 32133
+velocity all create ${init_tempareture} 32133
 
 # 弛豫
 variable lattice_steps_thermo equal ${lattice_steps}/10
 thermo ${lattice_steps_thermo}
+variable lattice_steps_thermo equal ${lattice_steps}/10
+thermo ${lattice_steps_thermo}
 thermo_style custom step temp
+if '${lattice_ensemble}==nvt' then 'fix 1 all ${lattice_ensemble} temp ${init_tempareture} ${setted_tempareture} 0.1'
+if '${lattice_ensemble}==nve' then 'fix 1 all ${lattice_ensemble}'
+run ${lattice_steps}
 if '${lattice_ensemble}==nvt' then 'fix 1 all ${lattice_ensemble} temp ${init_tempareture} ${setted_tempareture} 0.1'
 if '${lattice_ensemble}==nve' then 'fix 1 all ${lattice_ensemble}'
 run ${lattice_steps}
@@ -52,12 +60,20 @@ region          hot block 0 2 INF INF INF INF
 region          cold block ${lattice_x_max_1_temp} ${lattice_x_max_1} INF INF INF INF
 group type_1_division type 1
 group type_2_division type 2
+variable lattice_x_max_1_temp equal ${lattice_x_max_1}-2.0
+region          hot block 0 2 INF INF INF INF
+region          cold block ${lattice_x_max_1_temp} ${lattice_x_max_1} INF INF INF INF
+group type_1_division type 1
+group type_2_division type 2
 # 计算冷热源区域温度
 compute         Thot all temp/region hot
 compute         Tcold all temp/region cold
 compute         layers_1 type_1_division chunk/atom bin/1d z lower 0.1 units reduced
 compute         layers_2 type_2_division chunk/atom bin/1d z lower 0.1 units reduced
+compute         layers_1 type_1_division chunk/atom bin/1d z lower 0.1 units reduced
+compute         layers_2 type_2_division chunk/atom bin/1d z lower 0.1 units reduced
 # nvt下进行平衡模拟
+fix             1 all nvt temp ${init_tempareture} ${init_tempareture} 0.5
 fix             1 all nvt temp ${init_tempareture} ${init_tempareture} 0.5
 thermo	        100
 run             1000
@@ -66,15 +82,21 @@ unfix		1
 fix		1 all nve
 # 热源处持续输入热量
 fix             hot all heat 1 ${heat_flux} region hot
+fix             hot all heat 1 ${heat_flux} region hot
 # 冷源处持续抽走热量
+variable heat_flux_temp equal -${heat_flux}
+fix             cold all heat 1 ${heat_flux_temp} region cold
 variable heat_flux_temp equal -${heat_flux}
 fix             cold all heat 1 ${heat_flux_temp} region cold
 # 设定热力学参数输出
 #c_是提取compute的结果
 variable sim_steps_thermo equal ${sim_steps}/100
+variable sim_steps_thermo equal ${sim_steps}/100
 thermo_style    custom step temp c_Thot c_Tcold
 thermo	        ${sim_steps_thermo}
+thermo	        ${sim_steps_thermo}
 # 运行1000步
+run             ${sim_steps}
 run             ${sim_steps}
 # 计算原子动能
 compute		ke all ke/atom
@@ -84,10 +106,15 @@ variable	temp atom c_ke/1.5
 # 划分为20块 1/0.05
 # compute         layers_1 type_1 chunk/atom bin/1d z lower 0.1 units reduced
 # compute         layers_2 type_2 chunk/atom bin/1d z lower 0.1 units reduced
+# compute         layers_1 type_1 chunk/atom bin/1d z lower 0.1 units reduced
+# compute         layers_2 type_2 chunk/atom bin/1d z lower 0.1 units reduced
 # 计算块内原子温度
 fix		2 all ave/chunk 10 10 100 layers_1 v_temp file profile_1.heat
 fix		3 all ave/chunk 10 10 100 layers_2 v_temp file profile_2.heat
+fix		2 all ave/chunk 10 10 100 layers_1 v_temp file profile_1.heat
+fix		3 all ave/chunk 10 10 100 layers_2 v_temp file profile_2.heat
 # 计算温差
+variable        tdiff equal f_2[10][1]-f_3[1][1]
 variable        tdiff equal f_2[10][1]-f_3[1][1]
 # 计算平均温差
 fix             ave all ave/time 1 1 100 v_tdiff ave running start 1300

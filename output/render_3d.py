@@ -45,7 +45,8 @@ class Render3D():
         `determin_occupancy`: 指定occupancy，而不是大于等于2；
         """
         from ovito import scene
-        from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModifier, AssignColorModifier
+        from ovito.modifiers import ExpressionSelectionModifier, WignerSeitzAnalysisModifier
+        from ovito.pipeline import ReferenceConfigurationModifier
         from ovito.pipeline import FileSource
 
         pipeline =  scene.selected_pipeline
@@ -76,9 +77,6 @@ class Render3D():
                 expression = expression
             )
         )
-        pipeline.modifiers.append(
-            AssignColorModifier(color=(1,0,0))
-        )
 
 
     def set_color_by_tempareture(self, tempareture = [0,1,2,3,4,5,6,7,8,9,20]):
@@ -101,44 +99,42 @@ class Render3D():
                 color_map(current)[:3]
             )
 
-        pipeline =  scene.selected_pipeline
-
-        pipeline.modifiers.clear()
-        pipeline.modifiers.append(
-            ColorCodingModifier(
-                property = 'Position.X',
-                gradient = ColorCodingModifier.Gradient(color_list)
+        for pipeline in scene.pipelines:
+            pipeline.modifiers.clear()
+            pipeline.modifiers.append(
+                ColorCodingModifier(
+                    property = 'Position.X',
+                    gradient = ColorCodingModifier.Gradient(color_list)
+                )
             )
-        )
 
 
     def render_png(self, filename:str, reference_file:str, tempareture=None):
         from ovito import scene
         if not scene.selected_pipeline == None:
             (prepend, suffix) = filename.split('.')
+            self.vp.render_image(filename=filename)
 
+            temp_render_3d = self
             if not tempareture == None:
-                self.set_color_by_tempareture(tempareture)
-                self.vp.render_image(
+                temp_render_3d.set_color_by_tempareture(tempareture)
+                temp_render_3d.vp.render_image(
                     filename=prepend + '_依温度着色' + '.' + suffix
                     )
             
-            self.set_occupancy(
+            temp_render_3d.set_occupancy(
                 reference_file=reference_file
                 )
-            scene
-            self.vp.render_image(
-                filename=prepend + '_突出显示间隙' + '.' + suffix,
+            temp_render_3d.vp.render_image(
+                filename=prepend + '_突出显示间隙' + '.' + suffix
                 )
-            
-            self.set_occupancy(
+            temp_render_3d.set_occupancy(
                 reference_file=reference_file,
                 display_vacancy=True
                 )
-            self.vp.render_image(
+            temp_render_3d.vp.render_image(
                 filename=prepend + '_突出显示空位' + '.' + suffix
             )
-            scene.selected_pipeline.modifiers.clear()
 
 
     def __new_pipeline(self, file_path: str):
