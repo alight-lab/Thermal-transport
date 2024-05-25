@@ -92,9 +92,9 @@ class SystemVarContainer:
 class Variable:
     atoms: list[AtomTypeContainer]
     system: SystemVarContainer
-    alloy_path = 'melolular_dynamics/simulator/in/data/'
+    alloy_path = 'data/'
     alloy_name_suffix = '.eam.alloy'
-    lmp_path = 'melolular_dynamics/simulator/in/data/'
+    lmp_path = 'data/'
     lmp_name_perfix = 'lattice_'
     lmp_name_suffix = '.lmp'
     
@@ -123,7 +123,7 @@ class Variable:
             num_type = num_type + 1
 
         alloy_file = self.alloy_path + cat_atom_type + self.alloy_name_suffix
-        result.append('variable '+'potential_name_'+str(num_type)+' string '+ alloy_file) # eg. potential_name_1
+        result.append('variable '+'potential_name'+' string '+ alloy_file) # eg. potential_name_1
         result.append('variable '+'init_tempareture'+' equal '+ str(self.system.init_tempareture)) # init_tempareture
         result.append('variable '+'setted_tempareture'+' equal '+ str(self.system.setted_tempareture)) # setted_tempareture
         result.append('variable '+'lattice_ensemble'+' string '+ str(self.system.lattice_ensemble.name)) # lattice_ensemble
