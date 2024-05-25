@@ -27,16 +27,17 @@ if __name__ == '__main__':
     from mpi4py import MPI
     var = Variable(
         [AtomTypeContainer(
-            AtomType.Cu,
+            AtomType.get('Cu'),
             5,5,5
         ),
         # AtomTypeContainer(
-        #     AtomType.Ag,
+        #     AtomType.get('Ag'),
+
         #     5,5,5
         # )
         ],
         SystemVarContainer(
-            200,300,Ensemble.nve,1,10,Ensemble.nvt,1,100
+            200,300,Ensemble.get('nve'),1,10,Ensemble.get('nve'),1,100
         )
     )
 
