@@ -100,10 +100,8 @@ compute		ke all ke/atom
 variable	temp atom c_ke/1.5
 # 沿z方向进行切块，把原子划入到不同的块中
 # 划分为20块 1/0.05
-# compute         layers_1 type_1 chunk/atom bin/1d z lower 0.1 units reduced
-# compute         layers_2 type_2 chunk/atom bin/1d z lower 0.1 units reduced
-# compute         layers_1 type_1 chunk/atom bin/1d z lower 0.1 units reduced
-# compute         layers_2 type_2 chunk/atom bin/1d z lower 0.1 units reduced
+compute         layers_1 type_1 chunk/atom bin/1d z lower 0.1 units reduced
+compute         layers_2 type_2 chunk/atom bin/1d z lower 0.1 units reduced
 # 计算块内原子温度
 fix		2 all ave/chunk 10 10 100 layers_1 v_temp file profile_1.heat
 fix		3 all ave/chunk 10 10 100 layers_2 v_temp file profile_2.heat
