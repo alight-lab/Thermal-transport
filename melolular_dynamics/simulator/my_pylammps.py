@@ -1,33 +1,32 @@
 from lammps import PyLammps
-from simulator import *
+from parameter import *
+import sys
 
-class MyPyLammps(PyLammps):
+class MyPyLammps():
     variable: Variable
-    def __init__(self, name="", var = Variable, cmdargs=None, ptr=None, comm=None, verbose=False):
-        super().__init__(name, cmdargs, ptr, comm, verbose)
+    py_lammps: PyLammps
+    def __init__(self, in_name: str, var: Variable) -> None:
+        self.variable = var
+        self.py_lammps = PyLammps()
         self.load_commands()
-        self.load_in(name)
+        self.load_in(in_name)
 
 
     def load_commands(self):
         for cmd in self.variable.commands:
-            self.command(cmd)
+            self.py_lammps.command(cmd)
 
     
     def load_in(self, name:str):
-        lines = open(name, 'r').readlines
-        for line in lines:
-            self.command(line)
+        with open(name, 'r',encoding='UTF-8') as file:
+            for line in file.readlines():
+                self.py_lammps.command(line)
 
 
 if __name__ == '__main__':
     from mpi4py import MPI
     var = Variable(
         [AtomTypeContainer(
-            AtomType.Ag,
-            5,5,5
-        ),
-        AtomTypeContainer(
             AtomType.Cu,
             5,5,5
         )
@@ -37,9 +36,12 @@ if __name__ == '__main__':
         )
     )
 
-    in_file = 'in/in.lattice'
+    in_file = 'melolular_dynamics\simulator\in\in.lattice'
 
     my_lammps = MyPyLammps(in_file, var)
 
-    MPI.Finalize()
+    me = MPI.COMM_WORLD.Get_rank()
+    nprocs = MPI.COMM_WORLD.Get_size()
+    print("Proc %d out of %d procs has" % (me,nprocs), my_lammps.py_lammps)
 
+    MPI.Finalize()
