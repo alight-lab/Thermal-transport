@@ -29,13 +29,18 @@ if __name__ == '__main__':
         [AtomTypeContainer(
             AtomType.Cu,
             5,5,5
-        )
+        ),
+        # AtomTypeContainer(
+        #     AtomType.Ag,
+        #     5,5,5
+        # )
         ],
         SystemVarContainer(
             200,300,Ensemble.nve,1,10,Ensemble.nvt,1,100
         )
     )
 
+    # in_file = 'melolular_dynamics\simulator\in\in.lattice_2'
     in_file = 'melolular_dynamics\simulator\in\in.lattice'
 
     my_lammps = MyPyLammps(in_file, var)
