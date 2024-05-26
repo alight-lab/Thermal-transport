@@ -2,7 +2,7 @@ from initial.read_data import ReadLmpData
 
 def renew(Tot_data):
     import numpy as np
-    with open ('data\lattice_final.lmp', 'w') as f:
+    with open ('data\lattice.lmp', 'w') as f:
         f.write("LAMMPS Description\n\n")
         f.write("{} atoms\n".format(Tot_data.atom_num))
         f.write("{} atom types\n".format(len(Tot_data.types)))
