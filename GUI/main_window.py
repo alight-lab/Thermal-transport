@@ -11,7 +11,7 @@ os.environ['OVITO_GUI_MODE'] = '1'
 from output import lattice_set, render_3d, read_datafile
 from melolular_dynamics.lammps_calculation import Work
 from output.plot_2d import plot_2d
-from output.renew import renew
+from initial.create_eam import create_eam
 
 class MainWindow(QWidget, Ui_Form):
     def __init__(self):
@@ -197,10 +197,6 @@ class MainWindow(QWidget, Ui_Form):
             f.truncate(0)
         with open('result.heat', 'w') as f:
             f.truncate(0)
-        with open('profile_1.heat', 'w') as f:
-            f.truncate(0)
-        with open('profile_2.heat', 'w') as f:
-            f.truncate(0)
         # 读取GUI数据
         element1 = self.exp1_ele1_comboBox.currentText()
         element2 = self.exp2_ele1_comboBox.currentText()
@@ -214,17 +210,19 @@ class MainWindow(QWidget, Ui_Form):
         render_3d.set_file('data\lattice.lmp')
         # 体系参数填入
         if element1 == '':
+            # create_eam([element2, element3])
             self.exp2_ele1_lineEdit_2.setText(element2)
             self.exp2_ele2_lineEdit_2.setText(element3)
-            self.exp2_ele1_mass_lineEdit_2.setText(self.atomic_mass[self.atom_all.index(element2)])
-            self.exp2_ele2_mass_lineEdit_2.setText(self.atomic_mass[self.atom_all.index(element3)])
+            self.exp2_ele1_mass_lineEdit_2.setText(str(round(float(self.atomic_mass[self.atom_all.index(element2)]), 1)))
+            self.exp2_ele2_mass_lineEdit_2.setText(str(round(float(self.atomic_mass[self.atom_all.index(element3)]), 1)))
             atom_num_1 = read_datafile('data\lattice_1.lmp').atom_num
             atom_num_2 = read_datafile('data\lattice_2.lmp').atom_num
             self.exp2_ele1_num_lineEdit_2.setText(str(atom_num_1))
             self.exp2_ele2_num_lineEdit_2.setText(str(atom_num_2))
         if element2 == '' and element3 == '':
+            create_eam([element1])
             self.exp1_ele1_lineEdit_2.setText(element1)
-            self.exp1_ele1_mass_lineEdit_2.setText(self.atomic_mass[self.atom_all.index(element1)])
+            self.exp1_ele1_mass_lineEdit_2.setText(str(round(float(self.atomic_mass[self.atom_all.index(element1)]), 1)))
             atom_num = read_datafile('data\lattice.lmp').atom_num
             self.exp1_ele1_num_lineEdit_2.setText(str(atom_num))
         # 读取计算所需内容
@@ -233,7 +231,7 @@ class MainWindow(QWidget, Ui_Form):
         temperature_set = float(self.rel_tem_lineEdit.text())
         iterate_time = float(float(self.rel_tim_lineEdiT.text()))
         ensemble_name = self.rel_sys_comboBox.currentText()
-        heat = int(self.Them_lineEdit.text())
+        heat = float(self.Them_lineEdit.text())
         iterate_time_heat = float(float(self.Them_tim_lineEdit.text()))
         ensemble_name_1 = self.Them_sys_comboBox.currentText()
         self.t = Work(element1, element2, element3, filepath, temperature0, temperature_set,
@@ -303,10 +301,10 @@ class MainWindow(QWidget, Ui_Form):
             heat_y = []
             with open('result.heat', 'r') as f:
                 line = f.readlines()
-                line_final = line[-10:][:]
+                line_final = line[-20:][:]
                 for i in range(len(line_final)):
                     data = line_final[i].split()
-                    heat_x.append(float(data[0]) * float(lattice_x_max_1)/10)
+                    heat_x.append(float(data[0]) * float(lattice_x_max_1)/20)
                     heat_y.append(float(data[3]))
             if len(heat_x) != 0:
                 cav = plot_2d(np.array(heat_x), np.array(heat_y), 'X/Å', 'Temperature/K', 'Temperature')
@@ -314,20 +312,18 @@ class MainWindow(QWidget, Ui_Form):
         else:
             heat_x = []
             heat_y = []
-            with open('profile_1.heat', 'r') as f:
+            with open('result_heat_2.txt', 'r') as f:
                 line = f.readlines()
-                line_final = line[-10:][:]
-                for i in range(len(line_final)):
-                    data = line_final[i].split()
-                    heat_x.append(float(data[0]) * float(self.x)/10)
-                    heat_y.append(float(data[3]))
-            with open('profile_2.heat', 'r') as f:
-                line = f.readlines()
-                line_final = line[-10:][:]
-                for i in range(len(line_final)):
-                    data = line_final[i].split()
-                    heat_x.append((float(data[0]) * (float(lattice_x_max_1) - float(self.x))/10) + float(self.x))
-                    heat_y.append(float(data[3]))
+                line_final = line[-1:][:]
+                data = line_final[0].split(" ")
+                data.pop(0)
+                for i in range(len(data)):
+                    if i <= 9:
+                        heat_x.append((float(self.x)/10) * i)
+                        heat_y.append(float(data[i]))
+                    if i > 9:
+                        heat_x.append(((float(lattice_x_max_1) - float(self.x))/10) * (i - 9) + self.x)
+                        heat_y.append(float(data[i]))
             if len(heat_x) != 0:
                 cav = plot_2d(np.array(heat_x), np.array(heat_y), 'X/Å', 'Temperature/K', 'Temperature')
                 self.verticalLayout_5.addWidget(cav)

@@ -16,8 +16,8 @@ units metal
 boundary s p p
 atom_style atomic
 timestep 0.001
-neighbor 2 bin
-neigh_modify check no
+neighbor 3 bin
+neigh_modify delay 0 every 5 check yes
 
 # 体系模型读取
 read_data data/lattice.lmp
@@ -48,23 +48,33 @@ if '${lattice_ensemble}==nve' then 'fix 1 all ${lattice_ensemble}'
 variable lattice_steps_temp equal ${lattice_steps}/10
 write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 
 unfix 1
 unfix result_iterate
 reset_timestep 0
 
-
 # 热导率计算
 # 设置热源、冷源区域
+
 variable lattice_x_min_temp equal ${diff_x}/10
 variable lattice_x_min_temp_2 equal ${lattice_x_min_temp}*2
 variable lattice_x_max_temp equal ${lattice_x_max_1}-(${lattice_x_max_1}-${diff_x})/10
@@ -72,78 +82,111 @@ variable lattice_x_max_temp_2 equal ${lattice_x_max_temp}-(${lattice_x_max_1}-${
 region          hot block ${lattice_x_min_temp} ${lattice_x_min_temp_2} INF INF INF INF
 region          cold block ${lattice_x_max_temp_2} ${lattice_x_max_temp} INF INF INF INF
 
-group type_1_division type 1
-group type_2_division type 2
-# 计算冷热源区域温度
+variable heat_flux_temp equal -${heat_flux}
+fix             hot all heat 1 ${heat_flux} region hot
+fix             cold all heat 1 ${heat_flux_temp} region cold
 compute         Thot all temp/region hot
 compute         Tcold all temp/region cold
-# 分块
-compute         layers_1 type_1_division chunk/atom bin/1d z lower 0.1 units reduced
-compute         layers_2 type_2_division chunk/atom bin/1d z lower 0.1 units reduced
-# nvt下进行平衡模拟
-fix             1 all nvt temp ${init_tempareture} ${init_tempareture} 0.5
-thermo	        100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-reset_timestep 0
-unfix		1
-# 设定nve系综
-fix		1 all nve
-# 热源处持续输入热量
-fix             hot all heat 100 ${heat_flux} region hot
-# 冷源处持续抽走热量
-variable heat_flux_temp equal -${heat_flux}
-fix             cold all heat 100 ${heat_flux_temp} region cold
-# 设定热力学参数输出
-variable sim_steps_thermo equal ${sim_steps}/100
-thermo_style    custom step temp c_Thot c_Tcold
+
+variable lattice_x_min_temp_3 equal ${lattice_x_min_temp}*3
+variable lattice_x_min_temp_4 equal ${lattice_x_min_temp}*4
+variable lattice_x_min_temp_5 equal ${lattice_x_min_temp}*5
+variable lattice_x_min_temp_6 equal ${lattice_x_min_temp}*6
+variable lattice_x_min_temp_7 equal ${lattice_x_min_temp}*7
+variable lattice_x_min_temp_8 equal ${lattice_x_min_temp}*8
+variable lattice_x_min_temp_9 equal ${lattice_x_min_temp}*9
+variable lattice_x_min_temp_10 equal ${lattice_x_min_temp}*10
+region chunk_1 block 0 ${lattice_x_min_temp} INF INF INF INF
+region chunk_2 block ${lattice_x_min_temp} ${lattice_x_min_temp_2} INF INF INF INF
+region chunk_3 block ${lattice_x_min_temp_2} ${lattice_x_min_temp_3} INF INF INF INF
+region chunk_4 block ${lattice_x_min_temp_3} ${lattice_x_min_temp_4} INF INF INF INF
+region chunk_5 block ${lattice_x_min_temp_4} ${lattice_x_min_temp_5} INF INF INF INF
+region chunk_6 block ${lattice_x_min_temp_5} ${lattice_x_min_temp_6} INF INF INF INF
+region chunk_7 block ${lattice_x_min_temp_6} ${lattice_x_min_temp_7} INF INF INF INF
+region chunk_8 block ${lattice_x_min_temp_7} ${lattice_x_min_temp_8} INF INF INF INF
+region chunk_9 block ${lattice_x_min_temp_8} ${lattice_x_min_temp_9} INF INF INF INF
+region chunk_10 block ${lattice_x_min_temp_9} ${lattice_x_min_temp_10} INF INF INF INF
+compute         Tchunk_1 all temp/region chunk_1
+compute         Tchunk_2 all temp/region chunk_2
+compute         Tchunk_3 all temp/region chunk_3
+compute         Tchunk_4 all temp/region chunk_4
+compute         Tchunk_5 all temp/region chunk_5
+compute         Tchunk_6 all temp/region chunk_6
+compute         Tchunk_7 all temp/region chunk_7
+compute         Tchunk_8 all temp/region chunk_8
+compute         Tchunk_9 all temp/region chunk_9
+compute         Tchunk_10 all temp/region chunk_10
+
+variable lattice_x_max_temp_3 equal ${lattice_x_max_temp_2}-(${lattice_x_max_1}-${diff_x})/10
+variable lattice_x_max_temp_4 equal ${lattice_x_max_temp_3}-(${lattice_x_max_1}-${diff_x})/10
+variable lattice_x_max_temp_5 equal ${lattice_x_max_temp_4}-(${lattice_x_max_1}-${diff_x})/10
+variable lattice_x_max_temp_6 equal ${lattice_x_max_temp_5}-(${lattice_x_max_1}-${diff_x})/10
+variable lattice_x_max_temp_7 equal ${lattice_x_max_temp_6}-(${lattice_x_max_1}-${diff_x})/10
+variable lattice_x_max_temp_8 equal ${lattice_x_max_temp_7}-(${lattice_x_max_1}-${diff_x})/10
+variable lattice_x_max_temp_9 equal ${lattice_x_max_temp_8}-(${lattice_x_max_1}-${diff_x})/10
+variable lattice_x_max_temp_10 equal ${lattice_x_max_temp_9}-(${lattice_x_max_1}-${diff_x})/10
+region chunk_11 block ${lattice_x_max_temp_10} ${lattice_x_max_temp_9} INF INF INF INF
+region chunk_12 block ${lattice_x_max_temp_9} ${lattice_x_max_temp_8} INF INF INF INF
+region chunk_13 block ${lattice_x_max_temp_8} ${lattice_x_max_temp_7} INF INF INF INF
+region chunk_14 block ${lattice_x_max_temp_7} ${lattice_x_max_temp_6} INF INF INF INF
+region chunk_15 block ${lattice_x_max_temp_6} ${lattice_x_max_temp_5} INF INF INF INF
+region chunk_16 block ${lattice_x_max_temp_5} ${lattice_x_max_temp_4} INF INF INF INF
+region chunk_17 block ${lattice_x_max_temp_4} ${lattice_x_max_temp_3} INF INF INF INF
+region chunk_18 block ${lattice_x_max_temp_3} ${lattice_x_max_temp_2} INF INF INF INF
+region chunk_19 block ${lattice_x_max_temp_2} ${lattice_x_max_temp} INF INF INF INF
+region chunk_20 block ${lattice_x_max_temp} ${lattice_x_max_1} INF INF INF INF
+compute         Tchunk_11 all temp/region chunk_11
+compute         Tchunk_12 all temp/region chunk_12
+compute         Tchunk_13 all temp/region chunk_13
+compute         Tchunk_14 all temp/region chunk_14
+compute         Tchunk_15 all temp/region chunk_15
+compute         Tchunk_16 all temp/region chunk_16
+compute         Tchunk_17 all temp/region chunk_17
+compute         Tchunk_18 all temp/region chunk_18
+compute         Tchunk_19 all temp/region chunk_19
+compute         Tchunk_20 all temp/region chunk_20
+variable sim_steps_thermo equal ${sim_steps}/10
+fix average all ave/time 10 10 ${sim_steps_thermo} c_Tchunk_1 c_Tchunk_2 c_Tchunk_3 c_Tchunk_4 c_Tchunk_5 c_Tchunk_6 c_Tchunk_7 c_Tchunk_8 c_Tchunk_9 c_Tchunk_10  c_Tchunk_11 c_Tchunk_12 c_Tchunk_13 c_Tchunk_14 c_Tchunk_15 c_Tchunk_16 c_Tchunk_17 c_Tchunk_18 c_Tchunk_19 c_Tchunk_20 file result_heat_2.txt
+
+fix		        1 all nve
+
+
 thermo	        ${sim_steps_thermo}
-dump result_pdos all custom ${sim_steps_thermo} result_pdos.txt vx vy vz 
-undump result_pdos
-variable sim_steps_temp equal ${sim_steps}/10
+thermo_style    custom step temp c_Thot c_Tcold c_Tchunk_1
+dump result_pdos all custom 10 result_pdos_2.txt vx vy vz
 
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
+run ${sim_steps_thermo}
 
-reset_timestep 0
-# 计算原子动能
-compute		ke all ke/atom
-# 根据原子动能计算原子温度
-variable	temp atom c_ke/(1.5*8.625e-5)
-# 计算块内原子温度
-fix		2 all ave/chunk 10 10 200 layers_1 v_temp file profile_1.heat
-fix		3 all ave/chunk 10 10 200 layers_2 v_temp file profile_2.heat
-# 计算温差
-variable        tdiff equal f_2[10][3]-f_3[1][3]
-# 计算平均温差
-fix             ave all ave/time 1 1 200 v_tdiff ave running start 0
-# 输出平均温差
-thermo_style    custom step temp c_Thot c_Tcold v_tdiff
-thermo 200
-# 运行2000步
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
+# # 计算原子动能
+# compute		ke all ke/atom
+# # 根据原子动能计算原子温度
+# variable	temp atom c_ke/(1.5*8.625e-5)
+# # 计算块内原子温度
+# fix		2 all ave/chunk 10 10 100 layers_1 v_temp file profile_1.heat
+# fix		3 all ave/chunk 10 10 100 layers_2 v_temp file profile_2.heat
+# # 计算温差
+# variable        tdiff equal f_2[10][3]-f_3[1][3]
+# # 计算平均温差
+# fix             ave all ave/time 1 1 100 v_tdiff ave running start 0
+
+# thermo_style    custom step temp c_Thot c_Tcold v_tdiff
+# thermo 100
+# run 100
+# run 100
+# run 100
+# run 100
+# run 100
+# run 100
+# run 100
+# run 100
+# run 100
+# run 100

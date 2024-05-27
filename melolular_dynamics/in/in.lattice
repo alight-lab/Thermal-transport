@@ -48,15 +48,25 @@ if '${lattice_ensemble}==nve' then 'fix 1 all ${lattice_ensemble}'
 variable lattice_steps_temp equal ${lattice_steps}/10
 write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 run ${lattice_steps_temp}
+write_data data/lattice_final.lmp
 
 unfix 1
 unfix result_iterate
@@ -76,22 +86,6 @@ region          cold block ${lattice_x_max_temp_3} ${lattice_x_max_temp_2} INF I
 # 计算冷热源区域温度
 compute         Thot all temp/region hot
 compute         Tcold all temp/region cold
-# nvt下进行平衡模拟,到达设定温度
-fix             1 all nvt temp ${setted_tempareture} ${setted_tempareture} 0.5
-thermo	        100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-run 100
-
-unfix		1
-reset_timestep 0
 # 设定nve系综
 fix		iterate_heat all nve
 # 热源处持续输入热量
@@ -101,50 +95,36 @@ variable heat_flux_temp equal -${heat_flux}
 fix             cold all heat 1 ${heat_flux_temp} region cold
 # 设定热力学参数输出
 #c_是提取compute的结果
-variable sim_steps_thermo equal ${sim_steps}/10
-thermo_style    custom step temp c_Thot c_Tcold
-thermo	        ${sim_steps_thermo}
-dump result_pdos all custom ${sim_steps_thermo} result_pdos.txt vx vy vz 
-undump result_pdos
+
 # 运行1000步
 variable sim_steps_temp equal ${sim_steps}/10
 
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-run ${sim_steps_temp}
-
-# 计算原子动能
-reset_timestep 0
 compute		ke all ke/atom
 # 根据原子动能计算原子温度
 variable	temp atom c_ke/(1.5*8.625e-5)
-# 划分为10块 1/0.1
-compute         layers all chunk/atom bin/1d x lower 0.1 units reduced
-# 计算块内原子温度
-fix		2 all ave/chunk 10 10 200 layers v_temp file result.heat
-# 计算温差
-variable        tdiff equal f_2[9][3]-f_2[2][3]
-# 计算平均温差
-fix             ave all ave/time 1 1 200 v_tdiff ave running start 0
-# 输出平均温差
-thermo_style    custom step temp c_Thot c_Tcold v_tdiff
-thermo 200
-# 运行2000步
+compute         layers all chunk/atom bin/1d x lower 0.05 units reduced
 
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
-run 200
+variable sim_steps_thermo equal ${sim_steps}/10
+# 计算块内原子温度
+fix		2 all ave/chunk 10 10 ${sim_steps_thermo} layers v_temp file result.heat
+# 计算温差
+variable        tdiff equal f_2[2][3]-f_2[19][3]
+# 计算平均温差
+fix             ave all ave/time 1 1 ${sim_steps_thermo} v_tdiff ave running start 0
+# 输出平均温差
+
+thermo_style    custom step temp c_Thot c_Tcold v_tdiff
+thermo	        ${sim_steps_thermo}
+
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+run ${sim_steps_temp}
+dump result_pdos all custom ${sim_steps_thermo} result_pdos.txt vx vy vz 
+undump result_pdos
+run ${sim_steps_temp}

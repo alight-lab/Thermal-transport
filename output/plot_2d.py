@@ -17,7 +17,7 @@ def plot_2d(x, y, xlabel, ylabel, legend, savename=None, save_path=None):
     x_ticks = np.arange(min(x), max(x), (max(x) - min(x))/10)
     plt.legend([legend], loc='upper right') # 图例
     plt.xticks(x_ticks) # x坐标刻度
-    
+
     # 保存图片和数据文件
     if savename != None:
         plt.savefig(save_path + '/' + savename + '.png')
