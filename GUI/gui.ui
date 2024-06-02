@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1378</width>
-    <height>869</height>
+    <width>1340</width>
+    <height>904</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -58,7 +58,7 @@ border-bottom:1px solid #868e96;</string>
          <rect>
           <x>20</x>
           <y>6</y>
-          <width>101</width>
+          <width>241</width>
           <height>31</height>
          </rect>
         </property>
@@ -79,7 +79,7 @@ border: 1px bolid #495057;
 color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
-         <string>实验一</string>
+         <string>实验一：单晶热输运实验</string>
         </property>
         <property name="icon">
          <iconset resource="picture.qrc">
@@ -89,9 +89,9 @@ color: rgb(0, 0, 0);</string>
        <widget class="QRadioButton" name="exp2_radioButton">
         <property name="geometry">
          <rect>
-          <x>130</x>
+          <x>260</x>
           <y>6</y>
-          <width>101</width>
+          <width>271</width>
           <height>31</height>
          </rect>
         </property>
@@ -112,7 +112,7 @@ border: 1px bolid #495057;
 color: rgb(0, 0, 0);</string>
         </property>
         <property name="text">
-         <string>实验二</string>
+         <string>实验二：多晶晶界热输运实验</string>
         </property>
         <property name="icon">
          <iconset resource="picture.qrc">
@@ -122,7 +122,7 @@ color: rgb(0, 0, 0);</string>
        <widget class="QPushButton" name="exp1_arg_pushButton">
         <property name="geometry">
          <rect>
-          <x>240</x>
+          <x>550</x>
           <y>3</y>
           <width>141</width>
           <height>35</height>
@@ -153,7 +153,7 @@ color: rgb(0, 0, 0);</string>
        <widget class="QPushButton" name="exp2_arg_pushButton">
         <property name="geometry">
          <rect>
-          <x>400</x>
+          <x>700</x>
           <y>3</y>
           <width>141</width>
           <height>35</height>
@@ -210,6 +210,59 @@ background-color: rgb(255, 255, 255);</string>
         <property name="icon">
          <iconset resource="picture.qrc">
           <normaloff>:/background/文件.png</normaloff>:/background/文件.png</iconset>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="exp2_arg_pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>1260</x>
+          <y>5</y>
+          <width>61</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius: 3px;
+color: rgb(0, 0, 0);
+border: 1px bolid #495057;
+background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>帮助</string>
+        </property>
+        <property name="icon">
+         <iconset resource="picture.qrc">
+          <normaloff>:/background/帮助.png</normaloff>:/background/帮助.png</iconset>
+        </property>
+       </widget>
+       <widget class="Line" name="line_7">
+        <property name="geometry">
+         <rect>
+          <x>256</x>
+          <y>5</y>
+          <width>1</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(116, 192, 252);</string>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <property name="lineWidth">
+         <number>2</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
        </widget>
       </widget>
@@ -1560,7 +1613,7 @@ border-color: rgb(255, 255, 255);
 background-color: rgb(255, 255, 255);</string>
           </property>
           <property name="text">
-           <string>W/m^2</string>
+           <string>eV/ps</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -1587,45 +1640,6 @@ border-color: rgb(233, 236, 239);</string>
           </property>
           <property name="text">
            <string/>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="Them_sys_comboBox">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>570</y>
-            <width>135</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <family>Times New Roman</family>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <italic>true</italic>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>OpenHandCursor</cursorShape>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QComboBox{
-	border: 1px solid white;
-	border-top-right-radius: 2px;
-	border-bottom-right-radius: 2px;
-    border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-    padding: 2px 3px 2px 3px;
-    min-width: 3em;
-	background-color: #f8f9fa;
-	
-	color: rgb(0, 0, 0);
-}
-
-
-</string>
           </property>
          </widget>
          <widget class="QLabel" name="label_34">
@@ -2042,6 +2056,29 @@ border-color: rgb(233, 236, 239);</string>
           </property>
           <property name="text">
            <string/>
+          </property>
+         </widget>
+         <widget class="QLineEdit" name="Them_sys_lineEdit">
+          <property name="geometry">
+           <rect>
+            <x>20</x>
+            <y>570</y>
+            <width>135</width>
+            <height>30</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: 1px solid white;
+border-radius: 5px;
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
           </property>
          </widget>
         </widget>
@@ -2980,7 +3017,7 @@ color: rgb(0, 0, 0);</string>
 border: 1px solid rgb(248, 249, 250);</string>
                 </property>
                 <property name="currentIndex">
-                 <number>0</number>
+                 <number>1</number>
                 </property>
                 <widget class="QWidget" name="page">
                  <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -3000,7 +3037,7 @@ border: 1px solid rgb(248, 249, 250);
 color: rgb(0, 0, 0);</string>
                     </property>
                     <property name="currentIndex">
-                     <number>0</number>
+                     <number>2</number>
                     </property>
                     <widget class="QWidget" name="tab">
                      <attribute name="icon">
@@ -3077,7 +3114,7 @@ color: rgb(0, 0, 0);</string>
 border: 1px solid rgb(248, 249, 250);</string>
                     </property>
                     <property name="currentIndex">
-                     <number>1</number>
+                     <number>2</number>
                     </property>
                     <widget class="QWidget" name="tab_4">
                      <attribute name="icon">
@@ -3104,6 +3141,20 @@ border: 1px solid rgb(248, 249, 250);</string>
                      <layout class="QHBoxLayout" name="horizontalLayout_9">
                       <item>
                        <layout class="QVBoxLayout" name="verticalLayout_5"/>
+                      </item>
+                     </layout>
+                    </widget>
+                    <widget class="QWidget" name="tab_6">
+                     <attribute name="icon">
+                      <iconset resource="picture.qrc">
+                       <normaloff>:/background/声子.png</normaloff>:/background/声子.png</iconset>
+                     </attribute>
+                     <attribute name="title">
+                      <string>声子态密度曲线</string>
+                     </attribute>
+                     <layout class="QHBoxLayout" name="horizontalLayout_10">
+                      <item>
+                       <layout class="QVBoxLayout" name="verticalLayout_7"/>
                       </item>
                      </layout>
                     </widget>

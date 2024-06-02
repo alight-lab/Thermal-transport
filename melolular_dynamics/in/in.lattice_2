@@ -146,14 +146,14 @@ compute         Tchunk_18 all temp/region chunk_18
 compute         Tchunk_19 all temp/region chunk_19
 compute         Tchunk_20 all temp/region chunk_20
 variable sim_steps_thermo equal ${sim_steps}/10
-fix average all ave/time 10 10 ${sim_steps_thermo} c_Tchunk_1 c_Tchunk_2 c_Tchunk_3 c_Tchunk_4 c_Tchunk_5 c_Tchunk_6 c_Tchunk_7 c_Tchunk_8 c_Tchunk_9 c_Tchunk_10  c_Tchunk_11 c_Tchunk_12 c_Tchunk_13 c_Tchunk_14 c_Tchunk_15 c_Tchunk_16 c_Tchunk_17 c_Tchunk_18 c_Tchunk_19 c_Tchunk_20 file result_heat_2.txt
+fix average all ave/time 1 10 ${sim_steps_thermo} c_Tchunk_1 c_Tchunk_2 c_Tchunk_3 c_Tchunk_4 c_Tchunk_5 c_Tchunk_6 c_Tchunk_7 c_Tchunk_8 c_Tchunk_9 c_Tchunk_10  c_Tchunk_11 c_Tchunk_12 c_Tchunk_13 c_Tchunk_14 c_Tchunk_15 c_Tchunk_16 c_Tchunk_17 c_Tchunk_18 c_Tchunk_19 c_Tchunk_20 file result_heat_2.txt
 
 fix		        1 all nve
 
 
 thermo	        ${sim_steps_thermo}
 thermo_style    custom step temp c_Thot c_Tcold c_Tchunk_1
-dump result_pdos all custom 10 result_pdos_2.txt vx vy vz
+dump result_pdos all custom 10 result_pdos.txt id vx vy vz
 
 run ${sim_steps_thermo}
 run ${sim_steps_thermo}
@@ -165,28 +165,3 @@ run ${sim_steps_thermo}
 run ${sim_steps_thermo}
 run ${sim_steps_thermo}
 run ${sim_steps_thermo}
-
-# # 计算原子动能
-# compute		ke all ke/atom
-# # 根据原子动能计算原子温度
-# variable	temp atom c_ke/(1.5*8.625e-5)
-# # 计算块内原子温度
-# fix		2 all ave/chunk 10 10 100 layers_1 v_temp file profile_1.heat
-# fix		3 all ave/chunk 10 10 100 layers_2 v_temp file profile_2.heat
-# # 计算温差
-# variable        tdiff equal f_2[10][3]-f_3[1][3]
-# # 计算平均温差
-# fix             ave all ave/time 1 1 100 v_tdiff ave running start 0
-
-# thermo_style    custom step temp c_Thot c_Tcold v_tdiff
-# thermo 100
-# run 100
-# run 100
-# run 100
-# run 100
-# run 100
-# run 100
-# run 100
-# run 100
-# run 100
-# run 100

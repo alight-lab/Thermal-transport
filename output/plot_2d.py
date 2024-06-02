@@ -1,4 +1,4 @@
-def plot_2d(x, y, xlabel, ylabel, legend, savename=None, save_path=None):
+def plot_2d(x, y, xlabel, ylabel, savename=None, save_path=None, bar=None):
     import numpy as np
     from matplotlib import pyplot as plt
     from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -15,13 +15,16 @@ def plot_2d(x, y, xlabel, ylabel, legend, savename=None, save_path=None):
     ax.plot(x, y, color='#00BFFF', linewidth=0.8)
     ax.patch.set_alpha(0)
     x_ticks = np.arange(min(x), max(x), (max(x) - min(x))/10)
-    plt.legend([legend], loc='upper right') # 图例
     plt.xticks(x_ticks) # x坐标刻度
+    if bar != None:
+        plt.bar(x=x, height=y, alpha=0.6, color="#00BFFF")
+        for a, b in zip(x, y):
+            plt.text(a, b, b, fontsize=5)
 
     # 保存图片和数据文件
     if savename != None:
         plt.savefig(save_path + '/' + savename + '.png')
-        with open (save_path + '/' + savename + '.txt', 'w') as f:
+        with open (save_path + '/' + savename + '.txt', 'w', encoding='UTF-8') as f:
             f.write('{:10}{:10}'.format(xlabel, ylabel))
             f.write('\n')
             for i in range(len(x)):

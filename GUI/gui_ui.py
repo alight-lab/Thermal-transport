@@ -25,7 +25,7 @@ class Ui_Form(object):
     def setupUi(self, Form):
         if not Form.objectName():
             Form.setObjectName(u"Form")
-        Form.resize(1378, 869)
+        Form.resize(1340, 904)
         icon = QIcon()
         icon.addFile(u":/background/\u8f6f\u4ef6\u56fe\u6807.png", QSize(), QIcon.Normal, QIcon.Off)
         Form.setWindowIcon(icon)
@@ -47,7 +47,7 @@ class Ui_Form(object):
 "border-bottom:1px solid #868e96;")
         self.exp1_radioButton = QRadioButton(self.widget_2)
         self.exp1_radioButton.setObjectName(u"exp1_radioButton")
-        self.exp1_radioButton.setGeometry(QRect(20, 6, 101, 31))
+        self.exp1_radioButton.setGeometry(QRect(20, 6, 241, 31))
         font = QFont()
         font.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
         font.setPointSize(10)
@@ -62,7 +62,7 @@ class Ui_Form(object):
         self.exp1_radioButton.setIcon(icon1)
         self.exp2_radioButton = QRadioButton(self.widget_2)
         self.exp2_radioButton.setObjectName(u"exp2_radioButton")
-        self.exp2_radioButton.setGeometry(QRect(130, 6, 101, 31))
+        self.exp2_radioButton.setGeometry(QRect(260, 6, 271, 31))
         self.exp2_radioButton.setFont(font)
         self.exp2_radioButton.setLayoutDirection(Qt.LeftToRight)
         self.exp2_radioButton.setStyleSheet(u"border-radius: 3px;\n"
@@ -71,7 +71,7 @@ class Ui_Form(object):
         self.exp2_radioButton.setIcon(icon1)
         self.exp1_arg_pushButton = QPushButton(self.widget_2)
         self.exp1_arg_pushButton.setObjectName(u"exp1_arg_pushButton")
-        self.exp1_arg_pushButton.setGeometry(QRect(240, 3, 141, 35))
+        self.exp1_arg_pushButton.setGeometry(QRect(550, 3, 141, 35))
         self.exp1_arg_pushButton.setFont(font)
         self.exp1_arg_pushButton.setStyleSheet(u"border-radius: 3px;\n"
 "border: 1px bolid #495057;\n"
@@ -82,7 +82,7 @@ class Ui_Form(object):
         self.exp1_arg_pushButton.setIcon(icon2)
         self.exp2_arg_pushButton = QPushButton(self.widget_2)
         self.exp2_arg_pushButton.setObjectName(u"exp2_arg_pushButton")
-        self.exp2_arg_pushButton.setGeometry(QRect(400, 3, 141, 35))
+        self.exp2_arg_pushButton.setGeometry(QRect(700, 3, 141, 35))
         self.exp2_arg_pushButton.setFont(font)
         self.exp2_arg_pushButton.setStyleSheet(u"border-radius: 3px;\n"
 "color: rgb(0, 0, 0);\n"
@@ -100,6 +100,24 @@ class Ui_Form(object):
         icon3 = QIcon()
         icon3.addFile(u":/background/\u6587\u4ef6.png", QSize(), QIcon.Normal, QIcon.Off)
         self.exp2_arg_pushButton_2.setIcon(icon3)
+        self.exp2_arg_pushButton_3 = QPushButton(self.widget_2)
+        self.exp2_arg_pushButton_3.setObjectName(u"exp2_arg_pushButton_3")
+        self.exp2_arg_pushButton_3.setGeometry(QRect(1260, 5, 61, 30))
+        self.exp2_arg_pushButton_3.setFont(font)
+        self.exp2_arg_pushButton_3.setStyleSheet(u"border-radius: 3px;\n"
+"color: rgb(0, 0, 0);\n"
+"border: 1px bolid #495057;\n"
+"background-color: rgb(255, 255, 255);")
+        icon4 = QIcon()
+        icon4.addFile(u":/background/\u5e2e\u52a9.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.exp2_arg_pushButton_3.setIcon(icon4)
+        self.line_7 = QFrame(self.widget_2)
+        self.line_7.setObjectName(u"line_7")
+        self.line_7.setGeometry(QRect(256, 5, 1, 31))
+        self.line_7.setStyleSheet(u"color: rgb(116, 192, 252);")
+        self.line_7.setFrameShadow(QFrame.Plain)
+        self.line_7.setLineWidth(2)
+        self.line_7.setFrameShape(QFrame.Shape.VLine)
 
         self.verticalLayout_8.addWidget(self.widget_2)
 
@@ -568,26 +586,6 @@ class Ui_Form(object):
         self.label_33.setSizePolicy(sizePolicy)
         self.label_33.setStyleSheet(u"border-image: url(:/background/\u70ed\u6d41.png);\n"
 "border-color: rgb(233, 236, 239);")
-        self.Them_sys_comboBox = QComboBox(self.widget)
-        self.Them_sys_comboBox.setObjectName(u"Them_sys_comboBox")
-        self.Them_sys_comboBox.setGeometry(QRect(20, 570, 135, 30))
-        self.Them_sys_comboBox.setFont(font5)
-        self.Them_sys_comboBox.setCursor(QCursor(Qt.OpenHandCursor))
-        self.Them_sys_comboBox.setStyleSheet(u"QComboBox{\n"
-"	border: 1px solid white;\n"
-"	border-top-right-radius: 2px;\n"
-"	border-bottom-right-radius: 2px;\n"
-"    border-top-left-radius: 5px;\n"
-"	border-bottom-left-radius: 5px;\n"
-"    padding: 2px 3px 2px 3px;\n"
-"    min-width: 3em;\n"
-"	background-color: #f8f9fa;\n"
-"	\n"
-"	color: rgb(0, 0, 0);\n"
-"}\n"
-"\n"
-"\n"
-"")
         self.label_34 = QLabel(self.widget)
         self.label_34.setObjectName(u"label_34")
         self.label_34.setGeometry(QRect(160, 577, 50, 15))
@@ -712,6 +710,14 @@ class Ui_Form(object):
         self.label_44.setSizePolicy(sizePolicy)
         self.label_44.setStyleSheet(u"border-image: url(:/background/\u6e29\u5ea6.png);\n"
 "border-color: rgb(233, 236, 239);")
+        self.Them_sys_lineEdit = QLineEdit(self.widget)
+        self.Them_sys_lineEdit.setObjectName(u"Them_sys_lineEdit")
+        self.Them_sys_lineEdit.setGeometry(QRect(20, 570, 135, 30))
+        self.Them_sys_lineEdit.setFont(font4)
+        self.Them_sys_lineEdit.setStyleSheet(u"border: 1px solid white;\n"
+"border-radius: 5px;\n"
+"background-color: rgb(255, 255, 255);\n"
+"color: rgb(0, 0, 0);")
 
         self.horizontalLayout_8.addWidget(self.widget)
 
@@ -771,9 +777,9 @@ class Ui_Form(object):
         self.gap_checkBox_2.setStyleSheet(u"background-color: #e9ecef;\n"
 "border-radius: 5px;\n"
 "color: rgb(0, 0, 0);")
-        icon4 = QIcon()
-        icon4.addFile(u":/background/\u65b9\u5757.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.gap_checkBox_2.setIcon(icon4)
+        icon5 = QIcon()
+        icon5.addFile(u":/background/\u65b9\u5757.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.gap_checkBox_2.setIcon(icon5)
         self.zon_tem_checkBox_2 = QCheckBox(self.widget_7)
         self.zon_tem_checkBox_2.setObjectName(u"zon_tem_checkBox_2")
         self.zon_tem_checkBox_2.setGeometry(QRect(40, 70, 191, 40))
@@ -783,9 +789,9 @@ class Ui_Form(object):
         self.zon_tem_checkBox_2.setStyleSheet(u"background-color: #e9ecef;\n"
 "border-radius: 5px;\n"
 "color: rgb(0, 0, 0);")
-        icon5 = QIcon()
-        icon5.addFile(u":/background/\u53ef\u89c6\u5316.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.zon_tem_checkBox_2.setIcon(icon5)
+        icon6 = QIcon()
+        icon6.addFile(u":/background/\u53ef\u89c6\u5316.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.zon_tem_checkBox_2.setIcon(icon6)
         self.stackedWidget_4 = QStackedWidget(self.widget_7)
         self.stackedWidget_4.setObjectName(u"stackedWidget_4")
         self.stackedWidget_4.setGeometry(QRect(10, 120, 241, 341))
@@ -1001,7 +1007,7 @@ class Ui_Form(object):
         self.vacant_checkBox.setStyleSheet(u"background-color: #e9ecef;\n"
 "border-radius: 5px;\n"
 "color: rgb(0, 0, 0);")
-        self.vacant_checkBox.setIcon(icon4)
+        self.vacant_checkBox.setIcon(icon5)
 
         self.horizontalLayout_6.addWidget(self.widget_7)
 
@@ -1040,9 +1046,9 @@ class Ui_Form(object):
 
         self.horizontalLayout_13.addLayout(self.verticalLayout_2)
 
-        icon6 = QIcon()
-        icon6.addFile(u":/background/\u6e29\u5ea6.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.tabWidget.addTab(self.tab, icon6, "")
+        icon7 = QIcon()
+        icon7.addFile(u":/background/\u6e29\u5ea6.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.tabWidget.addTab(self.tab, icon7, "")
         self.tab_2 = QWidget()
         self.tab_2.setObjectName(u"tab_2")
         self.horizontalLayout_14 = QHBoxLayout(self.tab_2)
@@ -1053,7 +1059,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_14.addLayout(self.verticalLayout_3)
 
-        self.tabWidget.addTab(self.tab_2, icon6, "")
+        self.tabWidget.addTab(self.tab_2, icon7, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
         self.horizontalLayout_4 = QHBoxLayout(self.tab_3)
@@ -1064,9 +1070,9 @@ class Ui_Form(object):
 
         self.horizontalLayout_4.addLayout(self.verticalLayout_4)
 
-        icon7 = QIcon()
-        icon7.addFile(u":/background/\u58f0\u5b50.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.tabWidget.addTab(self.tab_3, icon7, "")
+        icon8 = QIcon()
+        icon8.addFile(u":/background/\u58f0\u5b50.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.tabWidget.addTab(self.tab_3, icon8, "")
 
         self.horizontalLayout_3.addWidget(self.tabWidget)
 
@@ -1089,7 +1095,7 @@ class Ui_Form(object):
 
         self.horizontalLayout_12.addLayout(self.verticalLayout_6)
 
-        self.tabWidget_2.addTab(self.tab_4, icon6, "")
+        self.tabWidget_2.addTab(self.tab_4, icon7, "")
         self.tab_5 = QWidget()
         self.tab_5.setObjectName(u"tab_5")
         self.horizontalLayout_9 = QHBoxLayout(self.tab_5)
@@ -1099,7 +1105,17 @@ class Ui_Form(object):
 
         self.horizontalLayout_9.addLayout(self.verticalLayout_5)
 
-        self.tabWidget_2.addTab(self.tab_5, icon6, "")
+        self.tabWidget_2.addTab(self.tab_5, icon7, "")
+        self.tab_6 = QWidget()
+        self.tab_6.setObjectName(u"tab_6")
+        self.horizontalLayout_10 = QHBoxLayout(self.tab_6)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.verticalLayout_7 = QVBoxLayout()
+        self.verticalLayout_7.setObjectName(u"verticalLayout_7")
+
+        self.horizontalLayout_10.addLayout(self.verticalLayout_7)
+
+        self.tabWidget_2.addTab(self.tab_6, icon8, "")
 
         self.horizontalLayout_2.addWidget(self.tabWidget_2)
 
@@ -1174,9 +1190,9 @@ class Ui_Form(object):
 
         self.sys_stackedWidget.setCurrentIndex(0)
         self.stackedWidget_4.setCurrentIndex(1)
-        self.stackedWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(0)
-        self.tabWidget_2.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget_2.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(Form)
@@ -1184,11 +1200,12 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"\u8f90\u7167\u635f\u4f24\u6838\u6750\u6599\u539f\u5b50\u5c3a\u5ea6\u70ed\u8f93\u8fd0\u53ef\u89c6\u5316\u8f6f\u4ef6", None))
-        self.exp1_radioButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e00", None))
-        self.exp2_radioButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e8c", None))
+        self.exp1_radioButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e00\uff1a\u5355\u6676\u70ed\u8f93\u8fd0\u5b9e\u9a8c", None))
+        self.exp2_radioButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e8c\uff1a\u591a\u6676\u6676\u754c\u70ed\u8f93\u8fd0\u5b9e\u9a8c", None))
         self.exp1_arg_pushButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e00\u63a8\u8350\u53c2\u6570", None))
         self.exp2_arg_pushButton.setText(QCoreApplication.translate("Form", u"\u5b9e\u9a8c\u4e8c\u63a8\u8350\u53c2\u6570", None))
         self.exp2_arg_pushButton_2.setText(QCoreApplication.translate("Form", u"\u6570\u636e\u5bfc\u51fa", None))
+        self.exp2_arg_pushButton_3.setText(QCoreApplication.translate("Form", u"\u5e2e\u52a9", None))
         self.label.setText(QCoreApplication.translate("Form", u"\u521d\u59cb\u4f53\u7cfb\u5efa\u7acb", None))
         self.label_2.setText(QCoreApplication.translate("Form", u"\u5143\u7d20\u4e00", None))
         self.label_8.setText("")
@@ -1220,7 +1237,7 @@ class Ui_Form(object):
         self.label_29.setText("")
         self.label_30.setText(QCoreApplication.translate("Form", u"\u70ed\u5dee\u6a21\u62df", None))
         self.label_31.setText(QCoreApplication.translate("Form", u"\u70ed\u6d41", None))
-        self.label_32.setText(QCoreApplication.translate("Form", u"W/m^2", None))
+        self.label_32.setText(QCoreApplication.translate("Form", u"eV/ps", None))
         self.label_33.setText("")
         self.label_34.setText(QCoreApplication.translate("Form", u"\u7cfb\u7efc", None))
         self.label_35.setText("")
@@ -1258,6 +1275,7 @@ class Ui_Form(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("Form", u"\u58f0\u5b50\u6001\u5bc6\u5ea6\u66f2\u7ebf", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), QCoreApplication.translate("Form", u"\u4f53\u7cfb\u6e29\u5ea6\u66f2\u7ebf", None))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_5), QCoreApplication.translate("Form", u"\u4f53\u7cfb\u533a\u57df\u6e29\u5ea6", None))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_6), QCoreApplication.translate("Form", u"\u58f0\u5b50\u6001\u5bc6\u5ea6\u66f2\u7ebf", None))
         self.start_pushButton.setText(QCoreApplication.translate("Form", u"\u5f00\u59cb", None))
         self.pause_pushButton.setText(QCoreApplication.translate("Form", u"\u6682\u505c", None))
         self.restart_pushButton.setText(QCoreApplication.translate("Form", u"\u91cd\u542f", None))

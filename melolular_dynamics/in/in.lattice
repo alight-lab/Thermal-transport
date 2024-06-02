@@ -106,7 +106,7 @@ compute         layers all chunk/atom bin/1d x lower 0.05 units reduced
 
 variable sim_steps_thermo equal ${sim_steps}/10
 # 计算块内原子温度
-fix		2 all ave/chunk 10 10 ${sim_steps_thermo} layers v_temp file result.heat
+fix		2 all ave/chunk 1 10 ${sim_steps_thermo} layers v_temp file result_heat_1.txt
 # 计算温差
 variable        tdiff equal f_2[2][3]-f_2[19][3]
 # 计算平均温差
@@ -116,6 +116,9 @@ fix             ave all ave/time 1 1 ${sim_steps_thermo} v_tdiff ave running sta
 thermo_style    custom step temp c_Thot c_Tcold v_tdiff
 thermo	        ${sim_steps_thermo}
 
+fix final all print ${sim_steps_thermo} '${tdiff}' file final_tdiff.txt screen no
+dump result_pdos all custom 10 result_pdos.txt id vx vy vz
+
 run ${sim_steps_temp}
 run ${sim_steps_temp}
 run ${sim_steps_temp}
@@ -125,6 +128,4 @@ run ${sim_steps_temp}
 run ${sim_steps_temp}
 run ${sim_steps_temp}
 run ${sim_steps_temp}
-dump result_pdos all custom ${sim_steps_thermo} result_pdos.txt vx vy vz 
-undump result_pdos
 run ${sim_steps_temp}

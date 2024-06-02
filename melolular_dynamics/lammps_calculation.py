@@ -1,6 +1,5 @@
 from PySide6.QtCore import QMutex, QWaitCondition, QThread, Signal
 import numpy as np
-import subprocess
 from lammps import PyLammps
 from output.renew import renew
 from initial.Defect_Generation import defect
@@ -30,8 +29,17 @@ class Work(QThread):
             line = f.readline()
             while line.find('xlo') == -1:
                 line = f.readline()
+            line_y = f.readline()
+            line_z = f.readline()
+        
         data = line.split()
-        self.lattice_x_max_1 = data[1]
+        data_y = line_y.split()
+        data_z = line_z.split()
+        self.y_min = float(data_y[0])
+        self.y_max = float(data_y[1])
+        self.z_min = float(data_z[0])
+        self.z_max = float(data_z[1])
+        self.lattice_x_max_1 = float(data[1])
 
         self.is_paused = False
         self.cond = QWaitCondition()
@@ -69,6 +77,14 @@ class Work(QThread):
                 if self.is_paused == True:
                     self.signal_2.emit('暂停')
                     self.cond.wait(self.mutex)
+            
+            with open('final_tdiff.txt', 'r') as f:
+                line = f.readlines()
+            line_heat = line[-1]
+            Temperture = float(line_heat)
+            x = [i*self.lattice_x_max_1/20 for i in range(1, 19)]
+            dT_dx = Temperture/(x[-1]-x[0])
+            self.T_conduct = self.heat*1.602e3/((self.z_max-self.z_min)*(self.y_max-self.y_min)*dT_dx)
         else:
             line_write = ['variable '+'init_tempareture'+' equal '+ str(self.temperature0),
             'variable '+'setted_tempareture'+' equal '+ str(self.temperature_set),
@@ -94,6 +110,18 @@ class Work(QThread):
                 if self.is_paused == True:
                     self.signal_2.emit('暂停')
                     self.cond.wait(self.mutex)
+            with open('result_heat_2.txt', 'r') as f:
+                line = f.readlines()
+                line = line[-1]
+                Temperture = list(map(float, line.split()))
+                Temperture.pop(0)
+                print(Temperture)
+                x_1 = self.x*9/10
+                x_2 = (self.lattice_x_max_1-self.x)/10+self.x
+                dT_dx = abs((Temperture[10]-Temperture[9])/(x_2-x_1))
+
+                self.T_conduct = self.heat*1.602e3/((self.z_max-self.z_min)*(self.y_max-self.y_min)*dT_dx)
+
         self.signal.emit('计算完毕')
 
 
