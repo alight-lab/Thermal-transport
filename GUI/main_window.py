@@ -65,15 +65,15 @@ class MainWindow(QWidget, Ui_Form):
         self.exp1_ele1_comboBox.setCurrentIndex(0)
         self.exp2_ele2_comboBox.setCurrentIndex(-1)
         self.exp1_ele1x_lineEdit.setText('20')
-        self.exp1_ele1y_lineEdit.setText('5')
-        self.exp1_ele1z_lineEdit.setText('5')
+        self.exp1_ele1y_lineEdit.setText('4')
+        self.exp1_ele1z_lineEdit.setText('4')
         self.defect_lineEdit.setText('0')
-        self.rel_tem_lineEdit.setText('400')
+        self.rel_tem_lineEdit.setText('300')
         self.rel_tem_lineEdit_2.setText('300')
         self.rel_sys_comboBox.setCurrentIndex(0)
-        self.rel_tim_lineEdiT.setText('1')
-        self.Them_lineEdit.setText('5')
-        self.Them_tim_lineEdit.setText('1')
+        self.rel_tim_lineEdiT.setText('10')
+        self.Them_lineEdit.setText('0.164')
+        self.Them_tim_lineEdit.setText('250')
 
     def recommend_experiment_2(self):
         self.exp2_ele1_comboBox.setCurrentIndex(0)
@@ -264,6 +264,8 @@ class MainWindow(QWidget, Ui_Form):
             self.verticalLayout_6.itemAt(0).widget().deleteLater()
         if self.verticalLayout_5.itemAt(0) != None:
             self.verticalLayout_5.itemAt(0).widget().deleteLater()
+        if self.verticalLayout_7.itemAt(0) != None:
+            self.verticalLayout_7.itemAt(0).widget().deleteLater()
         
         if self.exp1_radioButton.isChecked():
             self.exp_res_lineEdit_2.setText(str(round(float(self.t.T_conduct), 1)))
