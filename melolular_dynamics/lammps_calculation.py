@@ -59,10 +59,10 @@ class Work(QThread):
             line_write = ['variable '+'init_tempareture'+' equal '+ str(self.temperature0),
             'variable '+'setted_tempareture'+' equal '+ str(self.temperature_set),
             'variable '+'lattice_ensemble'+' string '+ str(self.ensemble_name),
-            'variable '+'lattice_steps'+' equal '+ str(self.iterate_time/0.001),
+            'variable '+'lattice_steps'+' equal '+ str(self.iterate_time/0.01),
             'variable '+'heat_flux'+' equal '+ str(self.heat),
             'variable '+'heat_ensemble'+' string '+ str(self.ensemble_name_heat),
-            'variable '+'sim_steps'+' equal '+ str(self.iterate_time_heat/0.001),
+            'variable '+'sim_steps'+' equal '+ str(self.iterate_time_heat/0.01),
             'variable '+'vacancy'+' equal '+ str(self.defect_num),
             'variable '+'type_1'+' string '+ str(self.element1),
             'variable '+'potential_name'+' string '+ 'data/' + self.element1 + '.eam.alloy',
@@ -89,10 +89,10 @@ class Work(QThread):
             line_write = ['variable '+'init_tempareture'+' equal '+ str(self.temperature0),
             'variable '+'setted_tempareture'+' equal '+ str(self.temperature_set),
             'variable '+'lattice_ensemble'+' string '+ str(self.ensemble_name),
-            'variable '+'lattice_steps'+' equal '+ str(self.iterate_time/0.001),
+            'variable '+'lattice_steps'+' equal '+ str(self.iterate_time/0.01),
             'variable '+'heat_flux'+' equal '+ str(self.heat),
             'variable '+'heat_ensemble'+' string '+ str(self.ensemble_name_heat),
-            'variable '+'sim_steps'+' equal '+ str(self.iterate_time_heat/0.001),
+            'variable '+'sim_steps'+' equal '+ str(self.iterate_time_heat/0.01),
             'variable '+'vacancy'+' equal '+ str(self.defect_num),
             'variable '+'type_1'+' string '+ str(self.element2),
             'variable '+'type_2'+' string '+ str(self.element3),
@@ -118,7 +118,8 @@ class Work(QThread):
                 print(Temperture)
                 x_1 = self.x*9/10
                 x_2 = (self.lattice_x_max_1-self.x)/10+self.x
-                dT_dx = abs((Temperture[10]-Temperture[9])/(x_2-x_1))
+                dT_dx = abs((Temperture[9]-Temperture[8])/((x_2-x_1)/2))
+                
 
                 self.T_conduct = self.heat*1.602e3/((self.z_max-self.z_min)*(self.y_max-self.y_min)*dT_dx)
 

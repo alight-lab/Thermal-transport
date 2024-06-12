@@ -64,7 +64,7 @@ class MainWindow(QWidget, Ui_Form):
     def recommend_experiment_1(self):
         self.exp1_ele1_comboBox.setCurrentIndex(0)
         self.exp2_ele2_comboBox.setCurrentIndex(-1)
-        self.exp1_ele1x_lineEdit.setText('20')
+        self.exp1_ele1x_lineEdit.setText('100')
         self.exp1_ele1y_lineEdit.setText('4')
         self.exp1_ele1z_lineEdit.setText('4')
         self.defect_lineEdit.setText('0')
@@ -72,25 +72,25 @@ class MainWindow(QWidget, Ui_Form):
         self.rel_tem_lineEdit_2.setText('300')
         self.rel_sys_comboBox.setCurrentIndex(0)
         self.rel_tim_lineEdiT.setText('10')
-        self.Them_lineEdit.setText('0.164')
-        self.Them_tim_lineEdit.setText('250')
+        self.Them_lineEdit.setText('1.64')
+        self.Them_tim_lineEdit.setText('25')
 
     def recommend_experiment_2(self):
         self.exp2_ele1_comboBox.setCurrentIndex(0)
-        self.exp2_ele2_comboBox.setCurrentIndex(1)
-        self.exp2_ele1x_lineEdit.setText('10')
-        self.exp2_ele1y_lineEdit.setText('6')
-        self.exp2_ele1z_lineEdit.setText('6')
-        self.exp2_ele2x_lineEdit.setText('10')
-        self.exp2_ele2y_lineEdit.setText('5')
-        self.exp2_ele2z_lineEdit.setText('5')
+        self.exp2_ele2_comboBox.setCurrentIndex(3)
+        self.exp2_ele1x_lineEdit.setText('30')
+        self.exp2_ele1y_lineEdit.setText('10')
+        self.exp2_ele1z_lineEdit.setText('10')
+        self.exp2_ele2x_lineEdit.setText('30')
+        self.exp2_ele2y_lineEdit.setText('10')
+        self.exp2_ele2z_lineEdit.setText('10')
         self.defect_lineEdit.setText('0')
-        self.rel_tem_lineEdit.setText('400')
+        self.rel_tem_lineEdit.setText('300')
         self.rel_tem_lineEdit_2.setText('300')
         self.rel_sys_comboBox.setCurrentIndex(0)
-        self.rel_tim_lineEdiT.setText('1')
-        self.Them_lineEdit.setText('5')
-        self.Them_tim_lineEdit.setText('1')
+        self.rel_tim_lineEdiT.setText('10')
+        self.Them_lineEdit.setText('8')
+        self.Them_tim_lineEdit.setText('40')
 
     def choose_page_0(self):
         self.exp1_ele1_comboBox.setCurrentIndex(-1)
@@ -206,6 +206,7 @@ class MainWindow(QWidget, Ui_Form):
         size3 = [int(self.exp2_ele2x_lineEdit.text()), int(self.exp2_ele2y_lineEdit.text()), int(self.exp2_ele2z_lineEdit.text())]
         # 建立晶体数据文件
         self.x = lattice_set(self.element1, self.element2, self.element3, size1, size2, size3)
+        print(self.x)
         render_3d.set_file('data\lattice.lmp')
         # 体系参数填入
         if self.element1 == '':
@@ -236,9 +237,9 @@ class MainWindow(QWidget, Ui_Form):
         self.t = Work(self.element1, self.element2, self.element3, filepath, temperature0, temperature_set,
                         iterate_time, ensemble_name, ensemble_name_1, heat, 
                         self.iterate_time_heat, defect_num, self.x)
-        self.t.start()
         self.t.signal.connect(self.plot)
         self.t.signal_2.connect(self.plot)
+        self.t.start()
     
     def pause_main(self):
         self.t.pause()
@@ -303,7 +304,7 @@ class MainWindow(QWidget, Ui_Form):
                 if f.tell() >= eof:  #将当前位置与文件尾(eof)比较
                     break
         if len(self.iterate_x) != 0:
-            cav = plot_2d(np.array(self.iterate_x) * 1e-3, np.array(self.iterate_y), 'Time/ps', 'Temperature/K')
+            cav = plot_2d(np.array(self.iterate_x) * 1e-2, np.array(self.iterate_y), 'Time/ps', 'Temperature/K')
             if self.exp2_ele1_comboBox.currentText() == '':
                 self.verticalLayout_2.addWidget(cav)
             else:
@@ -324,7 +325,7 @@ class MainWindow(QWidget, Ui_Form):
                     self.heat_x_1.append(float(data[0]) * float(lattice_x_max_1)/20)
                     self.heat_y_1.append(float(data[3]))
             if len(self.heat_x_1) != 0:
-                cav = plot_2d(np.array(self.heat_x_1), np.array(self.heat_y_1), 'X/Å', 'Temperature/K', bar='yes')
+                cav = plot_2d(np.array(self.heat_x_1), np.array(self.heat_y_1), 'X/Å', 'Temperature/K', bar='yes', ymin=min(self.heat_y_1), ymax=max(self.heat_y_1))
                 self.verticalLayout_3.addWidget(cav)
         else:
             with open('result_heat_2.txt', 'r') as f:
@@ -340,7 +341,7 @@ class MainWindow(QWidget, Ui_Form):
                         self.heat_x_2.append(((float(lattice_x_max_1) - float(self.x))/10) * (i - 9) + self.x)
                         self.heat_y_2.append(float(data[i]))
             if len(self.heat_x_2) != 0:
-                cav = plot_2d(np.array(self.heat_x_2), np.array(self.heat_y_2), 'X/Å', 'Temperature/K', bar='yes')
+                cav = plot_2d(np.array(self.heat_x_2), np.array(self.heat_y_2), 'X/Å', 'Temperature/K', bar='yes', ymin=min(self.heat_y_2), ymax=max(self.heat_y_2))
                 self.verticalLayout_5.addWidget(cav)
 
         #绘制声子态密度曲线
@@ -352,7 +353,8 @@ class MainWindow(QWidget, Ui_Form):
                         line = f.readline()
                     for k in range(self.atom_num):
                         line = list(map(str, f.readline().split(' ')))
-                        veclocity[i, k] = line.pop(0)
+                        if line != ['']:
+                            veclocity[i, k] = line.pop(0)
             omega = np.arange(1, 380.5, 0.5)
             vacf_output, pdos = find_pdos(veclocity, 100, dt = 0.001, omega = omega)
             self.pdos_x = omega
@@ -367,7 +369,8 @@ class MainWindow(QWidget, Ui_Form):
                         line = f.readline()
                     for k in range(self.atom_num_1+self.atom_num_2):
                         line = list(map(str, f.readline().split(' ')))
-                        veclocity[i, k] = line.pop(0)
+                        if line != ['']:
+                            veclocity[i, k] = line.pop(0)
             omega = np.arange(1, 380.5, 0.5)
             vacf_output, pdos = find_pdos(veclocity, 100, dt = 0.001, omega = omega)
             self.pdos_x = omega

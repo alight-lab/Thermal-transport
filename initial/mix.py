@@ -182,5 +182,5 @@ def mixture(file1, file2):
 
 
 if __name__ == '__main__':
-    x = mixture('data\\Cu1.lmp', 'data\\small 2.data')
+    x = mixture('data\\lattice_1.lmp', 'data\\lattice_2.lmp')
     print(x)
