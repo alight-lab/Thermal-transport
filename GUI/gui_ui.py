@@ -111,13 +111,6 @@ class Ui_Form(object):
         icon4 = QIcon()
         icon4.addFile(u":/background/\u5e2e\u52a9.png", QSize(), QIcon.Normal, QIcon.Off)
         self.exp2_arg_pushButton_3.setIcon(icon4)
-        self.line_7 = QFrame(self.widget_2)
-        self.line_7.setObjectName(u"line_7")
-        self.line_7.setGeometry(QRect(256, 5, 1, 31))
-        self.line_7.setStyleSheet(u"color: rgb(116, 192, 252);")
-        self.line_7.setFrameShadow(QFrame.Plain)
-        self.line_7.setLineWidth(2)
-        self.line_7.setFrameShape(QFrame.Shape.VLine)
 
         self.verticalLayout_8.addWidget(self.widget_2)
 

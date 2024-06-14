@@ -28,7 +28,7 @@ class MainWindow(QWidget, Ui_Form):
         self.zon_tem_checkBox_2.clicked.connect(self.set_tempareture_display)
         self.vacant_checkBox.clicked.connect(self.set_vacancy)
         self.exp2_arg_pushButton_2.clicked.connect(self.save_file)
-        self.exp2_arg_pushButton_3.clicked.connect(self.help_doc)
+        self.exp2_arg_pushButton_3.clicked.connect(self.help_doc)     
 
 
     def setting(self):
@@ -252,7 +252,7 @@ class MainWindow(QWidget, Ui_Form):
         self.t.wait()
 
     def help_doc(self):
-        webbrowser.open('文件路径', new=2)
+        webbrowser.open('data\软件帮助手册.pdf', new=2)
     
     def plot(self):
         if self.verticalLayout_2.itemAt(0) != None: # 清空T-Time图像，防止暂停时重复绘图

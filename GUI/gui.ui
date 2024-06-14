@@ -243,28 +243,6 @@ background-color: rgb(255, 255, 255);</string>
           <normaloff>:/background/帮助.png</normaloff>:/background/帮助.png</iconset>
         </property>
        </widget>
-       <widget class="Line" name="line_7">
-        <property name="geometry">
-         <rect>
-          <x>256</x>
-          <y>5</y>
-          <width>1</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: rgb(116, 192, 252);</string>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Plain</enum>
-        </property>
-        <property name="lineWidth">
-         <number>2</number>
-        </property>
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-       </widget>
       </widget>
      </item>
      <item>
