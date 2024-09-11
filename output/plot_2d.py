@@ -45,3 +45,105 @@ def plot_2d(x, y, xlabel, ylabel, ymin=None, ymax=None, savename=None, save_path
 # from matplotlib import pyplot as plt
 # plt.plot(x, y)
 # plt.show()
+
+def fit_plot(x, y, xlabel, ylabel, ymin=None, ymax=None, savename=None, save_path=None, bar=None):
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+    fig = plt.figure()
+    fig.patch.set_facecolor('w')
+    cav = FigureCanvas(fig)
+    ax = fig.subplots()
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    plt.subplots_adjust(bottom=0.3)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if ymin != None:
+        plt.ylim(ymin - 25, ymax + 25)
+    ax.grid(ls = "--", lw = 0.5, color = "#4E616C") # 背景线
+    ax.patch.set_alpha(0)
+    x_ticks = np.arange(min(x), max(x), (max(x) - min(x))/10)
+    plt.xticks(x_ticks) # x坐标刻度
+
+    x = np.array(x)
+    y = np.array(y)
+    slope, intercept = np.polyfit(x, y, 1)
+    plt.scatter(x, y, color='#00BFFF', s=10)
+    plt.plot(x, slope * x + intercept, color='#00BFFF', linewidth=0.5)
+    if bar != None:
+        for a, b in zip(x, y):
+            plt.text(a, b, b, fontsize=5)
+    if savename != None:
+        plt.savefig(save_path + '/' + savename + '.png')
+        with open (save_path + '/' + savename + '.txt', 'w', encoding='UTF-8') as f:
+            f.write('{:10}{:10}'.format(xlabel, ylabel))
+            f.write('\n')
+            for i in range(len(x)):
+                data_x = round(x[i], 6)
+                data_y = round(y[i], 6)
+                f.write('{:10}{:10}'.format(str(data_x), str(data_y)))
+                f.write('\n')
+    plt.close('all')
+    return cav
+
+def plot_scatter(x_plot, y_plot, x_scatter, y_scatter, xlabel, ylabel, ymin=None, ymax=None, savename=None, save_path=None, bar=None):
+    import numpy as np
+    from matplotlib import pyplot as plt
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+    fig = plt.figure()
+    fig.patch.set_facecolor('w')
+    cav = FigureCanvas(fig)
+    ax = fig.subplots()
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    plt.subplots_adjust(bottom=0.3)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if ymin != None:
+        plt.ylim(ymin - 25, ymax + 25)
+    ax.grid(ls = "--", lw = 0.5, color = "#4E616C") # 背景线
+
+    
+    slope, intercept = np.polyfit(x_plot, y_plot, 1)
+
+    ax.plot(x_scatter[7:13], slope * x_scatter[7:13] + intercept, color='#00BFFF', linewidth=0.8)
+    ax.patch.set_alpha(0)
+    x_ticks = np.arange(min(x_scatter), max(x_scatter), (max(x_scatter) - min(x_scatter))/10)
+    plt.xticks(x_ticks) # x坐标刻度
+    plt.scatter(x_scatter, y_scatter, color='#00BFFF', s=10)
+    if bar != None:
+        for a, b in zip(x_plot, y_plot):
+            plt.text(a, b, b, fontsize=5)
+    
+
+    # 保存图片和数据文件
+    if savename != None:
+        plt.savefig(save_path + '/' + savename + '.png')
+        with open (save_path + '/' + savename + '.txt', 'w', encoding='UTF-8') as f:
+            f.write('{:10}{:10}'.format(xlabel, ylabel))
+            f.write('\n')
+            for i in range(len(x_scatter)):
+                data_x = round(x_scatter[i], 6)
+                data_y = round(y_scatter[i], 6)
+                f.write('{:10}{:10}'.format(str(data_x), str(data_y)))
+                f.write('\n')
+
+    plt.close('all')
+    return cav
+
+def background(xlabel, ylabel):
+    from matplotlib import pyplot as plt
+    from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+    fig = plt.figure()
+    fig.patch.set_facecolor('w')
+    cav = FigureCanvas(fig)
+    ax = fig.subplots()
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    plt.subplots_adjust(bottom=0.3)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    ax.grid(ls = "--", lw = 0.5, color = "#4E616C") # 背景线
+    ax.patch.set_alpha(0)
+    return cav

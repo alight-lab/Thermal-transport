@@ -8,7 +8,7 @@ class Work(QThread):
     signal = Signal(object)
     signal_2 = Signal(object)
     py_lammps: PyLammps
-    def __init__(self, element1, element2, element3, filepath, temperature0, temperature_set, iterate, ensemble_name, ensemble_name_1, heat, iterate_1, defect_num, x):
+    def __init__(self, filepath, temperature0, temperature_set, iterate, ensemble_name, ensemble_name_1, heat, iterate_1, defect_num, x, element1='', element2='', element3=''):
         print(filepath)
         super(Work, self).__init__()
         self.element1 = element1

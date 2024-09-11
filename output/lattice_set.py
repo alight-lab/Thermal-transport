@@ -1,4 +1,4 @@
-def lattice_set(element1, element2, element3, size1, size2, size3):
+def lattice_set(element1='', element2='', element3='', size1=[], size2=[], size3=[]):
     from initial.lattice import Lattice
     from initial.mix import mixture
     import numpy as np

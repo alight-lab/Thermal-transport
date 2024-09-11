@@ -8,6 +8,8 @@ os.environ['OVITO_GUI_MODE'] = '1'
 from output import lattice_set, render_3d, read_datafile
 from melolular_dynamics.lammps_calculation import Work
 from output.plot_2d import plot_2d
+from output.plot_2d import fit_plot
+from output.plot_2d import plot_scatter
 from initial.create_eam import create_eam
 from initial.vacf_pdos import find_pdos
 import webbrowser
@@ -325,7 +327,7 @@ class MainWindow(QWidget, Ui_Form):
                     self.heat_x_1.append(float(data[0]) * float(lattice_x_max_1)/20)
                     self.heat_y_1.append(float(data[3]))
             if len(self.heat_x_1) != 0:
-                cav = plot_2d(np.array(self.heat_x_1), np.array(self.heat_y_1), 'X/Å', 'Temperature/K', bar='yes', ymin=min(self.heat_y_1), ymax=max(self.heat_y_1))
+                cav = fit_plot(np.array(self.heat_x_1), np.array(self.heat_y_1),  'X/Å', 'Temperature/K', bar='yes', ymin=min(self.heat_y_1), ymax=max(self.heat_y_1))
                 self.verticalLayout_3.addWidget(cav)
         else:
             with open('result_heat_2.txt', 'r') as f:
@@ -341,7 +343,7 @@ class MainWindow(QWidget, Ui_Form):
                         self.heat_x_2.append(((float(lattice_x_max_1) - float(self.x))/10) * (i - 9) + self.x)
                         self.heat_y_2.append(float(data[i]))
             if len(self.heat_x_2) != 0:
-                cav = plot_2d(np.array(self.heat_x_2), np.array(self.heat_y_2), 'X/Å', 'Temperature/K', bar='yes', ymin=min(self.heat_y_2), ymax=max(self.heat_y_2))
+                cav = plot_scatter(np.array(self.heat_x_2[9:11]), np.array(self.heat_y_2[9:11]),np.array(self.heat_x_2), np.array(self.heat_y_2),  'X/Å', 'Temperature/K', bar='yes', ymin=min(self.heat_y_2), ymax=max(self.heat_y_2))
                 self.verticalLayout_5.addWidget(cav)
 
         #绘制声子态密度曲线
@@ -438,13 +440,13 @@ class MainWindow(QWidget, Ui_Form):
                 os.remove(Folderpath + '/体系温度曲线_多元素.png')
                 os.remove(Folderpath + '/体系温度曲线_多元素.txt')
         if len(self.heat_x_1) != 0 and self.exp1_radioButton.isChecked():
-            cav = plot_2d(np.array(self.heat_x_1), np.array(self.heat_y_1), 'X/Å', 'Temperature/K', savename='体系区域温度_单元素', save_path=Folderpath, bar='yes')
+            cav = fit_plot(np.array(self.heat_x_1), np.array(self.heat_y_1), 'X/Å', 'Temperature/K', bar='yes', ymin=min(self.heat_y_1), ymax=max(self.heat_y_1), savename='体系区域温度_单元素', save_path=Folderpath)
         else:
             if os.path.isfile(Folderpath + '/体系区域温度_单元素.png'):
                 os.remove(Folderpath + '/体系区域温度_单元素.png')
                 os.remove(Folderpath + '/体系区域温度_单元素.txt')
         if len(self.heat_x_2) != 0 and self.exp2_radioButton.isChecked():
-            cav = plot_2d(np.array(self.heat_x_2), np.array(self.heat_y_2), 'X/Å', 'Temperature/K', savename='体系区域温度_多元素', save_path=Folderpath, bar='yes')
+            cav = plot_scatter(np.array(self.heat_x_2[9:11]), np.array(self.heat_y_2[9:11]),np.array(self.heat_x_2), np.array(self.heat_y_2), 'X/Å', 'Temperature/K', savename='体系区域温度_多元素', save_path=Folderpath, bar='yes')
         else:
             if os.path.isfile(Folderpath + '/体系区域温度_多元素.png'):
                 os.remove(Folderpath + '/体系区域温度_多元素.png')
