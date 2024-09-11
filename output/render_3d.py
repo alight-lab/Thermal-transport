@@ -24,6 +24,8 @@ class Render3D():
             pipeline.remove_from_scene()
         
         self.__new_pipeline(file_path)
+        self.time_slider.setMaximum(self.__maxminum_frame())
+
 
 
     def clear_modifiers(self):
@@ -116,14 +118,14 @@ class Render3D():
         from PySide6.QtWidgets import QSlider
         from PySide6.QtCore import Qt
 
-        time_slider = QSlider(Qt.Horizontal)
-        time_slider.setTickPosition(QSlider.TicksAbove)
-        time_slider.setTickInterval(int(self.__maxminum_frame/20))
-        time_slider.setMaximum(self.__maxminum_frame)
+        self.time_slider = QSlider(Qt.Horizontal)
+        self.time_slider.setTickPosition(QSlider.TicksAbove)
+        self.time_slider.setTickInterval(int(self.__maxminum_frame/20))
+        self.time_slider.setMaximum(self.__maxminum_frame())
         def on_time_slider(frame: int):
             self.__set_frame = frame
-        time_slider.valueChanged.connect(on_time_slider)
-        layout.addWidget(time_slider)
+        self.time_slider.valueChanged.connect(on_time_slider)
+        layout.addWidget(self.time_slider)
 
     
     def __set_frame(self, frame: int):
@@ -135,7 +137,9 @@ class Render3D():
 
 
     def __maxminum_frame(self):
-        return self.__current_pipeline().source.num_frames()
+        if self.__current_pipeline() != None:
+            return self.__current_pipeline().source.num_frames()
+        return 1
 
 
     def __current_pipeline(self):
