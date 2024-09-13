@@ -35,7 +35,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # self.zon_tem_checkBox_2.clicked.connect(self.set_tempareture_display)
         # self.vacant_checkBox.clicked.connect(self.set_vacancy)
         # self.exp2_arg_pushButton_2.clicked.connect(self.save_file)
-        # self.exp2_arg_pushButton_3.clicked.connect(self.help_doc)     
+        # self.exp2_arg_pushButton_3.clicked.connect(self.help_doc)  
+        self.pushButton_3.clicked.connect(self.clicked_pushButton_3)   
 
     def setting(self):
         self.atom_all = ["Cu", "Ag", "Au", "Ni", "Pd", "Pt", "Al", "Pb", "Fe", "Mo", "Ta", "W"]
@@ -210,6 +211,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def help_doc(self):
         webbrowser.open('data\软件帮助手册.pdf', new=2)
     
+
+    def clicked_pushButton_3(self):
+        s: str
+        match self.pushButton_3.text:
+            case "无高亮显示": 
+                s = "缺陷高亮显示"
+            case "缺陷高亮显示":
+                s = "间隙高亮显示"
+            case "间隙高亮显示":
+                s = "依温度着色"
+            case _:
+                s = "无高亮显示"
+
+        self.pushButton_3.text = s
+
+
     def plot_1(self):
         if self.verticalLayout_2.itemAt(0) != None: # 清空T-Time图像，防止暂停时重复绘图
             self.verticalLayout_2.itemAt(0).widget().deleteLater()

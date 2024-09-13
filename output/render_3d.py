@@ -1,5 +1,4 @@
 from PySide6.QtWidgets import QLayout
-from PySide6.QtWidgets import QSlider
 
 # Usage:
 #     `from output.render_3d import render_3d`
@@ -126,14 +125,6 @@ class Render3D():
         self.time_slider.setMaximum(self.__maxminum_frame())
         self.time_slider.valueChanged.connect(on_time_slider)
         layout.addWidget(self.time_slider)
-
-    
-    def __set_frame(self, frame: int):
-        from ovito import scene
-        if frame <= self.__maxminum_frame():
-            scene.anim.current_frame = frame
-        else : 
-            scene.anim.current_frame = self.__maxminum_frame()
 
 
     def __current_pipeline(self):
